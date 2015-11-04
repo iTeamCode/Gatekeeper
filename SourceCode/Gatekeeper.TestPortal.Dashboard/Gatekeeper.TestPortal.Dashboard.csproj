@@ -41,6 +41,14 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
+    <Reference Include="WebDriver, Version=2.48.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.48.0\lib\net40\WebDriver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=2.48.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.2.48.0\lib\net40\WebDriver.Support.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="xunit">
       <HintPath>..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
     </Reference>
@@ -54,10 +62,14 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Dashboard_SignIn_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Gatekeeper.TestPortal.Common\App.config">
+      <Link>App.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +80,10 @@
     <ProjectReference Include="..\Gatekeeper.PageObject.Dashboard\Gatekeeper.PageObject.Dashboard.csproj">
       <Project>{79dd70eb-34e7-431e-85a5-72024a92f96f}</Project>
       <Name>Gatekeeper.PageObject.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.TestPortal.Common\Gatekeeper.TestPortal.Common.csproj">
+      <Project>{d1799863-9929-4120-b93e-e7f0c8ee0404}</Project>
+      <Name>Gatekeeper.TestPortal.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

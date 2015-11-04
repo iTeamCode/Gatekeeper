@@ -8,7 +8,7 @@ using System.Configuration;
 namespace Gatekeeper.TestPortal.Common
 {
     /// <summary>
-    /// Management
+    /// Management app setting.
     /// </summary>
     public class GatekeeperSettingManager
     {
@@ -16,5 +16,17 @@ namespace Gatekeeper.TestPortal.Common
         {
             return ConfigurationManager.AppSettings[settingName];
         }
+    }
+    /// <summary>
+    /// Setting name
+    /// </summary>
+    public struct SettingName
+    {
+        public const string BROWSER = "Tests.Browser";
+        public const string HOST = "Tests.Host";
+        public const string PORT = "Tests.Port";
+        public const string ENVIRONMENT = "Tests.Environment";
+
+        public const string CHURCHCODE = "Tests.ChurchCode";
     }
 }
