@@ -11,3 +11,5 @@ packages/
 *.dbmdl
 bin/
 obj/
+
+!/BrowserDriver/*

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Gatekeeper.TestPortal.Common
 {
+    /// <summary>
+    /// Alias for appliations.
+    /// </summary>
     public enum AppAlias
     {
         Unkonw,

@@ -19,6 +19,7 @@ namespace Gatekeeper.TestPortal.Common
         public static IDriverManager CreateDriverManager()
         {
             var browser = GatekeeperSettingManager.GetAppsetting(SettingName.BROWSER);
+            var driverPath = GatekeeperSettingManager.GetAppsetting(SettingName.DRIVERPATH);
             if (string.IsNullOrEmpty(browser))
             {
                 throw new Exception(string.Format("Can not get config '{0}'", SettingName.BROWSER));
@@ -29,13 +30,13 @@ namespace Gatekeeper.TestPortal.Common
             {
                 case "*iexplore":
                 case "*ie":
-                    driver = new InternetExplorerDriver();
+                    driver = new InternetExplorerDriver(driverPath);
                     break;
                 case "*firefox":
                     driver = new FirefoxDriver();
                     break;
                 case "*chrome":
-                    driver = new ChromeDriver();
+                    driver = new ChromeDriver(driverPath);
                     break;
 
                 default:

@@ -26,7 +26,8 @@ namespace Gatekeeper.TestPortal.Common
         public const string HOST = "Tests.Host";
         public const string PORT = "Tests.Port";
         public const string ENVIRONMENT = "Tests.Environment";
-
         public const string CHURCHCODE = "Tests.ChurchCode";
+        public const string WAITTIMEOUTINTERVAL = "Tests.WaitTimeoutInterval";
+        public const string DRIVERPATH = "Tests.DriverPath";
     }
 }

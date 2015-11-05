@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSetting\GatekeeperSettingManager.cs" />
+    <Compile Include="CustomFixture\SingleBrowserFixture.cs" />
     <Compile Include="Manager\IDriverManager.cs" />
     <Compile Include="SystemExtension\EnumExtension.cs" />
     <Compile Include="Enum\AppAlias.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Manager\IPageObject.cs" />
     <Compile Include="Enum\PageAlias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\WebElementKeeper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

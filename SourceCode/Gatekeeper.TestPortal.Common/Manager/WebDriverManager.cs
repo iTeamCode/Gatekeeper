@@ -18,6 +18,23 @@ namespace Gatekeeper.TestPortal.Common
                 return this._driver;
             }
         }
+        public PageAlias CurrentPage
+        {
+            get
+            {
+                var url = this._driver.Url;
+                var alias = PageAlias.Empty_Page;
+                try
+                {
+                    alias = RouteMapper.ConvertUrlToAlias(url);
+                }
+                catch
+                {
+                    alias = PageAlias.Empty_Page;
+                }
+                return alias;
+            }
+        }
 
         public WebDriverManager(IWebDriver driver)
         {
@@ -32,17 +49,6 @@ namespace Gatekeeper.TestPortal.Common
             {
                 throw new Exception(string.Format("Navigate To : {0} faild!", pageAlias));
             }
-        }
-
-        public bool IsCurrentPage(PageAlias pageAlias)
-        {
-            var isSame = false;
-            var url = RouteMapper.ConvertAliasToUrl(pageAlias);
-            if (_driver.Url == url)
-            {
-                isSame = true;
-            }
-            return isSame;
         }
     }
 }

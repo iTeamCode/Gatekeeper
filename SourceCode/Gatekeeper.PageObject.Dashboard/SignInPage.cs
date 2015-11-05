@@ -13,7 +13,11 @@ namespace Gatekeeper.PageObject.Dashboard
     public class DashboardSignInPage : PageObjectBase
     {
 
-        public DashboardSignInPage(IWebDriver driver) : base(driver) { }
+        public DashboardSignInPage(IWebDriver driver)
+            : base(driver)
+        {
+            WebElementKeeper.WaitingFor_ElementExists(this.Driver, By.Id("username"));
+        }
         #region Page elements
         [FindsBy(How = How.Id, Using = "username")]
         protected IWebElement txtUserName;
@@ -31,9 +35,6 @@ namespace Gatekeeper.PageObject.Dashboard
         #region Action for test case
         public void SignIn(string userName, string password, string churchCode)
         {
-            var wait = new WebDriverWait(this.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.ElementExists(By.Id("username")));
-
             this.txtUserName.Clear();
             this.txtPassword.Clear();
             this.txtChurchCode.Clear();

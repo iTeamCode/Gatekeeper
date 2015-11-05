@@ -7,12 +7,25 @@ using System.Threading.Tasks;
 
 namespace Gatekeeper.TestPortal.Common
 {
+    /// <summary>
+    /// Interface DriverManager
+    /// </summary>
     public interface IDriverManager
     {
+        /// <summary>
+        /// get web driver entity.
+        /// </summary>
         IWebDriver Driver { get; }
+        /// <summary>
+        /// get current page.
+        /// </summary>
+        PageAlias CurrentPage { get; }
 
+
+        /// <summary>
+        /// Navigate page function
+        /// </summary>
+        /// <param name="pageAlias"></param>
         void NavigateTo(PageAlias pageAlias);
-
-        bool IsCurrentPage(PageAlias pageAlias);
     }
 }
