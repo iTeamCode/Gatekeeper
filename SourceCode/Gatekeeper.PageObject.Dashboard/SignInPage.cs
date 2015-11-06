@@ -29,7 +29,28 @@ namespace Gatekeeper.PageObject.Dashboard
         protected IWebElement txtChurchCode;
 
         [FindsBy(How = How.XPath, Using = ".//button[text()='Sign in']")]
-        public IWebElement btnSignIn;
+        protected IWebElement btnSignIn;
+
+
+        private string _errorMsgXPath = ".//div[@ng-show='errorText']";
+        [FindsBy(How = How.XPath, Using = ".//div[@ng-show='errorText']")]
+        protected IWebElement txtErrorMsg;
+
+
+        public string ErrorMsg {
+            get {
+                return txtErrorMsg.Text;
+            }
+        }
+        public bool IsShowErrorMsgBox
+        {
+            get
+            {
+                WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
+                return txtErrorMsg.Displayed;
+            }
+        }
+
         #endregion Page elements
 
         #region Action for test case

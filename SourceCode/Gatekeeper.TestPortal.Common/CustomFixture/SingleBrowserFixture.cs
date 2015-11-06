@@ -10,11 +10,11 @@ namespace Gatekeeper.TestPortal.Common
     {
         public SingleBrowserFixture()
         { 
-
+            //Create
         }
         public void Dispose()
         {
-            throw new NotImplementedException();
+            //Romove
         }
     }
 }

@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatekeeper.TestPortal.Coordinator", "Gatekeeper.TestPortal.Coordinator\Gatekeeper.TestPortal.Coordinator.csproj", "{64CF618A-416A-4C8E-BF04-60FC580C3C89}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F03C0F5B-AE79-4F2B-9D5A-7D27AA77902B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatekeeper.TestPortal.Teacher", "Gatekeeper.TestPortal.Teacher\Gatekeeper.TestPortal.Teacher.csproj", "{27DCDCC3-E5B6-4555-B1B5-20CFA7952608}"
 EndProject
