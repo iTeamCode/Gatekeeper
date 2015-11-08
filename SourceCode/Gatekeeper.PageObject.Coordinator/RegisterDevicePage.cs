@@ -42,14 +42,14 @@ namespace Gatekeeper.PageObject.Coordinator
             }
         }
 
-        public bool isVisibleErrorMsg
-        {
-            get
-            {
-                WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
-                return txtErrorMsg.Displayed;
-            }
-        }
+        //public bool isVisibleErrorMsg
+        //{
+        //    get
+        //    {
+        //        WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
+        //        return txtErrorMsg.Displayed;
+        //    }
+        //}
         
         # endregion Page Elements
 
@@ -68,5 +68,21 @@ namespace Gatekeeper.PageObject.Coordinator
         }
 
         # endregion Actions on Register Device Page
+
+        # region Check Points
+        
+        public bool IsErrorMsgExpected(string expectedErrorMsg)
+        {
+            var isExpected = false;
+            WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver,By.XPath(_errorMsgXPath));
+            if(!txtErrorMsg.Displayed)
+                return isExpected;
+
+            isExpected = WebElementKeeper.WaitingFor_TextToBePresentInElement(this.Driver, this.txtErrorMsg, expectedErrorMsg);
+            return isExpected;
+
+        }
+
+        #endregion Check Points
     }
 }
