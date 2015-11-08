@@ -19,16 +19,18 @@ namespace Gatekeeper.TestPortal.Dashboard
             signInPage.SignIn("tcoulson", "FT.Admin1", "dc");
 
             //Waiting & Check page.
-            WebElementKeeper.WaitingFor_UrlToBe(manager.Driver, PageAlias.Dashboard_Home);
-            Assert.True(manager.CurrentPage == PageAlias.Dashboard_Home);
+            Assert.True(manager.IsCurrentPage(PageAlias.Dashboard_Home));
         }
     }
 
-    //public class Dashboard_SignIn_Error_Test : IClassFixture<SingleBrowserFixture>
-    public class Dashboard_SignIn_Error_Test : IClassFixture<TestXXXFixture>
+    public class Dashboard_SignIn_Error_Test : IClassFixture<SingleBrowserFixture>
     {
-        public static IDriverManager DriverManager { get; set; }
-        //[Fact]
+        private IDriverManager _driverManager { get; set; }
+        public Dashboard_SignIn_Error_Test(SingleBrowserFixture fixture)
+        {
+            _driverManager = fixture.DriverManager;
+        }
+
         [Theory]
         [InlineData("", "", "", "Username is required.")]
         [InlineData("tcoulson", "", "", "Password is required.")]
@@ -36,30 +38,14 @@ namespace Gatekeeper.TestPortal.Dashboard
         public void SignIn_Error(string userName, string pwd, string churchCode, string errorMsg)
         {
             //Create manager & Navigate page to Login.
-            //var manager = GatekeeperFactory.CreateDriverManager();
+            _driverManager.NavigateTo(PageAlias.Dashboard_SignIn);
 
-            var manager = Dashboard_SignIn_Error_Test.DriverManager;
-            manager.NavigateTo(PageAlias.Dashboard_SignIn);
-
-            var signInPage = GatekeeperFactory.CreatePageManager<DashboardSignInPage>(manager.Driver);
+            var signInPage = GatekeeperFactory.CreatePageManager<DashboardSignInPage>(_driverManager.Driver);
             signInPage.SignIn(userName, pwd, churchCode);
 
-            Assert.True(signInPage.IsShowErrorMsgBox);
-            Assert.Equal(signInPage.ErrorMsg, errorMsg);
-        }
-    }
-
-    public class TestXXXFixture : IDisposable
-    {
-        public TestXXXFixture()
-        {
-            //Create
-            Dashboard_SignIn_Error_Test.DriverManager = GatekeeperFactory.CreateDriverManager();
-        }
-        public void Dispose()
-        {
-            //Romove
-            Dashboard_SignIn_Error_Test.DriverManager.Driver.Close();
+            //Waiting & Check page.
+            var isPass = signInPage.CheckErrorMessage(errorMsg);
+            Assert.True(isPass, string.Format("error message is not '{0}'", errorMsg));
         }
     }
 }

@@ -36,24 +36,15 @@ namespace Gatekeeper.PageObject.Dashboard
         [FindsBy(How = How.XPath, Using = ".//div[@ng-show='errorText']")]
         protected IWebElement txtErrorMsg;
 
-
-        public string ErrorMsg {
-            get {
-                return txtErrorMsg.Text;
-            }
-        }
-        public bool IsShowErrorMsgBox
-        {
-            get
-            {
-                WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
-                return txtErrorMsg.Displayed;
-            }
-        }
-
         #endregion Page elements
 
         #region Action for test case
+        /// <summary>
+        /// Sign In for Dashboard
+        /// </summary>
+        /// <param name="userName">User name</param>
+        /// <param name="password">Password</param>
+        /// <param name="churchCode">Church code</param>
         public void SignIn(string userName, string password, string churchCode)
         {
             this.txtUserName.Clear();
@@ -67,6 +58,25 @@ namespace Gatekeeper.PageObject.Dashboard
             this.btnSignIn.Click();
         }
         #endregion
+
+        #region Check Point
+        /// <summary>
+        /// Check error message is 'expectedErrorMsg'.
+        /// </summary>
+        /// <param name="expectedErrorMsg">expected error message.</param>
+        /// <returns>is verify success</returns>
+        public bool CheckErrorMessage(string expectedErrorMsg)
+        {
+            var verifyErrorMsg = false;
+            WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
+            if (!txtErrorMsg.Displayed) return verifyErrorMsg;
+
+            verifyErrorMsg = WebElementKeeper.WaitingFor_TextToBePresentInElement(this.Driver, this.txtErrorMsg, expectedErrorMsg);
+            return verifyErrorMsg;
+        }
+        #endregion
+
+
 
     }
 }

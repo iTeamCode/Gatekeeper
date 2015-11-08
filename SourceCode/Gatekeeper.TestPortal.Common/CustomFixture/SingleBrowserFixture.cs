@@ -6,15 +6,28 @@ using System.Threading.Tasks;
 
 namespace Gatekeeper.TestPortal.Common
 {
+
     public class SingleBrowserFixture : IDisposable
     {
+        /// <summary>
+        /// Get drover manager
+        /// </summary>
+        public IDriverManager DriverManager { get; protected set; }
+        /// <summary>
+        /// Create browser driver
+        /// </summary>
         public SingleBrowserFixture()
         { 
-            //Create
+            //Create Browser driver.
+             this.DriverManager = GatekeeperFactory.CreateDriverManager();
         }
         public void Dispose()
         {
-            //Romove
-        }
+            //Close browser driver.
+            if (this.DriverManager != null && this.DriverManager.Driver != null)
+            {
+                this.DriverManager.Driver.Close();
+            }
+        }        
     }
 }

@@ -36,22 +36,41 @@ namespace Gatekeeper.TestPortal.Common
         #endregion Waiting For Element
 
         #region Waiting For Url
-        public static void WaitingFor_UrlContains(IWebDriver driver,string fraction)
+        public static bool WaitingFor_UrlContains(IWebDriver driver, string fraction)
         {
             var wait = new WebDriverWait(driver, _timeoutInterval);
-            wait.Until(ExpectedConditions.UrlContains(fraction));
+            return wait.Until(ExpectedConditions.UrlContains(fraction));
         }
 
-        public static void WaitingFor_UrlToBe(IWebDriver driver,PageAlias alias )
+        public static bool WaitingFor_UrlToBe(IWebDriver driver,PageAlias alias )
         {
             var url = RouteMapper.ConvertAliasToUrl(alias);
             var wait = new WebDriverWait(driver, _timeoutInterval);
-            wait.Until(ExpectedConditions.UrlToBe(url));
+            return wait.Until(ExpectedConditions.UrlToBe(url));
         }
-        public static void WaitingFor_UrlMatches(IWebDriver driver, string regex)
+        public static bool WaitingFor_UrlMatches(IWebDriver driver, string regex)
         {
             var wait = new WebDriverWait(driver, _timeoutInterval);
-            wait.Until(ExpectedConditions.UrlMatches(regex));
+            return wait.Until(ExpectedConditions.UrlMatches(regex));
+        }
+        #endregion
+
+
+        #region Waiting For Text
+        public static bool WaitingFor_TextToBePresentInElement(IWebDriver driver, IWebElement element, string text, TimeSpan timeOut)
+        {
+            var isFound = true;
+            var wait = new WebDriverWait(driver, timeOut);
+            try
+            {
+                wait.Until(ExpectedConditions.TextToBePresentInElement(element, text));
+            }
+            catch { isFound = false; }
+            return isFound;
+        }
+        public static bool WaitingFor_TextToBePresentInElement(IWebDriver driver, IWebElement element, string text)
+        {
+            return WaitingFor_TextToBePresentInElement(driver, element, text, _timeoutInterval);
         }
         #endregion
     }

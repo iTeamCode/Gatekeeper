@@ -50,5 +50,10 @@ namespace Gatekeeper.TestPortal.Common
                 throw new Exception(string.Format("Navigate To : {0} faild!", pageAlias));
             }
         }
+
+        public bool IsCurrentPage(PageAlias pageAlias)
+        {
+            return WebElementKeeper.WaitingFor_UrlToBe(_driver, pageAlias);
+        }
     }
 }

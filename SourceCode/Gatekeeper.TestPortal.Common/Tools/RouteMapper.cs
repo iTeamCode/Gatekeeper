@@ -76,7 +76,6 @@ namespace Gatekeeper.TestPortal.Common
             var churchCode = GatekeeperSettingManager.GetAppsetting(SettingName.CHURCHCODE);
             
             var baseUrl = string.Empty;
-
             if (app == AppAlias.Infellowship)
             {
                 baseUrl = string.Format("https://{0}.{1}.{2}.com", churchCode, environment, appName);
@@ -85,6 +84,7 @@ namespace Gatekeeper.TestPortal.Common
             {
                 baseUrl = string.Format("https://{0}.{1}.fellowshipone.com", appName, environment);
             }
+            
             return baseUrl.ToLower();
         }
     }

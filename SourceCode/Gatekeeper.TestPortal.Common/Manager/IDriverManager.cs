@@ -27,5 +27,7 @@ namespace Gatekeeper.TestPortal.Common
         /// </summary>
         /// <param name="pageAlias"></param>
         void NavigateTo(PageAlias pageAlias);
+
+        bool IsCurrentPage(PageAlias pageAlias);
     }
 }
