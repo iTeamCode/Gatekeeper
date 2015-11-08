@@ -57,6 +57,18 @@ namespace Gatekeeper.PageObject.Dashboard
 
             this.btnSignIn.Click();
         }
+
+        public string ErrorMsg
+        {
+            get {
+                var msg = string.Empty;
+
+                var hasErrorMsg = WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
+                if (!hasErrorMsg && !txtErrorMsg.Displayed) return msg;
+
+                return txtErrorMsg.Text;
+            }
+        }
         #endregion
 
         #region Check Point
@@ -68,15 +80,12 @@ namespace Gatekeeper.PageObject.Dashboard
         public bool CheckErrorMessage(string expectedErrorMsg)
         {
             var verifyErrorMsg = false;
-            WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
-            if (!txtErrorMsg.Displayed) return verifyErrorMsg;
+            var hasErrorMsg = WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
+            if (!hasErrorMsg && !txtErrorMsg.Displayed) return verifyErrorMsg;
 
             verifyErrorMsg = WebElementKeeper.WaitingFor_TextToBePresentInElement(this.Driver, this.txtErrorMsg, expectedErrorMsg);
             return verifyErrorMsg;
         }
         #endregion
-
-
-
     }
 }

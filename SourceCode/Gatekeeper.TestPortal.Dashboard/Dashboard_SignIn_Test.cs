@@ -3,6 +3,7 @@ using Gatekeeper.TestPortal.Common;
 using System;
 using System.Linq;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Gatekeeper.TestPortal.Dashboard
 {
@@ -26,9 +27,11 @@ namespace Gatekeeper.TestPortal.Dashboard
     public class Dashboard_SignIn_Error_Test : IClassFixture<SingleBrowserFixture>
     {
         private IDriverManager _driverManager { get; set; }
-        public Dashboard_SignIn_Error_Test(SingleBrowserFixture fixture)
+        private readonly ITestOutputHelper _output;
+        public Dashboard_SignIn_Error_Test(ITestOutputHelper output, SingleBrowserFixture fixture)
         {
             _driverManager = fixture.DriverManager;
+            _output = output;
         }
 
         [Theory]
@@ -45,6 +48,7 @@ namespace Gatekeeper.TestPortal.Dashboard
 
             //Waiting & Check page.
             var isPass = signInPage.CheckErrorMessage(errorMsg);
+            _output.WriteLine("[Info]:Error message '{0}'", signInPage.ErrorMsg);
             Assert.True(isPass, string.Format("error message is not '{0}'", errorMsg));
         }
     }
