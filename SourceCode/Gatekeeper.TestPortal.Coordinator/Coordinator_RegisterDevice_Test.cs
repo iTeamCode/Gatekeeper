@@ -17,8 +17,10 @@ namespace Gatekeeper.TestPortal.Coordinator
             var registerDevicePage = GatekeeperFactory.CreatePageManager<CoordinatorRegisterDevicePage>(manager.Driver);
             registerDevicePage.AuthenticateChurch("ft.tester", "FT4life!", "dc");
 
-            WebElementKeeper.WaitingFor_UrlToBe(manager.Driver, PageAlias.Coordinator_ActivityCode);
-          
+            Assert.True(manager.IsCurrentPage(PageAlias.Coordinator_ActivityCode));
+
+            manager.NavigateTo(PageAlias.Coordinator_RegisterDevice, false);
+            Assert.True(manager.IsCurrentPage(PageAlias.Coordinator_ActivityCode));
         }
 
         

@@ -26,7 +26,15 @@ namespace Gatekeeper.TestPortal.Common
         /// Navigate page function
         /// </summary>
         /// <param name="pageAlias"></param>
+        /// <param name="isCheckPage"></param>
         void NavigateTo(PageAlias pageAlias);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pageAlias"></param>
+        /// <param name="isCheckPage"></param>
+        void NavigateTo(PageAlias pageAlias, bool isCheckPage);
 
         bool IsCurrentPage(PageAlias pageAlias);
     }

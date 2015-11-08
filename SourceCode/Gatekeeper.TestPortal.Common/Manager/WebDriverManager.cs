@@ -40,12 +40,17 @@ namespace Gatekeeper.TestPortal.Common
         {
             this._driver = driver;
         }
+
         public void NavigateTo(PageAlias pageAlias)
+        {
+            NavigateTo(pageAlias, true);
+        }
+        public void NavigateTo(PageAlias pageAlias, bool isCheckPage)
         {
             var url = RouteMapper.ConvertAliasToUrl(pageAlias);
             _driver.Url = url;
 
-            if (_driver.Url != url)
+            if (isCheckPage && _driver.Url != url)
             {
                 throw new Exception(string.Format("Navigate To : {0} faild!", pageAlias));
             }
