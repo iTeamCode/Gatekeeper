@@ -40,10 +40,15 @@ namespace Gatekeeper.TestPortal.Common
 
         #region Coordinator
         /// <summary>
-        /// Coordinator_SignIn
+        /// Coordinator_RegisterDevice
         /// </summary>
         [RouteInfomation(AppAlias.Coordinator)]
-        Coordinator_SignIn = 30001,
+        Coordinator_RegisterDevice = 30001,
+        /// <summary>
+        /// Coordinator_ActivityCodePage
+        /// </summary>
+        [RouteInfomation(AppAlias.Coordinator)]
+        Coordinator_ActivityCode = 30002,
         #endregion
 
         #region LaunchPad
