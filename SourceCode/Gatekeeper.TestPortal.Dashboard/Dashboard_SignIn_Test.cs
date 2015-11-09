@@ -17,7 +17,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             manager.NavigateTo(PageAlias.Dashboard_SignIn);
 
             var signInPage = GatekeeperFactory.CreatePageManager<DashboardSignInPage>(manager.Driver);
-            signInPage.SignIn("tcoulson", "FT.Admin1", "dc");
+            signInPage.SignIn("ft.tester", "FT4life!", "dc");
 
             //Waiting & Check page.
             Assert.True(manager.IsCurrentPage(PageAlias.Dashboard_Home));
@@ -36,8 +36,8 @@ namespace Gatekeeper.TestPortal.Dashboard
 
         [Theory]
         [InlineData("", "", "", "Username is required.")]
-        [InlineData("tcoulson", "", "", "Password is required.")]
-        [InlineData("tcoulson", "FT.Admin", "", "Church code is required.")]
+        [InlineData("ft.tester", "", "", "Password is required.")]
+        [InlineData("ft.tester", "FT4life!", "", "Church code is required.")]
         public void SignIn_Error(string userName, string pwd, string churchCode, string errorMsg)
         {
             //Create manager & Navigate page to Login.
