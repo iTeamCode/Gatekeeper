@@ -21,8 +21,11 @@ namespace Gatekeeper.TestPortal.Common
             //Create Browser driver.
              this.DriverManager = GatekeeperFactory.CreateDriverManager();
         }
+
+        protected virtual void OnDispose() { }
         public void Dispose()
         {
+            OnDispose();
             //Close browser driver.
             if (this.DriverManager != null && this.DriverManager.Driver != null)
             {

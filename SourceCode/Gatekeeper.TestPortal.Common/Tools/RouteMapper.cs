@@ -77,15 +77,28 @@ namespace Gatekeeper.TestPortal.Common
             var churchCode = GatekeeperSettingManager.GetAppsetting(SettingName.CHURCHCODE);
             
             var baseUrl = string.Empty;
-            if (app == AppAlias.Infellowship)
+            if (environment == "proc")
             {
-                baseUrl = string.Format("https://{0}.{1}.{2}.com", churchCode, environment, appName);
+                if (app == AppAlias.Infellowship)
+                {
+                    baseUrl = string.Format("https://{0}.{1}.com", churchCode, appName);
+                }
+                else if (app != AppAlias.Unkonw)
+                {
+                    baseUrl = string.Format("https://{0}.fellowshipone.com", appName);
+                }
             }
-            else if (app != AppAlias.Unkonw)
+            else
             {
-                baseUrl = string.Format("https://{0}.{1}.fellowshipone.com", appName, environment);
+                if (app == AppAlias.Infellowship)
+                {
+                    baseUrl = string.Format("https://{0}.{1}.{2}.com", churchCode, environment, appName);
+                }
+                else if (app != AppAlias.Unkonw)
+                {
+                    baseUrl = string.Format("https://{0}.{1}.fellowshipone.com", appName, environment);
+                }
             }
-            
             return baseUrl.ToLower();
         }
     }

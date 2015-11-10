@@ -50,7 +50,7 @@ namespace Gatekeeper.TestPortal.Common
             var url = RouteMapper.ConvertAliasToUrl(pageAlias);
             _driver.Url = url;
 
-            if (isCheckPage && _driver.Url != url)
+            if (isCheckPage && !WebElementKeeper.WaitingFor_UrlToBe(_driver, pageAlias))
             {
                 throw new Exception(string.Format("Navigate To : {0} faild!", pageAlias));
             }

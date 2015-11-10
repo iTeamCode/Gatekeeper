@@ -10,8 +10,6 @@ namespace Gatekeeper.TestPortal.Common
 {
     public class PageObjectBase
     {
-        //public PageAlias Alias { get; }
-
         public IWebDriver Driver { get; set; }
 
         public PageObjectBase(IWebDriver driver)

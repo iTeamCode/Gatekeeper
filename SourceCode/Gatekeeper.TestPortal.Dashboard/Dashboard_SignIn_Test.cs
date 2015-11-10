@@ -16,11 +16,12 @@ namespace Gatekeeper.TestPortal.Dashboard
             var manager = GatekeeperFactory.CreateDriverManager();
             manager.NavigateTo(PageAlias.Dashboard_SignIn);
 
-            var signInPage = GatekeeperFactory.CreatePageManager<DashboardSignInPage>(manager.Driver);
-            signInPage.SignIn("ft.tester", "FT4life!", "dc");
+            var signInPage = GatekeeperFactory.CreatePageManager<SignInPage>(manager.Driver);
+            signInPage.Action_SignIn("ft.tester", "FT4life!", "dc");
 
             //Waiting & Check page.
             Assert.True(manager.IsCurrentPage(PageAlias.Dashboard_Home));
+            manager.Driver.Close();
         }
     }
 
@@ -43,11 +44,11 @@ namespace Gatekeeper.TestPortal.Dashboard
             //Create manager & Navigate page to Login.
             _driverManager.NavigateTo(PageAlias.Dashboard_SignIn);
 
-            var signInPage = GatekeeperFactory.CreatePageManager<DashboardSignInPage>(_driverManager.Driver);
-            signInPage.SignIn(userName, pwd, churchCode);
+            var signInPage = GatekeeperFactory.CreatePageManager<SignInPage>(_driverManager.Driver);
+            signInPage.Action_SignIn(userName, pwd, churchCode);
 
             //Waiting & Check page.
-            var isPass = signInPage.CheckErrorMessage(errorMsg);
+            var isPass = signInPage.Check_ErrorMessage(errorMsg);
             _output.WriteLine("[Info]:Error message '{0}'", signInPage.ErrorMsg);
             Assert.True(isPass, string.Format("error message is not '{0}'", errorMsg));
         }

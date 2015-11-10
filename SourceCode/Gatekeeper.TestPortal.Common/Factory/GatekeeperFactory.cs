@@ -56,5 +56,12 @@ namespace Gatekeeper.TestPortal.Common
             var pageObject = (T)Activator.CreateInstance(type, driver);
             return pageObject;
         }
+
+        public static T CreateModalDialog<T>(IWebDriver driver, string rootXPath) where T : ModalDialogBase
+        {
+            Type type = typeof(T);
+            var pageObject = (T)Activator.CreateInstance(type, driver, rootXPath);
+            return pageObject.VerifyElement() ? pageObject : null;
+        }
     }
 }

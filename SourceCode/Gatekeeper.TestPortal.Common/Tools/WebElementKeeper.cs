@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,15 @@ namespace Gatekeeper.TestPortal.Common
 
         #region Waiting For Element
         #region Element is exist
+        public static bool WaitingFor_ElementExists(IWebDriver driver, By by, TimeSpan timeOut)
+        {
+            return (WaitingFor_GetElementWhenExists(driver, by, timeOut) != null) ? true : false;
+        }
+        public static bool WaitingFor_ElementExists(IWebDriver driver, By by)
+        {
+            return WaitingFor_ElementExists(driver, by, _timeoutInterval);
+        }
+
         public static IWebElement WaitingFor_GetElementWhenExists(IWebDriver driver, By by, TimeSpan timeOut)
         {
             IWebElement element;
@@ -38,13 +48,22 @@ namespace Gatekeeper.TestPortal.Common
         {
             return WaitingFor_GetElementWhenExists(driver, by, _timeoutInterval);
         }
-        public static bool WaitingFor_ElementExists(IWebDriver driver, By by, TimeSpan timeOut)
+
+        public static ReadOnlyCollection<IWebElement> WaitingFor_GetElementsWhenExists(IWebDriver driver, By by, TimeSpan timeOut)
         {
-            return (WaitingFor_GetElementWhenExists(driver, by, timeOut) != null) ? true : false;
+            ReadOnlyCollection<IWebElement> elements;
+            var wait = new WebDriverWait(driver, timeOut);
+            try
+            {
+                wait.Until(ExpectedConditions.ElementExists(by));
+                elements = driver.FindElements(by);
+            }
+            catch { elements = null; }
+            return elements;
         }
-        public static bool WaitingFor_ElementExists(IWebDriver driver, By by)
+        public static ReadOnlyCollection<IWebElement> WaitingFor_GetElementsWhenExists(IWebDriver driver, By by)
         {
-            return WaitingFor_ElementExists(driver, by, _timeoutInterval);
+            return WaitingFor_GetElementsWhenExists(driver, by, _timeoutInterval);
         }
         #endregion Element is exist
 
@@ -64,6 +83,24 @@ namespace Gatekeeper.TestPortal.Common
         {
             return WaitingFor_GetElementWhenIsVisible(driver, by, _timeoutInterval);
         }
+
+        public static ReadOnlyCollection<IWebElement> WaitingFor_GetElementsWhenIsVisible(IWebDriver driver, By by, TimeSpan timeOut)
+        {
+            ReadOnlyCollection<IWebElement> elements;
+            var wait = new WebDriverWait(driver, timeOut);
+            try
+            {
+                wait.Until(ExpectedConditions.ElementIsVisible(by));
+                elements = driver.FindElements(by);
+            }
+            catch { elements = null; }
+            return elements;
+        }
+        public static ReadOnlyCollection<IWebElement> WaitingFor_GetElementsWhenIsVisible(IWebDriver driver, By by)
+        {
+            return WaitingFor_GetElementsWhenIsVisible(driver, by, _timeoutInterval);
+        }
+
         public static bool WaitingFor_ElementIsVisible(IWebDriver driver, By by, TimeSpan timeOut)
         {
             return (WaitingFor_GetElementWhenExists(driver, by, timeOut) != null) ? true : false;

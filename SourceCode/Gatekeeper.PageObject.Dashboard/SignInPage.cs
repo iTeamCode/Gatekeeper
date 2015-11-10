@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Gatekeeper.PageObject.Dashboard
 {
-    public class DashboardSignInPage : PageObjectBase
+    public class SignInPage : PageObjectBase
     {
 
-        public DashboardSignInPage(IWebDriver driver)
+        public SignInPage(IWebDriver driver)
             : base(driver)
         {
             WebElementKeeper.WaitingFor_ElementExists(this.Driver, By.Id("username"));
@@ -45,7 +45,7 @@ namespace Gatekeeper.PageObject.Dashboard
         /// <param name="userName">User name</param>
         /// <param name="password">Password</param>
         /// <param name="churchCode">Church code</param>
-        public void SignIn(string userName, string password, string churchCode)
+        public void Action_SignIn(string userName, string password, string churchCode)
         {
             this.txtUserName.Clear();
             this.txtPassword.Clear();
@@ -77,7 +77,7 @@ namespace Gatekeeper.PageObject.Dashboard
         /// </summary>
         /// <param name="expectedErrorMsg">expected error message.</param>
         /// <returns>is verify success</returns>
-        public bool CheckErrorMessage(string expectedErrorMsg)
+        public bool Check_ErrorMessage(string expectedErrorMsg)
         {
             var verifyErrorMsg = false;
             var hasErrorMsg = WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
