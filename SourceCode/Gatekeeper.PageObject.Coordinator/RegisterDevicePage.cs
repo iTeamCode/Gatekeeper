@@ -14,7 +14,7 @@ namespace Gatekeeper.PageObject.Coordinator
         public CoordinatorRegisterDevicePage(IWebDriver driver)
             : base(driver)
         {
-            WebElementKeeper.WaitingFor_ElementExists(this.Driver, By.XPath("*//div/main/form/*//input[@placeholder='Username']"));
+            WebElementKeeper.WaitingFor_ElementExists(this.Driver, By.XPath(".//input[@placeholder='Username']"));
         }
 
         # region Page Elements
@@ -30,31 +30,24 @@ namespace Gatekeeper.PageObject.Coordinator
         [FindsBy(How = How.XPath, Using = ".//button[text()='Authenticate Church']")]
         protected IWebElement btnAuthenticateChurch;
 
-        private string _errorMsgXPath = ".//div[@class='message error-message ng-scope']/p";
-        [FindsBy(How = How.XPath, Using = ".//div[@class='message error-message ng-scope']/p")]
+        private string _errorMsgXPath = ".//div[contains(@class, 'error-message')]/p";
+        [FindsBy(How = How.XPath, Using = ".//div[contains(@class, 'error-message')]/p")]
         protected IWebElement txtErrorMsg;
 
-        public string ErrorMsg
-        {
-            get
-            {
-                return txtErrorMsg.Text;
-            }
-        }
-
-        //public bool isVisibleErrorMsg
+        //public string ErrorMsg
         //{
         //    get
         //    {
-        //        WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
-        //        return txtErrorMsg.Displayed;
+        //        return txtErrorMsg.Text;
         //    }
         //}
-        
+
+                
         # endregion Page Elements
 
 
         # region Actions on Register Device Page
+
         public void AuthenticateChurch (string userName, string password, string churchCode)
         {
             this.txtUserName.Clear();
