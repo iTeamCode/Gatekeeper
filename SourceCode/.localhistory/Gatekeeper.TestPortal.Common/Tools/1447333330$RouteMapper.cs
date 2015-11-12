@@ -70,9 +70,9 @@ namespace Gatekeeper.TestPortal.Common
             #endregion Coordinator
 
             #region Launchpad
-            baseUrl = BuildBaseUrl(AppAlias.Launchpad);
-            _dicMap.Add(PageAlias.Launchpad_SignIn, string.Format("{0}/#/Login", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_Home, string.Format("{0}/#/apps", baseUrl));
+            baseUrl = BuildBaseUrl(AppAlias.LaunchPad);
+            _dicMap.Add(PageAlias.LaunchPad_SignIn, string.Format("{0}/#/Login", baseUrl));
+            _dicMap.Add(PageAlias.LaunchPad_Home, string.Format("{0}/#/apps", baseUrl));
             #endregion Launchpad
         }
 

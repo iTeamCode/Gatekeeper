@@ -19,8 +19,8 @@ namespace Gatekeeper.TestPortal.Common
         Teacher,
         [Description("Coordinator")]
         Coordinator,
-        [Description("Launchpad")]
-        Launchpad,
+        [Description("LaunchPad")]
+        LaunchPad,
         [Description("Infellowship")]
         Infellowship,
         [Description("Portal")]

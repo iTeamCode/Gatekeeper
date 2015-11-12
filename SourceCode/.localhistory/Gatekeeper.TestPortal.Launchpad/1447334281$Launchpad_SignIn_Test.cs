@@ -14,13 +14,13 @@ namespace Gatekeeper.TestPortal.Launchpad
         {
             //Create manager & Navigate page to Login.
             var manager = GatekeeperFactory.CreateDriverManager();
-            manager.NavigateTo(PageAlias.Launchpad_SignIn);
+            manager.NavigateTo(PageAlias.LaunchPad_SignIn);
 
             var signInPage = GatekeeperFactory.CreatePageManager<LaunchpadSignInPage>(manager.Driver);
             signInPage.Action_SignIn("ft.autotester@gmail.com", "FT4life!");
 
             //Waiting & Check page.
-            Assert.True(manager.IsCurrentPage(PageAlias.Launchpad_Home));
+            Assert.True(manager.IsCurrentPage(PageAlias.LaunchPad_Home));
             manager.Driver.Close();
         }
     }

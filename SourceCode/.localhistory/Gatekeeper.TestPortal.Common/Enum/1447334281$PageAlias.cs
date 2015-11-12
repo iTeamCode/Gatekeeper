@@ -51,17 +51,17 @@ namespace Gatekeeper.TestPortal.Common
         Coordinator_ActivityCode = 30002,
         #endregion
 
-        #region Launchpad
+        #region LaunchPad
         /// <summary>
         /// LaunchPad_SignIn
         /// </summary>
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_SignIn = 40001,
+        [RouteInfomation(AppAlias.LaunchPad)]
+        LaunchPad_SignIn = 40001,
         /// <summary>
         /// Launchpad_Home
         /// </summary>
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_Home = 40002,
+        [RouteInfomation(AppAlias.LaunchPad)]
+        LaunchPad_Home = 40002,
         #endregion
         /// <summary>
         /// Empty_Page
