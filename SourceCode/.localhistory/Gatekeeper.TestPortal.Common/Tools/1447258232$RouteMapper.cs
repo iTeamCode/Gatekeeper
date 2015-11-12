@@ -68,12 +68,6 @@ namespace Gatekeeper.TestPortal.Common
             _dicMap.Add(PageAlias.Coordinator_RegisterDevice, string.Format("{0}/#/Login", baseUrl));
             _dicMap.Add(PageAlias.Coordinator_ActivityCode, string.Format("{0}/#/activityselection/code", baseUrl));
             #endregion Coordinator
-
-            #region Launchpad
-            baseUrl = BuildBaseUrl(AppAlias.LaunchPad);
-            _dicMap.Add(PageAlias.LaunchPad_SignIn, string.Format("{0}/#/Login", baseUrl));
-            _dicMap.Add(PageAlias.LaunchPad_Home, string.Format("{0}/#/apps", baseUrl));
-            #endregion Launchpad
         }
 
         private static string BuildBaseUrl(AppAlias app)

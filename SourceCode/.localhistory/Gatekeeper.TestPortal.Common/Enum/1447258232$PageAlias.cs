@@ -61,7 +61,7 @@ namespace Gatekeeper.TestPortal.Common
         /// Launchpad_Home
         /// </summary>
         [RouteInfomation(AppAlias.LaunchPad)]
-        LaunchPad_Home = 40002,
+        Launchpad_Home = 40002,
         #endregion
         /// <summary>
         /// Empty_Page
