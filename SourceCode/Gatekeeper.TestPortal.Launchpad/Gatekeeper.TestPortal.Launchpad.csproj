@@ -35,10 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gatekeeper.PageObject.Launchpad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Gatekeeper.PageObject.Launchpad\bin\Debug\Gatekeeper.PageObject.Launchpad.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="WebDriver">
@@ -76,6 +72,10 @@
     <ProjectReference Include="..\Gatekeeper.DomainModel.Launchpad\Gatekeeper.DomainModel.Launchpad.csproj">
       <Project>{103d850e-514a-4b92-a12f-7c4e75a44088}</Project>
       <Name>Gatekeeper.DomainModel.Launchpad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.PageObject.Launchpad\Gatekeeper.PageObject.Launchpad.csproj">
+      <Project>{4b450302-929e-44cb-acb1-f7aa1be61076}</Project>
+      <Name>Gatekeeper.PageObject.Launchpad</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gatekeeper.TestPortal.Common\Gatekeeper.TestPortal.Common.csproj">
       <Project>{d1799863-9929-4120-b93e-e7f0c8ee0404}</Project>
