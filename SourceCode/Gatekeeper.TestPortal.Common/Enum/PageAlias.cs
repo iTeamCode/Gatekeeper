@@ -49,6 +49,11 @@ namespace Gatekeeper.TestPortal.Common
         /// </summary>
         [RouteInfomation(AppAlias.Coordinator)]
         Coordinator_ActivityCode = 30002,
+        /// <summary>
+        /// Coordinator_ActivityInstancePage
+        /// </summary>
+        [RouteInfomation(AppAlias.Coordinator)]
+        Coordinator_ActivityInstance = 30003,
         #endregion
 
         #region Launchpad

@@ -76,7 +76,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Coordinator_RegisterDevice_Test.cs" />
+    <Compile Include="CoordinatorAuthentication\Coordinator_ActivityCode_Authenticate.cs" />
+    <Compile Include="CoordinatorAuthentication\Coordinator_ActivityCode_Auth_Error_Test.cs" />
+    <Compile Include="CoordinatorAuthentication\Coordinator_RegisterDevice_Error_Test.cs" />
+    <Compile Include="CoordinatorAuthentication\Coordinator_RegisterDevice_Test.cs" />
+    <Compile Include="Fixture\CoordinatorActivityCodeAuthFixture.cs" />
+    <Compile Include="Fixture\CoordinatorRegisterDeviceFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

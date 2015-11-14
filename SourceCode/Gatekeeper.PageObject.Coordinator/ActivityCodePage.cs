@@ -47,22 +47,22 @@ namespace Gatekeeper.PageObject.Coordinator
         protected IWebElement btnDone;
 
         private string _errorMsgXPath = ".//div[contains(@class,'error-message')]/p";
-        //[FindsBy(How = How.XPath, Using = ".//div[contains(@class,'error-message')]/p")]
-        //protected IWebElement txtErrorMsg;
+        [FindsBy(How = How.XPath, Using = ".//div[contains(@class,'error-message')]/p")]
+        protected IWebElement txtErrorMsg;
       
-        public string ErrorMsg
-        {
-            get
-            {
-                var msg = string.Empty;
-                var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this.Driver, By.XPath(this._errorMsgXPath));
-                if (element != null)
-                {
-                    msg = element.Text;
-                }
-                return msg;
-            }
-        }
+        //public string ErrorMsg
+        //{
+        //    get
+        //    {
+        //        var msg = string.Empty;
+        //        var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this.Driver, By.XPath(this._errorMsgXPath));
+        //        if (element != null)
+        //        {
+        //            msg = element.Text;
+        //        }
+        //        return msg;
+        //    }
+        //}
 
         
         
@@ -83,6 +83,17 @@ namespace Gatekeeper.PageObject.Coordinator
         #endregion Actions on ActivityCode Page
 
         #region Check Points
+
+        public bool IsErrorMsgExpected(string expectedErrorMsg)
+        {
+            var isExpected = false;
+            WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
+            if (!txtErrorMsg.Displayed)
+                return isExpected;
+
+            isExpected = WebElementKeeper.WaitingFor_TextToBePresentInElement(this.Driver, this.txtErrorMsg, expectedErrorMsg);
+            return isExpected;
+        }
                 
         #endregion Check Points
     }
