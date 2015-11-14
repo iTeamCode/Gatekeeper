@@ -18,6 +18,6 @@ namespace Gatekeeper.TestPortal.Common
             this._rootXPath = rootXPath;
         }
 
-        protected virtual void ReloadElements() { }
+        protected virtual void ReloadControls() { }
     }
 }

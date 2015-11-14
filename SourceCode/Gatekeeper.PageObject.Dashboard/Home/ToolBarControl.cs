@@ -13,9 +13,9 @@ namespace Gatekeeper.PageObject.Dashboard
     {
         public ToolBarControl(IWebDriver driver, string rootXPath) : base(driver, rootXPath) { }
 
-        protected override void ReloadElements()
+        protected override void ReloadControls()
         {
-            base.ReloadElements();
+            base.ReloadControls();
             //Reload:Start day of week
             //Reload:Time frame
         }
