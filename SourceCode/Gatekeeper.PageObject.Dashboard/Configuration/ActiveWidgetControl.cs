@@ -31,13 +31,14 @@ namespace Gatekeeper.PageObject.Dashboard
                 IWebElement element = null;
                 if (_driver != null)
                 {
-                    var headerXPath = string.Format("{0}/div[contains(@class,'Configurator')]/div[contains(@class,'Configurator-header')]", _rootXPath);
+                    var headerXPath = string.Format(cst_HeaderXPathTemp, _rootXPath);
                     element = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(headerXPath));
                 }
                 return element;
             }
         }
-
+        protected const string cst_HeaderXPathTemp = "{0}/div[contains(@class,'Configurator')]/div[contains(@class,'Configurator-header')]";
+        protected const string cst_ItemPanelXPathTemp = "{0}/div[contains(@class,'Configurator')]/div[contains(@class,'Configurator-items')]";
         protected IWebElement _itemPanel
         {
             get
@@ -45,12 +46,18 @@ namespace Gatekeeper.PageObject.Dashboard
                 IWebElement element = null;
                 if (_driver != null)
                 {
-                    var headerXPath = string.Format("{0}/div[contains(@class,'Configurator')]/div[contains(@class,'Configurator-items')]", _rootXPath);
+                    var headerXPath = string.Format(cst_ItemPanelXPathTemp, _rootXPath);
                     element = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(headerXPath));
                 }
                 return element;
             }
         }
+        protected void WaitingForItemPanelStateChange()
+        {
+            var headerXPath = string.Format(cst_ItemPanelXPathTemp, _rootXPath);
+            WebElementKeeper.WaitingFor_ElementExists(this._driver, By.XPath(headerXPath));
+        }
+
         #endregion
 
         public string Title
@@ -83,7 +90,10 @@ namespace Gatekeeper.PageObject.Dashboard
             {
                 var btnSwitch = _headBar.FindElement(By.XPath("./span[contains(@class,'Configurator-header-switch')]"));
                 var chkSwitch = btnSwitch.FindElement(By.XPath("./input[@type='checkbox']"));
-                if (chkSwitch.Selected != value) { btnSwitch.Click(); }
+                if (chkSwitch.Selected != value) { 
+                    btnSwitch.Click();
+                    WaitingForItemPanelStateChange();
+                }
             }
         }
         public bool Expand
@@ -101,24 +111,33 @@ namespace Gatekeeper.PageObject.Dashboard
             }
         }
 
-        public List<ActiveWidgetItemControl> _items;
+        protected List<ActiveWidgetItemControl> _items;
         public List<ActiveWidgetItemControl> Items
         {
             get
             {
                 if (_items == null)
                 {
-                    var items = _itemPanel.FindElements(By.XPath("./ul/li"));
+                    var xPathTemp = string.Format(cst_ItemPanelXPathTemp + "/ul/li", _rootXPath);
+                    var items = WebElementKeeper.WaitingFor_GetElementsWhenExists(this._driver, By.XPath(xPathTemp));
 
                     _items = new List<ActiveWidgetItemControl>(50);
-                    foreach (var item in items)
+                    for (var i = 1; i <= items.Count; i++)
                     {
-                        _items.Add(new ActiveWidgetItemControl(item));
+                        var element = new ActiveWidgetItemControl(this._driver, string.Format("({0})[{1}]", xPathTemp, i));
+                        //element.WaitingForDomElementShow();
+                        _items.Add(element);
                     }
                 }
-
                 return _items;
             }
         }
+
+
+        //public void WaitingForDomElementShow()
+        //{
+        //    var xPathTemp = string.Format(cst_ItemPanelXPathTemp + "/ul/li", _rootXPath);
+        //    var items = WebElementKeeper.WaitingFor_GetElementsWhenExists(this._driver, By.XPath(xPathTemp));
+        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Gatekeeper.TestPortal.Common;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -13,13 +14,16 @@ namespace Gatekeeper.PageObject.Dashboard
     /// </summary>
     public class ActiveWidgetItemControl
     {
-        public ActiveWidgetItemControl(IWebElement rootElement)
+        protected IWebDriver _driver;
+        protected string _rootXPath;
+        public ActiveWidgetItemControl(IWebDriver driver, string rootXPath)
         {
-            InitControl(rootElement);
+            InitControl(driver, rootXPath);
         }
-        public void InitControl(IWebElement rootElement)
+        public void InitControl(IWebDriver driver, string rootXPath)
         {
-            this._rootElement = rootElement;
+            this._driver = driver;
+            this._rootXPath = rootXPath;
         }
 
         /// <summary>
@@ -33,15 +37,15 @@ namespace Gatekeeper.PageObject.Dashboard
 
 
         #region Web Element
-        protected IWebElement _rootElement;
         protected IWebElement _checkbox
         {
             get
             {
                 IWebElement element = null;
-                if (_rootElement != null)
+                if (_driver != null)
                 {
-                    element = _rootElement.FindElement(By.XPath("./input[@type='checkbox']"));
+                    var xPathTemp = string.Format("{0}/input[@type='checkbox']", _rootXPath);
+                    element = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(xPathTemp));
                 }
                 return element;
             }
@@ -51,13 +55,20 @@ namespace Gatekeeper.PageObject.Dashboard
             get
             {
                 IWebElement element = null;
-                if (_rootElement != null)
+                if (_driver != null)
                 {
-                    element = _rootElement.FindElement(By.XPath("./label"));
+                    var headerXPath = string.Format("{0}/label", _rootXPath);
+                    element = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(headerXPath));
                 }
                 return element;
             }
         }
         #endregion
+
+        //public void WaitingForDomElementShow()
+        //{
+        //    var xPathTemp = string.Format("{0}/input[@type='checkbox']", _rootXPath);
+        //    var items = WebElementKeeper.WaitingFor_GetElementsWhenExists(this._driver, By.XPath(xPathTemp));
+        //}
     }
 }

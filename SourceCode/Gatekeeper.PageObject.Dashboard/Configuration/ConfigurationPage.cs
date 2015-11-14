@@ -36,13 +36,12 @@ namespace Gatekeeper.PageObject.Dashboard
             }
         }
         
-        public List<ActiveWidgetControl> _activeWidgets;
+        protected List<ActiveWidgetControl> _activeWidgets;
         public List<ActiveWidgetControl> ActiveWidgets { get {
-            if (this.Driver != null)
+            if (this.Driver != null && _activeWidgets == null)
             {
                 var xPathTemp = ".//div[@class='ConfiguratorSection']/div[contains(@class,'widgets')]/fieldset/div[contains(@class,'ConfiguratorList')]";
                 var items = WebElementKeeper.WaitingFor_GetElementsWhenExists(this.Driver, By.XPath(xPathTemp));
-                //var items = this.Driver.FindElements(By.XPath(".//div[@class='ConfiguratorSection']/div[contains(@class,'widgets')]/fieldset/div[contains(@class,'ConfiguratorList')]"));
 
                 _activeWidgets = new List<ActiveWidgetControl>(50);
                 for (var i = 1; i <= items.Count;i++ )
@@ -55,9 +54,9 @@ namespace Gatekeeper.PageObject.Dashboard
         #endregion
 
         #region Action for test case
-        public void Action_EnabledAllActiveWidgets()
+        public void Action_UnableAllActiveWidgets()
         {
-            var widgets = this._activeWidgets;
+            var widgets = this.ActiveWidgets;
             foreach (var widget in widgets)
             {
                 widget.Enabled = false;

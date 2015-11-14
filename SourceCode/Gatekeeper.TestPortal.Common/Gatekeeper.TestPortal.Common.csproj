@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AppSetting\GatekeeperSettingManager.cs" />
     <Compile Include="CustomFixture\SingleBrowserFixture.cs" />
+    <Compile Include="Factory\PageControlBase.cs" />
     <Compile Include="Manager\IDriverManager.cs" />
     <Compile Include="Factory\ModalDialogBase.cs" />
     <Compile Include="Factory\PageObjectBase.cs" />

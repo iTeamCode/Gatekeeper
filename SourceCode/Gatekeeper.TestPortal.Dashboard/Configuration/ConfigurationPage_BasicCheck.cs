@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -20,6 +21,9 @@ namespace Gatekeeper.TestPortal.Dashboard
         }
         #endregion
 
+        /// <summary>
+        /// Check title Text is 'Active Widgets'
+        /// </summary>
         [Fact]
         public void Check_TitleText()
         {
@@ -30,6 +34,9 @@ namespace Gatekeeper.TestPortal.Dashboard
             Assert.Equal("Active Widgets", configurationPage.TitleText);
         }
 
+        /// <summary>
+        /// Check max selected widget count letter than 6 
+        /// </summary>
         [Fact]
         public void Check_MaxWidgetCount()
         {
@@ -40,7 +47,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             var enabledWidgets = configurationPage.ActiveWidgets.FindAll(x => x.Enabled);
             Assert.True(enabledWidgets.Count <= 6);
 
-            configurationPage.Action_EnabledAllActiveWidgets();
+            configurationPage.Action_UnableAllActiveWidgets();
             enabledWidgets = configurationPage.ActiveWidgets.FindAll(x => x.Enabled);
             Assert.Equal(0, enabledWidgets.Count);
 
@@ -53,6 +60,31 @@ namespace Gatekeeper.TestPortal.Dashboard
 
             Assert.True(configurationPage.Check_ModalDialog());
             configurationPage.Action_CloseModalDialog();
+        }
+        /// <summary>
+        /// selected count of widget item panel is match to title bar display.
+        /// </summary>
+        [Fact]
+        public void Check_WidgetItemSelectCount()
+        {
+            _driverManager.NavigateTo(PageAlias.Dashboard_Configuration);
+            var configurationPage = GatekeeperFactory.CreatePageManager<ConfigurationPage>(_driverManager.Driver);
+
+            configurationPage.Action_UnableAllActiveWidgets(); //clear 
+            //var widget = configurationPage.ActiveWidgets.FirstOrDefault();
+            var activeWidgets = configurationPage.ActiveWidgets;
+            for (var i = 0; i < activeWidgets.Count && i < 6; i++)
+            {
+                var widget = activeWidgets[i];
+                widget.Enabled = true;
+                //widget.WaitingForDomElementShow();
+                var selectedWidgetItems = widget.Items.FindAll(x => x.Selected);
+                var matche = Regex.Match(widget.Title, @"\(\d+\)");
+                matche = Regex.Match(matche.Value, @"\d+");
+
+                Assert.Equal(int.Parse(matche.Value), selectedWidgetItems.Count);
+                widget.Enabled = false;
+            }
         }
     }
 }
