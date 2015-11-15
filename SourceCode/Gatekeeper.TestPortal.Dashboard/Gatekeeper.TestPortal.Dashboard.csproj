@@ -79,6 +79,7 @@
     <Compile Include="Configuration\ConfigurationPage_BasicCheck.cs" />
     <Compile Include="Dashboard_SignIn_Test.cs" />
     <Compile Include="Fixture\DashboardAuthorizedUserFixture.cs" />
+    <Compile Include="Home\HomePage_BasicCheck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

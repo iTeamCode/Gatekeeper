@@ -57,6 +57,20 @@ namespace Gatekeeper.TestPortal.Common
             return pageObject;
         }
 
+        /// <summary>
+        /// Create page control
+        /// </summary>
+        /// <typeparam name="T">page control type</typeparam>
+        /// <param name="driver">driver</param>
+        /// <param name="rootXPath">rootXPath</param>
+        /// <returns>entity</returns>
+        public static T CreatePageControl<T>(IWebDriver driver, string rootXPath) where T : PageControlBase
+        {
+            Type type = typeof(T);
+            var pageObject = (T)Activator.CreateInstance(type, driver, rootXPath);
+            return pageObject;
+        }
+
         public static T CreateModalDialog<T>(IWebDriver driver, string rootXPath) where T : ModalDialogBase
         {
             Type type = typeof(T);

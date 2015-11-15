@@ -156,5 +156,38 @@ namespace Gatekeeper.TestPortal.Common
             return WaitingFor_TextToBePresentInElement(driver, element, text, _timeoutInterval);
         }
         #endregion
+
+        #region Waiting For State changed
+        public static bool WaitingFor_ElementSelectionStateToBe(IWebDriver driver, IWebElement element, bool selected, TimeSpan timeOut)
+        {
+            var wait = new WebDriverWait(driver, timeOut);
+            return wait.Until(ExpectedConditions.ElementSelectionStateToBe(element, selected));
+        }
+        public static bool WaitingFor_ElementSelectionStateToBe(IWebDriver driver, IWebElement element, bool selected)
+        {
+            return WaitingFor_ElementSelectionStateToBe(driver, element, selected, _timeoutInterval);
+        }
+
+        public static bool WaitingFor_ElementSelectionStateToBe(IWebDriver driver, By locator, bool selected, TimeSpan timeOut)
+        {
+            var wait = new WebDriverWait(driver, timeOut);
+            return wait.Until(ExpectedConditions.ElementSelectionStateToBe(locator, selected));
+        }
+        public static bool WaitingFor_ElementSelectionStateToBe(IWebDriver driver, By locator, bool selected)
+        {
+            return WaitingFor_ElementSelectionStateToBe(driver, locator, selected, _timeoutInterval);
+        }
+
+        public static bool WaitingFor_InvisibilityOfElementLocated(IWebDriver driver, By locator, TimeSpan timeOut)
+        {
+            var wait = new WebDriverWait(driver, timeOut);
+            return wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
+        }
+        public static bool WaitingFor_InvisibilityOfElementLocated(IWebDriver driver, By locator)
+        {
+            return WaitingFor_InvisibilityOfElementLocated(driver, locator, _timeoutInterval);
+        }
+        
+        #endregion Waiting For State changed
     }
 }

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Gatekeeper.DomainModel.Dashboard
 {
-    public class Class1
+    public enum ChartView
     {
+        Week,
+        Month,
+        Quarter,
+        Year
     }
 }
