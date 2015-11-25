@@ -22,8 +22,8 @@ namespace Gatekeeper.PageObject.Dashboard
         //DateRange root:(.//div[@ng-controller='DashboardController']/div[contains(@class,'Metric')])[i]
         protected readonly string cst_SummaryBar;
         protected readonly string cst_DetailBar;
-
         protected readonly string cst_MetricItems;
+
         protected const string cst_ChartView = "";
 
         protected const string cst_ProgressBar = ".//div[@role='progressbar']";
