@@ -32,7 +32,7 @@ namespace Gatekeeper.PageObject.Dashboard
             {
                 if (_imgIcon == null)
                 {
-                    var xPath = cst_DetailBar_MainArea + "/div[@id='metric-result-detail-Giving']/div/img";
+                    var xPath = cst_DetailBar_MainArea + "/div[contains(@class,'Metric-name')]/div/img";
                     _imgIcon = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(xPath));
                 }
                 return _imgIcon;
@@ -46,7 +46,7 @@ namespace Gatekeeper.PageObject.Dashboard
             {
                 if (_txtName == null)
                 {
-                    var xPath = cst_DetailBar_MainArea + "/div[@id='metric-result-detail-Giving']/div/div[contains(@class,'Metric-name-text')]";
+                    var xPath = cst_DetailBar_MainArea + "/div[contains(@class,'Metric-name')]/div/div[contains(@class,'Metric-name-text')]";
                     _txtName = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(xPath));
                 }
                 return _txtName;
@@ -104,7 +104,7 @@ namespace Gatekeeper.PageObject.Dashboard
         {
             get
             {
-                var element = this.eleMainArea.FindElement(By.XPath("./div[@class='metric-detail-value']/div[@class='year']"));
+                var element = this.eleMainArea.FindElement(By.XPath("./div[@class='metric-detail-value']/div[contains(@class,'year')]"));
                 return element.Text;
             }
         }
@@ -123,7 +123,7 @@ namespace Gatekeeper.PageObject.Dashboard
         {
             get
             {
-                var element = this.eleLastYearArea.FindElement(By.XPath("./div[@class='year']"));
+                var element = this.eleLastYearArea.FindElement(By.XPath("./div[contains(@class,'year')]"));
                 return element.Text;
             }
         }
@@ -142,7 +142,7 @@ namespace Gatekeeper.PageObject.Dashboard
         {
             get
             {
-                var element = this.eleBeforeLastYearArea.FindElement(By.XPath("./div[@class='year']"));
+                var element = this.eleBeforeLastYearArea.FindElement(By.XPath("./div[contains(@class,'year')]"));
                 return element.Text;
             }
         }

@@ -189,5 +189,28 @@ namespace Gatekeeper.TestPortal.Common
         }
         
         #endregion Waiting For State changed
+
+        #region Extension
+        public static bool WaitingFor_WebElementAttributeChangedTo(IWebDriver driver, By locator, string attrName, string attrValue, TimeSpan timeOut)
+        {
+            var wait = new WebDriverWait(driver, timeOut);
+            return wait.Until<bool>(
+                delegate(IWebDriver dir)
+                {
+                    var flag = false;
+                    var element = dir.FindElement(locator);
+                    if (element.GetAttribute(attrName) == attrValue)
+                    {
+                        flag = true;
+                    }
+                    return flag;
+                }
+            );
+        }
+        public static bool WaitingFor_WebElementAttributeChangedTo(IWebDriver driver, By locator, string attrName, string attrValue)
+        {
+            return WaitingFor_WebElementAttributeChangedTo(driver, locator, attrName, attrValue, _timeoutInterval);
+        }
+        #endregion Waiting For State changed
     }
 }

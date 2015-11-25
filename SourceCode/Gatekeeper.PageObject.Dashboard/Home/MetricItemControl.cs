@@ -1,5 +1,6 @@
 ﻿using Gatekeeper.TestPortal.Common;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Gatekeeper.PageObject.Dashboard
         protected readonly string cst_MetricItem_CheckBox;
         protected readonly string cst_MetricItem_Label;
 
-        protected const string cst_ProgressBar = ".//div[@role='progressbar']";
+        protected const string cst_ProgressBar = ".//div[@role='progressbar']/parent::div";
         #endregion Dom elements xpath
 
         #region Dom elements object
@@ -64,10 +65,19 @@ namespace Gatekeeper.PageObject.Dashboard
             {
                 if (this.chkSelected.Selected != value)
                 {
-                    this.lblName.Click();
+                    //Actions action = new Actions(this._driver);
+                    //var element = this.lblName;
+                    //action.Click(element).Build().Perform();
+                    
+                    var element = this.lblName;
+                    var jsScript = string.Format("$(\"span > label[for='{0}']\").click()", element.GetAttribute("for"));
+                    IJavaScriptExecutor jsExecutor = this._driver as IJavaScriptExecutor;
+                    jsExecutor.ExecuteScript(jsScript);
+
+                    //this.lblName.Click();
                 }
-                WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_ProgressBar));
-                System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1));
+                WebElementKeeper.WaitingFor_WebElementAttributeChangedTo(this._driver, By.XPath(cst_ProgressBar), "class", "ng-hide");
+                //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1));
             }
         }
         #endregion Property for client
