@@ -63,5 +63,20 @@ namespace Gatekeeper.TestPortal.Dashboard
             //homePage.ToolBar.Action_SelectStartDayOfWeek(DayOfWeek.Tuesday);
         }
 
+        [Fact]
+        public void DemoTest01()
+        {
+            _driverManager.NavigateTo(PageAlias.Dashboard_Home);
+            var homePage = GatekeeperFactory.CreatePageManager<HomePage>(_driverManager.Driver);
+
+            homePage.ToolBar.Action_SelectView(ChartView.Year);
+            var chartSection = homePage.ChartSections.FirstOrDefault();
+            chartSection.Expand = true;
+            var data_2013 = chartSection.ChartView["2013"];
+
+            homePage.ToolBar.Action_SelectView(ChartView.Quarter);
+            var data_2015_Q1 = chartSection.ChartView["Q1","2015"];
+        }
+
     }
 }

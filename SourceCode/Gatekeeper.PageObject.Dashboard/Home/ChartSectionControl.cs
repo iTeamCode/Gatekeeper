@@ -13,18 +13,21 @@ namespace Gatekeeper.PageObject.Dashboard
         public ChartSectionControl(IWebDriver driver, string rootXPath)
             : base(driver, rootXPath)
         {
+            //DateRange root:(.//div[@ng-controller='DashboardController']/div[contains(@class,'Metric')])[i]
             cst_SummaryBar = string.Format("{0}/div[contains(@class,'Metric-summary')]", rootXPath);
             cst_DetailBar = string.Format("{0}/div[contains(@class,'metric-result-detail-row')]", rootXPath);
             cst_MetricItems = string.Format("{0}/div[contains(@class,'Metric-detail')]/div[contains(@class,'Metric-items')]/span", rootXPath);
+            cst_ChartViewHeader = string.Format("{0}/div[contains(@class,'Metric-chart-heading')]", rootXPath);
+            cst_ChartViewDetail = string.Format("{0}/div[contains(@class,'Metric-detail')]", rootXPath);
         }
 
         #region Dom elements xpath
-        //DateRange root:(.//div[@ng-controller='DashboardController']/div[contains(@class,'Metric')])[i]
+        
         protected readonly string cst_SummaryBar;
         protected readonly string cst_DetailBar;
         protected readonly string cst_MetricItems;
-
-        protected const string cst_ChartView = "";
+        protected readonly string cst_ChartViewHeader;
+        protected readonly string cst_ChartViewDetail;
 
         protected const string cst_ProgressBar = ".//div[@role='progressbar']";
         #endregion Dom elements xpath
@@ -67,6 +70,20 @@ namespace Gatekeeper.PageObject.Dashboard
                     _metricItems = WebElementKeeper.WaitingFor_GetElementsWhenIsVisible(this._driver, By.XPath(cst_MetricItems));
                 }
                 return _metricItems;
+            }
+        }
+
+        //[FindsBy(How = How.XPath, Using = ChartSectionControl.cst_ChartViewDetail)]
+        protected IList<IWebElement> _chartViewDetail;
+        protected IList<IWebElement> chartViewDetail
+        {
+            get
+            {
+                if (_chartViewDetail == null)
+                {
+                    _chartViewDetail = WebElementKeeper.WaitingFor_GetElementsWhenIsVisible(this._driver, By.XPath(cst_ChartViewDetail));
+                }
+                return _chartViewDetail;
             }
         }
         #endregion Dom elements object
@@ -123,7 +140,18 @@ namespace Gatekeeper.PageObject.Dashboard
         /// <summary>
         /// get chart view.
         /// </summary>
-        public ChartViewControl ChartView;
+        public ChartViewControl ChartView
+        {
+            get
+            {
+                ChartViewControl control = null;
+                if (chartViewDetail != null)
+                {
+                    control = GatekeeperFactory.CreatePageControl<ChartViewControl>(this._driver, cst_ChartViewDetail);
+                }
+                return control;
+            }
+        }
 
 
         public bool Expand
