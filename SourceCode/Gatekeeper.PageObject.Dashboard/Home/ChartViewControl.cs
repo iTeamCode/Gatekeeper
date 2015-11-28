@@ -11,69 +11,37 @@ namespace Gatekeeper.PageObject.Dashboard
 {
     public class ChartViewControl : PageControlBase
     {
-
+        protected override void ReloadControls()
+        {
+            base.ReloadControls();
+            this._dicChartData = null;
+            this._xAxis = null;
+        }
         public ChartViewControl(IWebDriver driver, string rootXPath) : base(driver, rootXPath) {
             //DateRange root:(.//div[@ng-controller='DashboardController']/div[contains(@class,'Metric')])[i]/div[contains(@class,'Metric-detail')]
             cst_ChartViewData = string.Format("{0}/div[contains(@class,'Metric-chart')]", rootXPath);
         }
         #region Dom elements xpath
         protected readonly string cst_ChartViewData;
+        protected const string cst_ProgressBar = ".//div[@role='progressbar']/parent::div";
         #endregion Dom elements xpath
+
         #region Chart Data
-        /// <summary>
-        /// Get chart data
-        /// </summary>
-        /// <param name="x_Axis">x-Axis name</param>
-        /// <param name="year">year</param>
-        /// <returns></returns>
-        public decimal? this[string x_Axis, string year]
-        {
-            get
-            {
-                //check data.
-                if (xAxis == null || xAxis.Count == 0)
-                {
-                    throw new Exception("x-Axis not exists!");
-                }
-
-                if (dicChartData == null || dicChartData.Count == 0)
-                {
-                    throw new Exception("ChartData not exists!");
-                }
-
-                var index = xAxis.IndexOf(x_Axis);
-                if (index < 0)
-                {
-                    throw new Exception(string.Format("Can not find x-Axis is '{0}'!", x_Axis));
-                }
-                if (!dicChartData.Keys.Contains(year))
-                {
-                    throw new Exception(string.Format("Can not find year in current chart '{0}'!", year));
-                }
-                var value = dicChartData[year][index];
-                return value;
-            }
-        }
-
-        public decimal? this[string x_Axis]
-        {
-            get
-            {
-                return this[x_Axis, "Years"];
-            }
-        }
-
+        private string _strXAxis;
         private List<string> _xAxis;
         private List<string> xAxis
         {
             get
             {
-                if (_xAxis == null)
+
+                var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_ChartViewData));
+                var x = element.GetAttribute("x");
+                if (_strXAxis != x)
                 {
-                    var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_ChartViewData));
-                    var x = element.GetAttribute("x");
                     _xAxis = BuildData_XAxis(x);
+                    _strXAxis = x;
                 }
+                
                 return _xAxis;
             }
         }
@@ -81,6 +49,7 @@ namespace Gatekeeper.PageObject.Dashboard
         private Dictionary<string, List<decimal?>> dicChartData
         { 
             get{
+                WebElementKeeper.WaitingFor_WebElementAttributeChangedTo(this._driver, By.XPath(cst_ProgressBar), "class", "ng-hide");
                 if (_dicChartData == null)
                 {
                     var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_ChartViewData));
@@ -135,6 +104,96 @@ namespace Gatekeeper.PageObject.Dashboard
             return (List<T>)_Json.ReadObject(_MemoryStream);
         }
         #endregion Chart Data
-        
+
+
+        #region Chart Data
+        /// <summary>
+        /// Get chart data
+        /// </summary>
+        /// <param name="x_Axis">x-Axis name</param>
+        /// <param name="year">year</param>
+        /// <returns></returns>
+        public decimal? this[string x_Axis, string year]
+        {
+            get
+            {
+                //check data.
+                if (xAxis == null || xAxis.Count == 0)
+                {
+                    throw new Exception("x-Axis not exists!");
+                }
+
+                if (dicChartData == null || dicChartData.Count == 0)
+                {
+                    throw new Exception("ChartData not exists!");
+                }
+
+                var index = xAxis.IndexOf(x_Axis);
+                if (index < 0)
+                {
+                    throw new Exception(string.Format("Can not find x-Axis is '{0}'!", x_Axis));
+                }
+                if (!dicChartData.Keys.Contains(year))
+                {
+                    throw new Exception(string.Format("Can not find year in current chart '{0}'!", year));
+                }
+                var value = dicChartData[year][index];
+                return value;
+            }
+        }
+
+        public decimal? this[string x_Axis]
+        {
+            get
+            {
+                return this[x_Axis, "Years"];
+            }
+        }
+
+        public decimal GetEndData(int offset = 0)
+        {
+            var year  =DateTime.Now.Year;
+            var currentYear = year.ToString();
+            var lastYear = (year - 1).ToString();
+
+            List<decimal?> dataList;
+            if (dicChartData.Keys.Contains("Years"))
+            {
+                dataList = dicChartData["Years"];
+                return dataList[dataList.Count - 1 - offset].Value;
+            }
+
+            if (!dicChartData.Keys.Contains(currentYear))
+            {
+                throw new Exception(string.Format("Can't find data for year '{0}'", currentYear));
+            }
+
+            dataList = dicChartData[currentYear];
+            var index = dataList.FindIndex(x => !x.HasValue);
+            index = index - 1;
+            if (index < 0)
+            {
+                index = dataList.Count - 1;
+                //return dataList[].Value;
+            }
+            else 
+            {
+                if (index - offset < 0)
+                {
+                    dataList = dicChartData[lastYear];
+                    index = (index - offset) + dataList.Count;
+                    //return dataList[index].Value;
+                }
+                else
+                {
+                    index = index - offset;
+                    //return dataList[index - offset].Value;
+                }
+            }
+
+            return dataList[index].Value;
+        }
+
+        #endregion Chart Data
     }
 }

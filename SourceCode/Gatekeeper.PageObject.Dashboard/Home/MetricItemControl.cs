@@ -77,7 +77,6 @@ namespace Gatekeeper.PageObject.Dashboard
                     //this.lblName.Click();
                 }
                 WebElementKeeper.WaitingFor_WebElementAttributeChangedTo(this._driver, By.XPath(cst_ProgressBar), "class", "ng-hide");
-                //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1));
             }
         }
         #endregion Property for client

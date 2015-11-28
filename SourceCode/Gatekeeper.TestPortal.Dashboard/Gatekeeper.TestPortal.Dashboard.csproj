@@ -76,10 +76,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Configuration\ConfigurationPage_BasicCheck.cs" />
-    <Compile Include="Dashboard_SignIn_Test.cs" />
+    <Compile Include="BaseCheck\ConfigurationPage_BasicCheck.cs" />
+    <Compile Include="BaseCheck\Dashboard_SignIn_Test.cs" />
+    <Compile Include="Chart\Chart_DataCheck.cs" />
     <Compile Include="Fixture\DashboardAuthorizedUserFixture.cs" />
-    <Compile Include="Home\HomePage_BasicCheck.cs" />
+    <Compile Include="BaseCheck\HomePage_BasicCheck.cs" />
+    <Compile Include="Fixture\InitialConfigurationFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +106,11 @@
       <Project>{d1799863-9929-4120-b93e-e7f0c8ee0404}</Project>
       <Name>Gatekeeper.TestPortal.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <Folder Include="Home\" />
+    <Folder Include="Timeframe\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -12,7 +12,9 @@ namespace Gatekeeper.TestPortal.Dashboard
 {
     public class HomePage_BasicCheck : IClassFixture<DashboardAuthorizedUserFixture>
     {
+        
         #region Init & check data
+        private const string cst_DisplayName = "BaseCheck.SignIn";
         private IDriverManager _driverManager;
         public HomePage_BasicCheck(DashboardAuthorizedUserFixture fixture)
         {
@@ -21,7 +23,7 @@ namespace Gatekeeper.TestPortal.Dashboard
         }
         #endregion
 
-        [Fact]
+        [Fact(DisplayName = cst_DisplayName + ".DemoTest00")]
         public void DemoTest()
         {
             _driverManager.NavigateTo(PageAlias.Dashboard_Home);
@@ -53,7 +55,6 @@ namespace Gatekeeper.TestPortal.Dashboard
             value = summaryBar.Value;
             compareWithLast = summaryBar.CompareWithLast;
 
-            //System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
             chartSection.Expand = true;
             //chartSection.MetricItems[0].Selected = true;
             chartSection.MetricItems.ForEach(x => x.Selected = true);
@@ -63,7 +64,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             //homePage.ToolBar.Action_SelectStartDayOfWeek(DayOfWeek.Tuesday);
         }
 
-        [Fact]
+        [Fact(DisplayName = cst_DisplayName + ".DemoTest01")]
         public void DemoTest01()
         {
             _driverManager.NavigateTo(PageAlias.Dashboard_Home);
@@ -72,10 +73,17 @@ namespace Gatekeeper.TestPortal.Dashboard
             homePage.ToolBar.Action_SelectView(ChartView.Year);
             var chartSection = homePage.ChartSections.FirstOrDefault();
             chartSection.Expand = true;
+            
             var data_2013 = chartSection.ChartView["2013"];
 
-            homePage.ToolBar.Action_SelectView(ChartView.Quarter);
+            homePage.ToolBar.Action_SelectView(ChartView.Quarter);            
             var data_2015_Q1 = chartSection.ChartView["Q1","2015"];
+
+            homePage.ToolBar.Action_SelectView(ChartView.Month);
+            var data_2015_Month10 = chartSection.ChartView["Sep", "2015"];
+
+            homePage.ToolBar.Action_SelectView(ChartView.Week);
+            var data_2015_Week3 = chartSection.ChartView["36", "2015"];
         }
 
     }

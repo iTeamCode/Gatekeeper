@@ -47,6 +47,8 @@ namespace Gatekeeper.TestPortal.Common
         }
         public void NavigateTo(PageAlias pageAlias, bool isCheckPage)
         {
+            if (this.CurrentPage == pageAlias) { return; }
+
             var url = RouteMapper.ConvertAliasToUrl(pageAlias);
             _driver.Url = url;
 

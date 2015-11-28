@@ -9,7 +9,8 @@ namespace Gatekeeper.TestPortal.Dashboard
 {
     public class Dashboard_SignIn_Success_Test
     {
-        [Fact]
+        private const string cst_DisplayName = "BaseCheck.SignIn";
+        [Fact(DisplayName = cst_DisplayName + ".Success")]
         public void SignIn_Success()
         {
             //Create manager & Navigate page to Login.
@@ -27,6 +28,7 @@ namespace Gatekeeper.TestPortal.Dashboard
 
     public class Dashboard_SignIn_Error_Test : IClassFixture<SingleBrowserFixture>
     {
+        private const string cst_DisplayName = "BaseCheck.SignIn";
         private IDriverManager _driverManager { get; set; }
         private readonly ITestOutputHelper _output;
         public Dashboard_SignIn_Error_Test(ITestOutputHelper output, SingleBrowserFixture fixture)
@@ -35,7 +37,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             _output = output;
         }
 
-        [Theory]
+        [Theory(DisplayName = cst_DisplayName + ".Error")]
         [InlineData("", "", "", "Username is required.")]
         [InlineData("ft.tester", "", "", "Password is required.")]
         [InlineData("ft.tester", "FT4life!", "", "Church code is required.")]

@@ -211,6 +211,28 @@ namespace Gatekeeper.TestPortal.Common
         {
             return WaitingFor_WebElementAttributeChangedTo(driver, locator, attrName, attrValue, _timeoutInterval);
         }
+
+        public static bool WaitingFor_WebElementAttributeChanged(IWebDriver driver, By locator, string attrName, TimeSpan timeOut)
+        {
+            var oldAttrValue = driver.FindElement(locator).GetAttribute(attrName);
+            var wait = new WebDriverWait(driver, timeOut);
+            return wait.Until<bool>(
+                delegate(IWebDriver dir)
+                {
+                    var flag = false;
+                    var element = dir.FindElement(locator);
+                    if (element.GetAttribute(attrName) != oldAttrValue)
+                    {
+                        flag = true;
+                    }
+                    return flag;
+                }
+            );
+        }
+        public static bool WaitingFor_WebElementAttributeChanged(IWebDriver driver, By locator, string attrName)
+        {
+            return WaitingFor_WebElementAttributeChanged(driver, locator, attrName, _timeoutInterval);
+        }
         #endregion Waiting For State changed
     }
 }

@@ -12,6 +12,7 @@ namespace Gatekeeper.TestPortal.Dashboard
 {
     public class ConfigurationPage_BasicCheck : IClassFixture<DashboardAuthorizedUserFixture>
     {
+        private const string cst_DisplayName = "BaseCheck.Configuration";
         #region Init & check data
         private IDriverManager _driverManager;
         public ConfigurationPage_BasicCheck(DashboardAuthorizedUserFixture fixture)
@@ -24,7 +25,7 @@ namespace Gatekeeper.TestPortal.Dashboard
         /// <summary>
         /// Check title Text is 'Active Widgets'
         /// </summary>
-        [Fact]
+        [Fact(DisplayName = cst_DisplayName + ".CheckTitleText")]
         public void Check_TitleText()
         {
             _driverManager.NavigateTo(PageAlias.Dashboard_Configuration);
@@ -37,7 +38,7 @@ namespace Gatekeeper.TestPortal.Dashboard
         /// <summary>
         /// Check max selected widget count letter than 6 
         /// </summary>
-        [Fact]
+        [Fact(DisplayName = cst_DisplayName + ".CheckMaxWidgetCount")]
         public void Check_MaxWidgetCount()
         {
             _driverManager.NavigateTo(PageAlias.Dashboard_Configuration);
@@ -64,7 +65,7 @@ namespace Gatekeeper.TestPortal.Dashboard
         /// <summary>
         /// selected count of widget item panel is match to title bar display.
         /// </summary>
-        [Fact]
+        [Fact(DisplayName = cst_DisplayName + ".CheckWidgetItemSelectCount")]
         public void Check_WidgetItemSelectCount()
         {
             _driverManager.NavigateTo(PageAlias.Dashboard_Configuration);

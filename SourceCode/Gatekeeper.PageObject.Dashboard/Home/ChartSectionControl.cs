@@ -29,7 +29,7 @@ namespace Gatekeeper.PageObject.Dashboard
         protected readonly string cst_ChartViewHeader;
         protected readonly string cst_ChartViewDetail;
 
-        protected const string cst_ProgressBar = ".//div[@role='progressbar']";
+        protected const string cst_ProgressBar = ".//div[@role='progressbar']/parent::div";
         #endregion Dom elements xpath
 
         #region Dom elements object
@@ -79,7 +79,7 @@ namespace Gatekeeper.PageObject.Dashboard
         {
             get
             {
-                if (_chartViewDetail == null)
+                //if (_chartViewDetail == null)
                 {
                     _chartViewDetail = WebElementKeeper.WaitingFor_GetElementsWhenIsVisible(this._driver, By.XPath(cst_ChartViewDetail));
                 }
@@ -178,7 +178,8 @@ namespace Gatekeeper.PageObject.Dashboard
                     {
                         this.summaryBar.Click();
                     }
-                    WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_ProgressBar));
+                    //WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_ProgressBar));
+                    WebElementKeeper.WaitingFor_WebElementAttributeChangedTo(this._driver, By.XPath(cst_ProgressBar), "class", "ng-hide");
                 }
             }
         }

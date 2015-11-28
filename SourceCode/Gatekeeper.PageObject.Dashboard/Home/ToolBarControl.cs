@@ -62,7 +62,7 @@ namespace Gatekeeper.PageObject.Dashboard
         protected const string cst_StartDayOfWeek_Friday_Radio = ".//input[@id='first-day-friday']";
         protected const string cst_StartDayOfWeek_Saturday_Radio = ".//input[@id='first-day-saturday']";
 
-        protected const string cst_ProgressBar = ".//div[@role='progressbar']";
+        protected const string cst_ProgressBar = ".//div[@role='progressbar']/parent::div";
 
         
         #endregion
@@ -244,6 +244,7 @@ namespace Gatekeeper.PageObject.Dashboard
                     return;
             }
             WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_ProgressBar));
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
         }
         /// <summary>
         /// Action for select start day of week.
@@ -279,6 +280,7 @@ namespace Gatekeeper.PageObject.Dashboard
                     return;
             }
             WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_ProgressBar));
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
         }
         #endregion
 

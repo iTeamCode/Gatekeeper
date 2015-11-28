@@ -11,6 +11,11 @@ namespace Gatekeeper.PageObject.Dashboard
     public class ConfigurationPage : PageObjectBase
     {
         public ConfigurationPage(IWebDriver driver) : base(driver) { }
+        #region Dom elements xpath
+        //DateRange
+        protected const string cst_ConfiguratorSection = ".//div[@class='ConfiguratorSection']/div[contains(@class,'widgets')]/fieldset";
+        protected const string cst_BtnConfiguratorClose = ".//a[contains( @class,'ConfiguratorClose-icon')]";
+        #endregion Dom elements xpath
         
         //[WaitingFindBy]
         protected IWebElement _title
@@ -20,12 +25,23 @@ namespace Gatekeeper.PageObject.Dashboard
                 IWebElement element = null;
                 if (this.Driver != null)
                 {
-                    element = WebElementKeeper.WaitingFor_GetElementWhenExists(this.Driver, By.XPath(".//div[@class='ConfiguratorSection']/div[contains(@class,'widgets')]/fieldset/legend"));
+                    element = WebElementKeeper.WaitingFor_GetElementWhenExists(this.Driver, By.XPath(cst_ConfiguratorSection + "/legend"));
                 }
                 return element;
             }
         }
-
+        protected IWebElement _btnConfiguratorClose;
+        protected IWebElement btnConfiguratorClose
+        {
+            get
+            {
+                if (this.Driver != null && _btnConfiguratorClose == null)
+                {
+                    _btnConfiguratorClose = WebElementKeeper.WaitingFor_GetElementWhenExists(this.Driver, By.XPath(cst_BtnConfiguratorClose));
+                }
+                return _btnConfiguratorClose;
+            }
+        }
         #region Page elements
 
         public string TitleText
@@ -40,7 +56,7 @@ namespace Gatekeeper.PageObject.Dashboard
         public List<ActiveWidgetControl> ActiveWidgets { get {
             if (this.Driver != null && _activeWidgets == null)
             {
-                var xPathTemp = ".//div[@class='ConfiguratorSection']/div[contains(@class,'widgets')]/fieldset/div[contains(@class,'ConfiguratorList')]";
+                var xPathTemp = cst_ConfiguratorSection + "/div[contains(@class,'ConfiguratorList')]";
                 var items = WebElementKeeper.WaitingFor_GetElementsWhenExists(this.Driver, By.XPath(xPathTemp));
 
                 _activeWidgets = new List<ActiveWidgetControl>(50);
@@ -62,6 +78,7 @@ namespace Gatekeeper.PageObject.Dashboard
                 widget.Enabled = false;
             }
         }
+
         public void Action_CloseModalDialog()
         { 
             var dialog = GatekeeperFactory.CreateModalDialog<ModalDialogControl>(this.Driver, ".//div[@class='modal-dialog']");
@@ -69,6 +86,11 @@ namespace Gatekeeper.PageObject.Dashboard
             {
                 dialog.Close();
             }
+        }
+
+        public void Action_SaveConfiguratorAndClosePage()
+        {
+            btnConfiguratorClose.Click();
         }
         #endregion
 
