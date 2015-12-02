@@ -51,9 +51,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityCodePage.cs" />
-    <Compile Include="ActivityInstancePage.cs" />
-    <Compile Include="ActivityInstancePage\ActivityInstancePage.cs" />
-    <Compile Include="ActivityInstancePage\HeaderBar.cs" />
+    <Compile Include="ActivityInstancesPage\ActivityInstancePage.cs" />
+    <Compile Include="ActivityInstancesPage\InstancesControl.cs" />
+    <Compile Include="ActivityInstancesPage\HeaderBarControl.cs" />
+    <Compile Include="MoveHomePage\CountsControl.cs" />
+    <Compile Include="MoveHomePage\HeaderControl.cs" />
+    <Compile Include="MoveHomePage\MoveHomePage.cs" />
+    <Compile Include="MoveHomePage\PeopleControl.cs" />
+    <Compile Include="MoveHomePage\RosterControl.cs" />
+    <Compile Include="MoveHomePage\RosterDetailControl.cs" />
+    <Compile Include="MoveHomePage\RosterPanelControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterDevicePage.cs" />
   </ItemGroup>

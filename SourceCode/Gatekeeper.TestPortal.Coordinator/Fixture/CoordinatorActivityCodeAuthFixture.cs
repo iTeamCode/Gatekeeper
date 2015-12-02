@@ -22,7 +22,7 @@ namespace Gatekeeper.TestPortal.Coordinator
             // enter activity code (????? need to initiate the activity...) 
             activityCodePage.AuthenticateActivityCode("7814");
 
-            Assert.True(driverManager.IsCurrentPage(PageAlias.Coordinator_ActivityInstance));
+            Assert.True(driverManager.IsCurrentPage(PageAlias.Coordinator_ActivityInstances));
 
         }
 

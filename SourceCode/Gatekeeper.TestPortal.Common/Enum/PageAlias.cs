@@ -53,7 +53,12 @@ namespace Gatekeeper.TestPortal.Common
         /// Coordinator_ActivityInstancePage
         /// </summary>
         [RouteInfomation(AppAlias.Coordinator)]
-        Coordinator_ActivityInstance = 30003,
+        Coordinator_ActivityInstances = 30003,
+        /// <summary>
+        /// Coordinator_RosterListPage
+        /// </summary>
+        [RouteInfomation(AppAlias.Coordinator)]
+        Coordinator_RosterList = 30004,
         #endregion
 
         #region Launchpad

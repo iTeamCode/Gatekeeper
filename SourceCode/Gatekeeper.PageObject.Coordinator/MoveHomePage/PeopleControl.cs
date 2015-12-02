@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gatekeeper.PageObject.Coordinator.ActivityInstancePage
+namespace Gatekeeper.PageObject.Coordinator
 {
-    class HeaderBar
+    public class PeopleControl
     {
     }
 }

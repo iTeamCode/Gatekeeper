@@ -76,6 +76,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="ActivityInstanceCheck\Coordinator_ActivityInstances_Check.cs" />
     <Compile Include="CoordinatorAuthentication\Coordinator_ActivityCode_Authenticate.cs" />
     <Compile Include="CoordinatorAuthentication\Coordinator_ActivityCode_Auth_Error_Test.cs" />
     <Compile Include="CoordinatorAuthentication\Coordinator_RegisterDevice_Error_Test.cs" />
@@ -105,6 +106,7 @@
       <Name>Gatekeeper.TestPortal.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
