@@ -89,10 +89,6 @@
       <Project>{4b450302-929e-44cb-acb1-f7aa1be61076}</Project>
       <Name>Gatekeeper.PageObject.Launchpad</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Gatekeeper.TestPortal.Common\Gatekeeper.TestPortal.Common.csproj">
-      <Project>{d1799863-9929-4120-b93e-e7f0c8ee0404}</Project>
-      <Name>Gatekeeper.TestPortal.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Gatekeeper.Framework.Common\App.config">

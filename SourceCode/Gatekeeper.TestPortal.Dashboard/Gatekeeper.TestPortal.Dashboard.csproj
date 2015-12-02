@@ -109,10 +109,6 @@
       <Project>{79dd70eb-34e7-431e-85a5-72024a92f96f}</Project>
       <Name>Gatekeeper.PageObject.Dashboard</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Gatekeeper.TestPortal.Common\Gatekeeper.TestPortal.Common.csproj">
-      <Project>{d1799863-9929-4120-b93e-e7f0c8ee0404}</Project>
-      <Name>Gatekeeper.TestPortal.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />

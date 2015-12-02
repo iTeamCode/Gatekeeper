@@ -80,10 +80,6 @@
       <Project>{8c57ed98-8e26-46c0-938e-e7e822138f98}</Project>
       <Name>Gatekeeper.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Gatekeeper.TestPortal.Common\Gatekeeper.TestPortal.Common.csproj">
-      <Project>{d1799863-9929-4120-b93e-e7f0c8ee0404}</Project>
-      <Name>Gatekeeper.TestPortal.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
