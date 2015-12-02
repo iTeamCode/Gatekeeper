@@ -39,11 +39,13 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="WebDriver">
-      <HintPath>..\packages\Selenium.WebDriver.2.48.0\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.48.2\lib\net40\WebDriver.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver.Support">
-      <HintPath>..\packages\Selenium.Support.2.48.0\lib\net40\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.2.48.2\lib\net40\WebDriver.Support.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="xunit.abstractions">
       <HintPath>..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
@@ -71,9 +73,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gatekeeper.DomainModel.Common\Gatekeeper.DomainModel.Common.csproj">
+      <Project>{cc683df7-f301-4e06-b857-01cccdc8e1a0}</Project>
+      <Name>Gatekeeper.DomainModel.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gatekeeper.DomainModel.Launchpad\Gatekeeper.DomainModel.Launchpad.csproj">
       <Project>{103d850e-514a-4b92-a12f-7c4e75a44088}</Project>
       <Name>Gatekeeper.DomainModel.Launchpad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.Framework.Common\Gatekeeper.Framework.Common.csproj">
+      <Project>{8c57ed98-8e26-46c0-938e-e7e822138f98}</Project>
+      <Name>Gatekeeper.Framework.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gatekeeper.PageObject.Launchpad\Gatekeeper.PageObject.Launchpad.csproj">
       <Project>{4b450302-929e-44cb-acb1-f7aa1be61076}</Project>

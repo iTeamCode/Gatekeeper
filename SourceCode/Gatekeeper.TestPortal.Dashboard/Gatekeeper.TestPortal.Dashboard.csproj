@@ -42,12 +42,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="WebDriver, Version=2.48.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.2.48.0\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.48.2\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebDriver.Support, Version=2.48.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.Support.2.48.0\lib\net40\WebDriver.Support.dll</HintPath>
+    <Reference Include="WebDriver.Support, Version=2.48.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.2.48.2\lib\net40\WebDriver.Support.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
@@ -94,9 +94,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gatekeeper.DomainModel.Common\Gatekeeper.DomainModel.Common.csproj">
+      <Project>{cc683df7-f301-4e06-b857-01cccdc8e1a0}</Project>
+      <Name>Gatekeeper.DomainModel.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gatekeeper.DomainModel.Dashboard\Gatekeeper.DomainModel.Dashboard.csproj">
       <Project>{ab6ff865-e84a-41db-b6e7-d6e7ec728bde}</Project>
       <Name>Gatekeeper.DomainModel.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.Framework.Common\Gatekeeper.Framework.Common.csproj">
+      <Project>{8c57ed98-8e26-46c0-938e-e7e822138f98}</Project>
+      <Name>Gatekeeper.Framework.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gatekeeper.PageObject.Dashboard\Gatekeeper.PageObject.Dashboard.csproj">
       <Project>{79dd70eb-34e7-431e-85a5-72024a92f96f}</Project>

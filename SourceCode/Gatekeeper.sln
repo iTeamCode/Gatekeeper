@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatekeeper.DomainModel.Laun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatekeeper.PageObject.Launchpad", "Gatekeeper.PageObject.Launchpad\Gatekeeper.PageObject.Launchpad.csproj", "{4B450302-929E-44CB-ACB1-F7AA1BE61076}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatekeeper.DomainModel.Common", "Gatekeeper.DomainModel.Common\Gatekeeper.DomainModel.Common.csproj", "{CC683DF7-F301-4E06-B857-01CCCDC8E1A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{4B450302-929E-44CB-ACB1-F7AA1BE61076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B450302-929E-44CB-ACB1-F7AA1BE61076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B450302-929E-44CB-ACB1-F7AA1BE61076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC683DF7-F301-4E06-B857-01CCCDC8E1A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC683DF7-F301-4E06-B857-01CCCDC8E1A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC683DF7-F301-4E06-B857-01CCCDC8E1A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC683DF7-F301-4E06-B857-01CCCDC8E1A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -135,5 +141,6 @@ Global
 		{B221DE99-2013-49A3-AF60-B98E561B793B} = {FD5B5462-E6CE-468B-9F23-28A76BBAB482}
 		{AB6FF865-E84A-41DB-B6E7-D6E7EC728BDE} = {FD5B5462-E6CE-468B-9F23-28A76BBAB482}
 		{103D850E-514A-4B92-A12F-7C4E75A44088} = {FD5B5462-E6CE-468B-9F23-28A76BBAB482}
+		{CC683DF7-F301-4E06-B857-01CCCDC8E1A0} = {FD5B5462-E6CE-468B-9F23-28A76BBAB482}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,7 @@
-﻿using Gatekeeper.DomainModel.Dashboard;
+﻿using Gatekeeper.DomainModel.Common;
+using Gatekeeper.DomainModel.Dashboard;
+using Gatekeeper.Framework.Common;
 using Gatekeeper.PageObject.Dashboard;
-using Gatekeeper.TestPortal.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

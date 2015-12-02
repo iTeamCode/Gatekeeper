@@ -1,5 +1,5 @@
 ﻿using Gatekeeper.DomainModel.Dashboard;
-using Gatekeeper.TestPortal.Common;
+using Gatekeeper.Framework.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;

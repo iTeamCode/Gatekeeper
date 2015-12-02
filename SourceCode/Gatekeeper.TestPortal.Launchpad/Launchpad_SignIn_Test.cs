@@ -1,5 +1,6 @@
-﻿using Gatekeeper.PageObject.Launchpad;
-using Gatekeeper.TestPortal.Common;
+﻿using Gatekeeper.DomainModel.Common;
+using Gatekeeper.Framework.Common;
+using Gatekeeper.PageObject.Launchpad;
 using System;
 using System.Linq;
 using Xunit;

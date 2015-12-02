@@ -1,4 +1,4 @@
-﻿using Gatekeeper.TestPortal.Common;
+﻿using Gatekeeper.Framework.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System;
