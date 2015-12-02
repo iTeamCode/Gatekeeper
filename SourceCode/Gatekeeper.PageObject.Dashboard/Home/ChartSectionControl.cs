@@ -177,9 +177,10 @@ namespace Gatekeeper.PageObject.Dashboard
                     else
                     {
                         this.summaryBar.Click();
+                        WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_SummaryBar));
                     }
-                    //WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_ProgressBar));
-                    WebElementKeeper.WaitingFor_WebElementAttributeChangedTo(this._driver, By.XPath(cst_ProgressBar), "class", "ng-hide");
+                    WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_ProgressBar));
+                    //WebElementKeeper.WaitingFor_WebElementAttributeChangedTo(this._driver, By.XPath(cst_ProgressBar), "class", "ng-hide");
                 }
             }
         }

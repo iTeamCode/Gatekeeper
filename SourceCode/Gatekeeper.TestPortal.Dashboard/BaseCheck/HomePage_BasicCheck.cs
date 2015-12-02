@@ -23,7 +23,7 @@ namespace Gatekeeper.TestPortal.Dashboard
         }
         #endregion
 
-        [Fact(DisplayName = cst_DisplayName + ".DemoTest00")]
+        [Fact(DisplayName = cst_DisplayName + ".DemoTest00", Skip = "Test Demo")]
         public void DemoTest()
         {
             _driverManager.NavigateTo(PageAlias.Dashboard_Home);
@@ -57,14 +57,14 @@ namespace Gatekeeper.TestPortal.Dashboard
 
             chartSection.Expand = true;
             //chartSection.MetricItems[0].Selected = true;
-            chartSection.MetricItems.ForEach(x => x.Selected = true);
-            chartSection.MetricItems.ForEach(x => x.Selected = false);
+            //chartSection.MetricItems.ForEach(x => x.Selected = true);
+            //chartSection.MetricItems.ForEach(x => x.Selected = false);
             //homePage.ToolBar.Action_SelectStartDayOfWeek(DayOfWeek.Monday);
             //homePage.ToolBar.Action_SelectStartDayOfWeek(DayOfWeek.Sunday);
             //homePage.ToolBar.Action_SelectStartDayOfWeek(DayOfWeek.Tuesday);
         }
 
-        [Fact(DisplayName = cst_DisplayName + ".DemoTest01")]
+        [Fact(DisplayName = cst_DisplayName + ".DemoTest01", Skip = "Test Demo")]
         public void DemoTest01()
         {
             _driverManager.NavigateTo(PageAlias.Dashboard_Home);

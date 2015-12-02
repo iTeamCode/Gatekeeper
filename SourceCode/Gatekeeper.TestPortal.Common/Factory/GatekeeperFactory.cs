@@ -33,7 +33,9 @@ namespace Gatekeeper.TestPortal.Common
                     driver = new InternetExplorerDriver(driverPath);
                     break;
                 case "*firefox":
+                    var options = new FirefoxOptions();
                     driver = new FirefoxDriver();
+
                     break;
                 case "*chrome":
                     driver = new ChromeDriver(driverPath);

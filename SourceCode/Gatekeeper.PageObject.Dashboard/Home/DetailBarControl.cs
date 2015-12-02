@@ -118,6 +118,14 @@ namespace Gatekeeper.PageObject.Dashboard
                 return isGetData ? value : 0.00m;
             }
         }
+        public string CompareText
+        {
+            get
+            {
+                var element = this.eleMainArea.FindElement(By.XPath("./div[@class='metric-detail-value']/div[contains(@class,'percentage')]"));
+                return element.Text;
+            }
+        }
 
         public string LastYearAreaTitle
         {

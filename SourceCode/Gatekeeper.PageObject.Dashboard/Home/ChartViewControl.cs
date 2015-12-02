@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization.Json;
+using Gatekeeper.DomainModel.Dashboard;
 
 namespace Gatekeeper.PageObject.Dashboard
 {
@@ -78,10 +79,13 @@ namespace Gatekeeper.PageObject.Dashboard
                 var dataList = new List<decimal?>(30);
                 for (var i = 1; i < objDataList.Length; i++)
                 {
-                    decimal? value;
+                    decimal? value = null;
                     try
                     {
-                        value = Convert.ToDecimal(objDataList[i]);
+                        if (objDataList[i] != null)
+                        {
+                            value = Convert.ToDecimal(objDataList[i]);
+                        }
                     }
                     catch { value = null; }
                     dataList.Add(value);
@@ -150,7 +154,7 @@ namespace Gatekeeper.PageObject.Dashboard
             }
         }
 
-        public decimal GetEndData(int offset = 0)
+        public ChartPointModel GetEndData(int offset = 0)
         {
             var year  =DateTime.Now.Year;
             var currentYear = year.ToString();
@@ -160,7 +164,14 @@ namespace Gatekeeper.PageObject.Dashboard
             if (dicChartData.Keys.Contains("Years"))
             {
                 dataList = dicChartData["Years"];
-                return dataList[dataList.Count - 1 - offset].Value;
+                var tmpIndex = dataList.Count - 1 - offset;
+                return new ChartPointModel
+                {
+                    PointData = dataList[tmpIndex].Value,
+                    X_Axis = xAxis[tmpIndex],
+                    Year = "Years"
+                };
+                //return dataList[dataList.Count - 1 - offset].Value;
             }
 
             if (!dicChartData.Keys.Contains(currentYear))
@@ -173,7 +184,11 @@ namespace Gatekeeper.PageObject.Dashboard
             index = index - 1;
             if (index < 0)
             {
-                index = dataList.Count - 1;
+                index = dataList.Count - offset - 1;
+                if (index < 0)
+                {
+                    throw new NotSupportedException("offset too big!");
+                }
                 //return dataList[].Value;
             }
             else 
@@ -190,10 +205,14 @@ namespace Gatekeeper.PageObject.Dashboard
                     //return dataList[index - offset].Value;
                 }
             }
-
-            return dataList[index].Value;
+            return new ChartPointModel
+            {
+                PointData = dataList[index].Value,
+                X_Axis = xAxis[index],
+                Year = currentYear
+            };
+            //return dataList[index].Value;
         }
-
         #endregion Chart Data
     }
 }
