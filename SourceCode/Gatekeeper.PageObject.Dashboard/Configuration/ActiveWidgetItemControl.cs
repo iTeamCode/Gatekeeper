@@ -1,4 +1,4 @@
-﻿using Gatekeeper.TestPortal.Common;
+﻿using Gatekeeper.Framework.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
@@ -12,11 +12,10 @@ namespace Gatekeeper.PageObject.Dashboard
     /// <summary>
     /// Active widget item control.
     /// </summary>
-    public class ActiveWidgetItemControl
+    public class ActiveWidgetItemControl : PageControlBase
     {
-        protected IWebDriver _driver;
-        protected string _rootXPath;
         public ActiveWidgetItemControl(IWebDriver driver, string rootXPath)
+            : base(driver, rootXPath)
         {
             InitControl(driver, rootXPath);
         }

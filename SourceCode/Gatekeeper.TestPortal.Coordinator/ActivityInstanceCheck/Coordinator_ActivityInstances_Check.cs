@@ -1,11 +1,12 @@
-﻿using Gatekeeper.TestPortal.Common;
-using Gatekeeper.PageObject.Coordinator;
+﻿using Gatekeeper.PageObject.Coordinator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Gatekeeper.Framework.Common;
+using Gatekeeper.DomainModel.Common;
 
 namespace Gatekeeper.TestPortal.Coordinator
 {

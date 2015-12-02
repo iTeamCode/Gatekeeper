@@ -1,4 +1,5 @@
-﻿using Gatekeeper.TestPortal.Common;
+﻿using Gatekeeper.DomainModel.Common;
+using Gatekeeper.Framework.Common;
 using Gatekeeper.PageObject.Coordinator;
 using System;
 using System.Linq;

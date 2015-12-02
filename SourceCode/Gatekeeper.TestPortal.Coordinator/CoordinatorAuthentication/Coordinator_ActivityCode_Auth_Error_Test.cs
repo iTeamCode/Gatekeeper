@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using Gatekeeper.TestPortal.Common;
 using Gatekeeper.PageObject.Coordinator;
+using Gatekeeper.Framework.Common;
 
 
 namespace Gatekeeper.TestPortal.Coordinator

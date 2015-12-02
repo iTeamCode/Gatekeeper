@@ -1,5 +1,5 @@
 ﻿using Gatekeeper.DomainModel.Dashboard;
-using Gatekeeper.TestPortal.Common;
+using Gatekeeper.Framework.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
@@ -244,7 +244,7 @@ namespace Gatekeeper.PageObject.Dashboard
                     return;
             }
             WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_ProgressBar));
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(4));
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
         }
         /// <summary>
         /// Action for select start day of week.
@@ -280,7 +280,7 @@ namespace Gatekeeper.PageObject.Dashboard
                     return;
             }
             WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_ProgressBar));
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(4));
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
         }
         #endregion
 

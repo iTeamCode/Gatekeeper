@@ -1,5 +1,4 @@
-﻿using Gatekeeper.TestPortal.Common;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization.Json;
 using Gatekeeper.DomainModel.Dashboard;
+using Gatekeeper.Framework.Common;
 
 namespace Gatekeeper.PageObject.Dashboard
 {
