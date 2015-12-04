@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Gatekeeper.PageObject.Coordinator
 {
-    public class CoordinatorRegisterDevicePage : PageObjectBase
+    public class CoordinatorRegisterDevicePage : PageObjectBase, ISignInPage
     {
         public CoordinatorRegisterDevicePage(IWebDriver driver)
             : base(driver)
@@ -77,5 +77,10 @@ namespace Gatekeeper.PageObject.Coordinator
         }
 
         #endregion Check Points
+
+        public void Action_SignIn(string userName, string password, string churchCode)
+        {
+            AuthenticateChurch(userName, password, churchCode);
+        }
     }
 }

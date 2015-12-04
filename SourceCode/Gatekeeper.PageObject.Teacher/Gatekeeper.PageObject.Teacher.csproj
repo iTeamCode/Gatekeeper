@@ -50,11 +50,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="TeacherSignInPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gatekeeper.DomainModel.Common\Gatekeeper.DomainModel.Common.csproj">
+      <Project>{cc683df7-f301-4e06-b857-01cccdc8e1a0}</Project>
+      <Name>Gatekeeper.DomainModel.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.Framework.Common\Gatekeeper.Framework.Common.csproj">
+      <Project>{8c57ed98-8e26-46c0-938e-e7e822138f98}</Project>
+      <Name>Gatekeeper.Framework.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

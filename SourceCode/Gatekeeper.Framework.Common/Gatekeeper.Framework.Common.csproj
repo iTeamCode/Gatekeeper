@@ -55,6 +55,7 @@
     <Compile Include="Factory\ModalDialogBase.cs" />
     <Compile Include="Factory\PageControlBase.cs" />
     <Compile Include="Factory\PageObjectBase.cs" />
+    <Compile Include="ISignInPage.cs" />
     <Compile Include="Manager\WebDriverManager.cs" />
     <Compile Include="CustomFixture\SingleBrowserFixture.cs" />
     <Compile Include="Factory\GatekeeperFactory.cs" />

@@ -50,13 +50,36 @@ namespace Gatekeeper.TestPortal.Dashboard
 
             var currentYear = DateTime.Now.Year;
             Assert.Equal("Today " + currentYear, chartSection.DetailBar.MainAreaTitle);
-            Assert.Equal(chartView_YearData, chartSection.DetailBar.MainAreaValue);
+
+            if (chartView_YearData < 1000000)
+            {
+                Assert.Equal(chartView_YearData, chartSection.DetailBar.MainAreaValue);
+            }
+            else
+            {
+                Assert.Equal(RoundingData(chartView_YearData), RoundingData(chartSection.DetailBar.MainAreaValue));
+            }
 
             Assert.Equal((currentYear - 1).ToString(), chartSection.DetailBar.LastYearAreaTitle);
-            Assert.Equal(chartView_LastYearData, chartSection.DetailBar.LastYearAreaValue);
+            if (chartView_LastYearData < 1000000)
+            {
+                Assert.Equal(chartView_LastYearData, chartSection.DetailBar.LastYearAreaValue);
+            }
+            else
+            {
+                Assert.Equal(RoundingData(chartView_LastYearData), RoundingData(chartSection.DetailBar.LastYearAreaValue));
+            }
 
             Assert.Equal((currentYear - 2).ToString(), chartSection.DetailBar.BeforeLastYearAreaTitle);
-            Assert.Equal(chartView_BeforeLastYearData, chartSection.DetailBar.BeforeLastYearAreaValue);
+            if (chartView_BeforeLastYearData < 1000000)
+            {
+                Assert.Equal(chartView_BeforeLastYearData, chartSection.DetailBar.BeforeLastYearAreaValue);
+            }
+            else
+            {
+                Assert.Equal(RoundingData(chartView_BeforeLastYearData), RoundingData(chartSection.DetailBar.BeforeLastYearAreaValue));
+            }
+            
 
             string tempStr = "{0} From year prior {1}";
             string specifier = prefix == "$" ? "N" : "#,0";
@@ -71,6 +94,11 @@ namespace Gatekeeper.TestPortal.Dashboard
 
             chartSection.Expand = false;
             Assert.Equal(dataFrom, chartSection.SummaryBar.CompareWithLast);
+        }
+
+        public string RoundingData(decimal num)
+        {
+            return (num / 1000000).ToString("#.00");
         }
 
         

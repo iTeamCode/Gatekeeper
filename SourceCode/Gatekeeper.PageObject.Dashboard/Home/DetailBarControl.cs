@@ -114,8 +114,15 @@ namespace Gatekeeper.PageObject.Dashboard
             {
                 decimal value;
                 var element = this.eleMainArea.FindElement(By.XPath("./div[@class='metric-detail-value']/div[contains(@class,'metric-detail-value-number')]"));
-                var isGetData = decimal.TryParse(element.Text.Replace("$", ""), out value);
-                return isGetData ? value : 0.00m;
+                var strNum = element.Text.Replace("$", "");
+                var unit = 1m;
+                if (strNum.Contains('M'))
+                {
+                    strNum = strNum.Replace("M", "");
+                    unit = 1000000m;
+                }
+                var isGetData = decimal.TryParse(strNum, out value);
+                return isGetData ? value * unit : 0.00m;
             }
         }
         public string CompareText
@@ -141,8 +148,15 @@ namespace Gatekeeper.PageObject.Dashboard
             {
                 decimal value;
                 var element = this.eleLastYearArea.FindElement(By.XPath("./div[contains(@class,'metric-detail-value-number--last')]"));
-                var isGetData = decimal.TryParse(element.Text.Replace("$", ""), out value);
-                return isGetData ? value : 0.00m;
+                var strNum = element.Text.Replace("$", "");
+                var unit = 1m;
+                if (strNum.Contains('M'))
+                {
+                    strNum = strNum.Replace("M", "");
+                    unit = 1000000m;
+                }
+                var isGetData = decimal.TryParse(strNum, out value);
+                return isGetData ? value * unit : 0.00m;
             }
         }
 
@@ -160,8 +174,15 @@ namespace Gatekeeper.PageObject.Dashboard
             {
                 decimal value;
                 var element = this.eleBeforeLastYearArea.FindElement(By.XPath("./div[contains(@class,'metric-detail-value-number--last2last')]"));
-                var isGetData = decimal.TryParse(element.Text.Replace("$", ""), out value);
-                return isGetData ? value : 0.00m;
+                var strNum = element.Text.Replace("$", "");
+                var unit = 1m;
+                if (strNum.Contains('M'))
+                {
+                    strNum = strNum.Replace("M", "");
+                    unit = 1000000m;
+                }
+                var isGetData = decimal.TryParse(strNum, out value);
+                return isGetData ? value * unit : 0.00m;
             }
         }
         

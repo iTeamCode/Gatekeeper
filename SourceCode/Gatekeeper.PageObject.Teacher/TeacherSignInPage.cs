@@ -1,39 +1,37 @@
 ﻿using Gatekeeper.Framework.Common;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gatekeeper.PageObject.Launchpad
+namespace Gatekeeper.PageObject.Teacher
 {
-    public class LaunchpadSignInPage : PageObjectBase, ISignInPage
+    public class TeacherSignInPage : PageObjectBase, ISignInPage
     {
-
-        public LaunchpadSignInPage(IWebDriver driver)
+        public TeacherSignInPage(IWebDriver driver)
             : base(driver)
         {
             WebElementKeeper.WaitingFor_ElementExists(this.Driver, By.Id("username"));
         }
         #region Page elements
-        [FindsBy(How = How.Id, Using = "username")]
+        [FindsBy(How = How.XPath, Using = ".//input[@name='username']")]
         protected IWebElement txtUserName;
 
-        [FindsBy(How = How.Id, Using = "password")]
+        [FindsBy(How = How.XPath, Using = ".//input[@name='password']")]
         protected IWebElement txtPassword;
 
-      //  [FindsBy(How = How.Id, Using = "church-code")]
-       // protected IWebElement txtChurchCode;
+        [FindsBy(How = How.XPath, Using = ".//input[@name='churchCode']")]
+        protected IWebElement txtChurchCode;
 
         [FindsBy(How = How.XPath, Using = ".//button[text()='Sign in']")]
         protected IWebElement btnSignIn;
 
 
-        private string _errorMsgXPath = ".//div[@ng-show='errorText']";
-        [FindsBy(How = How.XPath, Using = ".//div[@ng-show='errorText']")]
+        private const string cst_errorMsgXPath = ".//div[@class='validation-summary']";
+        [FindsBy(How = How.XPath, Using = cst_errorMsgXPath)]
         protected IWebElement txtErrorMsg;
 
         #endregion Page elements
@@ -49,34 +47,21 @@ namespace Gatekeeper.PageObject.Launchpad
         {
             this.txtUserName.Clear();
             this.txtPassword.Clear();
-         //   this.txtChurchCode.Clear();
+            this.txtChurchCode.Clear();
 
             this.txtUserName.SendKeys(userName);
             this.txtPassword.SendKeys(password);
-          //  this.txtChurchCode.SendKeys(churchCode);
+            this.txtChurchCode.SendKeys(churchCode);
 
-            this.btnSignIn.Click();
-        }
-
-        public void Action_SignIn(string userName, string password)
-        {
-            this.txtUserName.Clear();
-            this.txtPassword.Clear();
-           // this.txtChurchCode.Clear();
-
-            this.txtUserName.SendKeys(userName);
-            this.txtPassword.SendKeys(password);
-            
             this.btnSignIn.Click();
         }
 
         public string ErrorMsg
         {
-            get
-            {
+            get {
                 var msg = string.Empty;
 
-                var hasErrorMsg = WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
+                var hasErrorMsg = WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(cst_errorMsgXPath));
                 if (!hasErrorMsg && !txtErrorMsg.Displayed) return msg;
 
                 return txtErrorMsg.Text;
@@ -93,7 +78,7 @@ namespace Gatekeeper.PageObject.Launchpad
         public bool Check_ErrorMessage(string expectedErrorMsg)
         {
             var verifyErrorMsg = false;
-            var hasErrorMsg = WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
+            var hasErrorMsg = WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(cst_errorMsgXPath));
             if (!hasErrorMsg && !txtErrorMsg.Displayed) return verifyErrorMsg;
 
             verifyErrorMsg = WebElementKeeper.WaitingFor_TextToBePresentInElement(this.Driver, this.txtErrorMsg, expectedErrorMsg);
