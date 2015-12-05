@@ -18,6 +18,7 @@ namespace Gatekeeper.PageObject.Coordinator
             cst_RosterCapacity = string.Format("{0} /button//div[contains(@class, 'circle capacity')]", rootXPath);
             cst_RosterParticipantsCount = string.Format("{0}/button//div[contains(@class, 'circle participants')]", rootXPath);
             cst_RosterVolunteersCount = string.Format("{0}/button//div[contains(@class, 'circle volunteers')]", rootXPath);
+            cst_RosterSelectButton = string.Format("{0}/button", rootXPath);
                        
         }
 
@@ -27,12 +28,22 @@ namespace Gatekeeper.PageObject.Coordinator
         protected readonly string cst_RosterParticipantsCount;
         protected readonly string cst_RosterVolunteersCount;
         protected readonly string cst_RosterCapacity;
+        protected readonly string cst_RosterSelectButton;
         #endregion
 
         #region Dom Element object
 
         //[FindsBy(How = How.XPath, Using = cst_RosterName)]
 
+        protected IWebElement selectButton
+       {
+            get
+            {
+                var element = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(cst_RosterSelectButton));
+                return element;
+            }
+        }
+                
         protected IWebElement txtName;
         public string Name
         {
@@ -119,6 +130,14 @@ namespace Gatekeeper.PageObject.Coordinator
 
             }
 
+        }
+
+        #endregion
+
+        #region Actions
+        public void Select ()
+        {
+            this.selectButton.Click();
         }
 
         #endregion

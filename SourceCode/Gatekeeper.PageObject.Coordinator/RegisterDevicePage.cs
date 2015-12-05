@@ -30,17 +30,24 @@ namespace Gatekeeper.PageObject.Coordinator
         [FindsBy(How = How.XPath, Using = ".//button[text()='Authenticate Church']")]
         protected IWebElement btnAuthenticateChurch;
 
-        private string _errorMsgXPath = ".//div[contains(@class, 'error-message')]/p";
+        protected const string _errorMsgXPath = ".//div[contains(@class, 'error-message')]/p";
         [FindsBy(How = How.XPath, Using = ".//div[contains(@class, 'error-message')]/p")]
         protected IWebElement txtErrorMsg;
 
-        //public string ErrorMsg
-        //{
-        //    get
-        //    {
-        //        return txtErrorMsg.Text;
-        //    }
-        //}
+        public string ErrorMsg
+        {
+            get
+            {
+                var msg = string.Empty;
+                var hasErrorMsg = WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
+                if (!hasErrorMsg && !txtErrorMsg.Displayed)
+                {
+                    return msg;
+                }
+
+                return txtErrorMsg.Text;
+            }
+        }
 
                 
         # endregion Page Elements
@@ -63,15 +70,19 @@ namespace Gatekeeper.PageObject.Coordinator
         # endregion Actions on Register Device Page
 
         # region Check Points
-        
+
         public bool IsErrorMsgExpected(string expectedErrorMsg)
         {
             var isExpected = false;
-            WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver,By.XPath(_errorMsgXPath));
-            if(!txtErrorMsg.Displayed)
+         
+            var hasErrorMsg = WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_errorMsgXPath));
+            if (!hasErrorMsg && !txtErrorMsg.Displayed)
+            {
                 return isExpected;
+            }
 
-            isExpected = WebElementKeeper.WaitingFor_TextToBePresentInElement(this.Driver, this.txtErrorMsg, expectedErrorMsg);
+            isExpected = WebElementKeeper.WaitingFor_TextToBePresentInElement(this.Driver, this.txtErrorMsg, expectedErrorMsg, TimeSpan.FromSeconds(10));
+           
             return isExpected;
 
         }

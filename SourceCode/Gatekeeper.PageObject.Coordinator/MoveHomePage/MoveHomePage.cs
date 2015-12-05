@@ -18,20 +18,12 @@ namespace Gatekeeper.PageObject.Coordinator
         }
 
         #region Dom Elements Xpath
-        protected const string cst_MoveHeader = ".//header/h1[contains(@class, 'church-name')]";
-        protected const string cst_Roster = ".//classroom-list/ul//li[text()='Roster Grouping']/following-sibling::li/ul/li";
-        protected const string cst_RosterDetail = ".//classroom/section[contains(@class,'classroom')]";
-        //protected const string cst_Volunteer = ".//classroom/section[contains(@class,'classroom')]/div/div/h2[text()='Volunteers']/following-sibling::div/participant";
-        //protected const string cst_Participant = ".//classroom/section[contains(@class,'classroom')]/div/div/h2[text()='Participants']/following-sibling::div/participant";
-        protected const string cst_Toggle = ".//input[@id='open']/following-sibling::div[contains(@class, 'toggle')]";
-        //protected const string cst_ToggleInput = ".//input[@id='open']";
-                
+        protected const string cst_Header = ".//header/h1[contains(@class, 'church-name')]";
+        protected const string cst_RosterPanel = ".//classroom-list/ul/li/ul";
+        protected const string cst_RosterDetail = ".//classroom/section[contains(@class,'classroom')]";             
         protected const string cst_Next = ".//classroom/section[contains(@class,'classroom')]/button[text()='Next']";
         #endregion
 
-        #region Dom Elements Id
-        protected const string cst_ToggleInput = "open";
-        #endregion
 
         #region Dom Elements object
         protected HeaderBarControl _header;
@@ -39,64 +31,38 @@ namespace Gatekeeper.PageObject.Coordinator
         {
             get
             {
-                _header = new HeaderBarControl(this.Driver, cst_MoveHeader);
+                _header = new HeaderBarControl(this.Driver, cst_Header);
                 return _header;
             }
         }
 
-
-        //public RosterDetailControl RosterDetail
-        //{
-
-        //}
-
-        //public RosterPanelControl RosterPanel
-        //{
-
-        //}
-
-
-        [FindsBy(How = How.XPath, Using = cst_Toggle)]
-        protected IWebElement toggle;
-
-        [FindsBy(How = How.Id, Using = cst_ToggleInput)]
-        protected IWebElement toggleInput;
-
-        public bool Toggle
+        protected RosterPanelControl _rosterPanel;
+        public RosterPanelControl RosterPanel
         {
             get
             {
-                var element = WebElementKeeper.WaitingFor_GetElementWhenExists(this.Driver, By.Id(cst_ToggleInput));
-               
-                if (element == null)
-                {
-                    throw new Exception(string.Format("Xpath '{0}' does not exist!", cst_ToggleInput));
-                }
-
-                return element.Selected;
-            }
-
-            set
-            {
-                if (this.toggleInput.Selected!= value)
-                {
-                    this.toggle.Click();
-                }
+                _rosterPanel = new RosterPanelControl(this.Driver, cst_RosterPanel);
+                return _rosterPanel;
             }
         }
 
-
-        [FindsBy(How = How.XPath, Using = cst_Next)]
+        protected RosterDetailControl _rosterDetails;
+        public RosterDetailControl RosterDetails
+        {
+            get
+            {
+                _rosterDetails = new RosterDetailControl(this.Driver, cst_RosterDetail);
+                return _rosterDetails;
+            }
+        }
+            
         protected IWebElement btnNext;
                      
         
         #endregion
 
         #region Actions
-        public void SelectRoster ()
-        {
-           
-        }
+       
 
         //public void ChangeRosterStatus ()
         //{
@@ -112,10 +78,10 @@ namespace Gatekeeper.PageObject.Coordinator
 
         public void Next()
         {
-            var element = WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(cst_Next));
-            if (element == null)
+            this.btnNext = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this.Driver, By.XPath(cst_Next));
+            if (this.btnNext== null)
             {
-                throw new Exception (string.Format("Next button is not available"));
+                throw new Exception(string.Format("Next button with xpath '{0}' is not available", cst_Next));
             }
             this.btnNext.Click();
 

@@ -13,11 +13,11 @@ namespace Gatekeeper.PageObject.Coordinator
     {
         public HeaderBarControl (IWebDriver driver, string rootXpath): base (driver, rootXpath)
         {
-
+            cst_Header = rootXpath;
         }
         # region Dom Elements XPath
 
-        protected const string cst_Header = "{0}";
+        protected readonly string cst_Header;
 
         #endregion Dom Elements XPath
 

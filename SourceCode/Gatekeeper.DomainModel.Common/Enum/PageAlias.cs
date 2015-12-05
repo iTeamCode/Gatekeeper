@@ -54,10 +54,10 @@ namespace Gatekeeper.DomainModel.Common
         [RouteInfomation(AppAlias.Coordinator)]
         Coordinator_ActivityInstances = 30003,
         /// <summary>
-        /// Coordinator_RosterList
+        /// Coordinator_MovePage
         /// </summary>
         [RouteInfomation(AppAlias.Coordinator)]
-        Coordinator_RosterList = 30004,
+        Coordinator_MovePage = 30004,
         #endregion
 
         #region Launchpad

@@ -55,7 +55,6 @@
     <Compile Include="ActivityInstancesPage\InstancesControl.cs" />
     <Compile Include="ActivityInstancesPage\HeaderBarControl.cs" />
     <Compile Include="MoveHomePage\CountsControl.cs" />
-    <Compile Include="MoveHomePage\HeaderControl.cs" />
     <Compile Include="MoveHomePage\MoveHomePage.cs" />
     <Compile Include="MoveHomePage\PeopleControl.cs" />
     <Compile Include="MoveHomePage\RosterControl.cs" />

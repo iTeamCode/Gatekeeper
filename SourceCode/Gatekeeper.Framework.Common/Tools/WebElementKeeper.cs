@@ -150,7 +150,13 @@ namespace Gatekeeper.Framework.Common
         public static bool WaitingFor_TextToBePresentInElement(IWebDriver driver, IWebElement element, string text, TimeSpan timeOut)
         {
             var wait = new WebDriverWait(driver, timeOut);
-            return wait.Until(ExpectedConditions.TextToBePresentInElement(element, text));
+            bool isPresent = false;
+            try
+            {
+                isPresent = wait.Until(ExpectedConditions.TextToBePresentInElement(element, text));
+            }
+            catch { isPresent = false; }
+            return isPresent;
         }
         public static bool WaitingFor_TextToBePresentInElement(IWebDriver driver, IWebElement element, string text)
         {

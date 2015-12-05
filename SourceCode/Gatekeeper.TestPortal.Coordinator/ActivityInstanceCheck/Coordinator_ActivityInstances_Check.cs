@@ -75,7 +75,7 @@ namespace Gatekeeper.TestPortal.Coordinator
             // click on the first activity instance and click Start button.
             activityInstancesPage.StartWithInstanceSelected(0);
             // check - with start button is clicked, the next page - Roster List page will be loaded
-            Assert.True(_driverManager.IsCurrentPage(PageAlias.Coordinator_RosterList));
+            Assert.True(_driverManager.IsCurrentPage(PageAlias.Coordinator_MovePage));
 
         }
 

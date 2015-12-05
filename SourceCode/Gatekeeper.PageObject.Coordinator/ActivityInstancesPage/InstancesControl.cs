@@ -11,43 +11,46 @@ namespace Gatekeeper.PageObject.Coordinator
 {
     public class InstancesControl: PageControlBase
     {
-        public InstancesControl(IWebDriver driver, string rootXpath) : base(driver, rootXpath) { }
+        public InstancesControl(IWebDriver driver, string rootXpath) : base(driver, rootXpath) 
+        {
+            cst_Name = string.Format("{0}/label/span[contains(@class, 'instance-name')]", rootXpath);
+            cst_Time = string.Format("{0}/label/span[contains(@class, 'instance-time')]", rootXpath);
+            cst_Radio = string.Format("{0}/label/span[contains(@class, 'instance-radio')]", rootXpath);
+            cst_RadioInput = string.Format("{0}/label/input", rootXpath);
+        }
 
         # region DOM elements Xpath
         // instance - schedule Name
-        protected const string cst_Name = "{0}/span[contains(@class, 'instance-name')]";
+        protected readonly string cst_Name;
         //Instance - schedule time
-        protected const string cst_Time = "{0}/span[contains(@class, 'instance-time')]";
+        protected readonly string cst_Time;
         // instance - instance radio (selected or not)
-        protected const string cst_Radio = "{0}/span[contains(@class, 'instance-radio')]";
+        protected readonly string cst_Radio;
         // instance - instance radio input
-        protected const string cst_RadioInput = "{0}/input[@type='radio']";
+        protected readonly string cst_RadioInput;
 
         #endregion DOM elements Xpath
 
 
         # region DOM elements object
-        [FindsBy(How = How.XPath, Using = cst_Name)]
+       
+
+        //[FindsBy(How = How.XPath, Using = cst_Radio)]
+        //protected IWebElement _btnSelected;
+
+        //[FindsBy(How = How.XPath, Using = cst_RadioInput)]
+        //protected IWebElement _txtRadioInput;
+
         protected IWebElement _txtName;
-
-        [FindsBy(How = How.XPath, Using = cst_Time)]
-        protected IWebElement _txtTime;
-
-        [FindsBy(How = How.XPath, Using = cst_Radio)]
-        protected IWebElement _btnSelected;
-
-        [FindsBy(How = How.XPath, Using = cst_RadioInput)]
-        protected IWebElement _txtRadioInput;
-
         public string Name
         {
             get
             {
                 var instanceName = string.Empty;
-                var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_Name));
-                if (element !=null)
+                var _txtName = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_Name));
+                if (_txtName != null)
                 {
-                    instanceName = element.Text;
+                    instanceName = _txtName.Text;
                 }
 
                 return instanceName;
@@ -55,15 +58,16 @@ namespace Gatekeeper.PageObject.Coordinator
             }
         }
 
+        protected IWebElement _txtTime;
         public string Time
         {
             get
             {
                 var instanceTime = string.Empty;
-                var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_Time));
-                if (element != null)
+                var _txtTime = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_Time));
+                if (_txtTime != null)
                 {
-                    instanceTime = element.Text;
+                    instanceTime = _txtTime.Text;
 
                 }
 
@@ -71,18 +75,21 @@ namespace Gatekeeper.PageObject.Coordinator
             }
         }
 
+
+        protected IWebElement _btnRadio;
+        protected IWebElement _txtRadioInput;
         public bool Radio
         {
             get
             {
-                var element = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(cst_RadioInput));
+                _txtRadioInput = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(cst_RadioInput));
 
-                if (element == null)
+                if (_txtRadioInput == null)
                 {
                     throw new Exception(string.Format("Xpath '{0}' does not exist!", cst_RadioInput));
                 }
 
-                return element.Selected;
+                return _txtRadioInput.Selected;
             }
 
         }
@@ -95,25 +102,19 @@ namespace Gatekeeper.PageObject.Coordinator
       
         public void SelectInstance ()
         {
-            this._btnSelected.Click();
+            _btnRadio = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(cst_Radio));
+            _btnRadio.Click();
         }
 
-        public bool Selected
-        {
-            get
-            {
-                return this._txtRadioInput.Selected;
-            }
-            //set
-            //{
-            //    if (value == true)
-            //    {
-            //        this._btnSelected.Click();
-            //    }
-            //}
+        //public bool Selected
+        //{
+        //    get
+        //    {
+        //        return this._txtRadioInput.Selected;
+        //    }
 
-        }
-        #endregion Actions
+        //}
+        #endregion
 
     }
 

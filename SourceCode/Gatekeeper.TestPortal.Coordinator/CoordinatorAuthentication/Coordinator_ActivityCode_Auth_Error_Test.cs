@@ -7,7 +7,6 @@ using Xunit;
 using Gatekeeper.PageObject.Coordinator;
 using Gatekeeper.Framework.Common;
 
-
 namespace Gatekeeper.TestPortal.Coordinator
 {
     public class Coordinator_ActivityCode_Auth_Error_Test : IClassFixture<CoordinatorRegisterDeviceFixture>
@@ -37,7 +36,7 @@ namespace Gatekeeper.TestPortal.Coordinator
             activityCodePage.AuthenticateActivityCode(activityCode);
 
             var isExpected = activityCodePage.IsErrorMsgExpected("Either**** this Activity doesn't meet today or the activity code is invalid.");
-            Assert.True(isExpected, "error message is wrong");
+            Assert.True(isExpected, "error message is incorrec");
 
         }
     }

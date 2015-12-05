@@ -21,15 +21,21 @@ namespace Gatekeeper.TestPortal.Coordinator
 
         [Theory]
         // with no values entered
-        [InlineData("", "", "", "user credentials are invalid.")]
-        // Password is incorrect
-        [InlineData("ft.tester", "12312312", "dc", "Your login attempt has failed.")]
+        [InlineData("", "", "", "User credentials are invalid.")]
         // Church Code is invalid
         [InlineData("ft.tester", "FT4life!", "dcc", "Your login attempt has failed. Church is not found.")]
-        // The Coordinator feature is not enabled for the church
-        [InlineData("ft.tester", "FT4life!", "QAEUNLX0V2", "Login attempt failed. Please contact your administrator.")]
+        // username is incorrect
+        [InlineData("ft.testertest1", "FT4life!", "dc", "Your login attempt has failed.")]
+        // Password is incorrect
+        [InlineData("ft.tester", "12312312", "dc", "Your login attempt has failed.")]
+        // AUI account is not belong to the Church
+        [InlineData("v2test", "Zhyl@382030", "dc", "Your login attempt has failed.")]
         // AUI account is inactive
-        //[InlineData("test", "Test!123", "dc", "Your account is currently not active.")]
+        [InlineData("dzhang", "Zhyl@382030", "dc", "Your account is currently not active.")]
+        // The Coordinator feature is not enabled for the church
+        [InlineData("ft.tester", "FT4life!", "QAEUNLX0C2", "Login attempt failed. Please contact your administrator.")]
+        // The church level cannot access to the feature (i.e. Coordinator is Preview feature, but the church is not Preview nor Development church)
+        [InlineData("v2test", "Zhyl@382030", "QAEUNLX0V2", "Login attempt failed. Please contact your administrator.")]      
 
         public void RegisterDevice_Error(string userName, string password, string churchCode, string expectedErrorMsg)
         {
