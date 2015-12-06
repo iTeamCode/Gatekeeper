@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Extensions;
 
 namespace Gatekeeper.TestPortal.Dashboard
 {
@@ -24,23 +25,68 @@ namespace Gatekeeper.TestPortal.Dashboard
         }
         #endregion
 
+        #region Test-Driver Data
+        /// <summary>
+        /// input data for "VerifiedTopBar"
+        /// </summary>
+        public static IEnumerable<object[]> VerifiedTopBar_Data
+        {
+            get
+            {
+                return new[]
+                {
+                    //Giving
+                    new object[]{0, "Giving", "$", ChartView.Quarter, null},
+                    new object[]{0, "Giving", "$", ChartView.Month, null},
+                    new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Sunday},
+                    new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Monday},
+                    new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Tuesday},
+                    new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Wednesday},
+                    new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Thursday},
+                    new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Friday},
+                    new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Saturday},
+                    //Attendance
+                    new object[]{1, "Attendance", "", ChartView.Quarter, null},
+                    new object[]{1, "Attendance", "", ChartView.Month, null},
+                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Sunday},
+                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Monday},
+                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Tuesday},
+                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Wednesday},
+                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Thursday},
+                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Friday},
+                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Saturday},
+                    //Attribute
+                    new object[]{2, "", "", ChartView.Quarter, null},
+                    new object[]{2, "", "", ChartView.Month, null},
+                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Sunday},
+                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Monday},
+                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Tuesday},
+                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Wednesday},
+                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Thursday},
+                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Friday},
+                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Saturday},
+                };
+            }
+        }
+        #endregion
 
+        #region Test-Case
         [Theory(DisplayName = cst_DisplayName + ".TopBar_Year")]
         [InlineData(0, "Giving", "$")]
         [InlineData(1, "Attendance", "")]
         [InlineData(2, "", "")]
-        public void VerifiedTopBarData_Year(int index, string title,string prefix)
+        public void VerifiedTopBarData_Year(int index, string title, string prefix)
         {
             _driverManager.NavigateTo(PageAlias.Dashboard_Home);
             var homePage = GatekeeperFactory.CreatePageManager<HomePage>(_driverManager.Driver);
             var toolBar = homePage.ToolBar;
-            toolBar.Action_SelectView(ChartView.Year);            
+            toolBar.Action_SelectView(ChartView.Year);
 
             homePage.ChartSections.ForEach(x => x.Expand = false);
             var chartSection = homePage.ChartSections[index];
             chartSection.Expand = true;
             if (!string.IsNullOrEmpty(title))
-            { 
+            {
                 Assert.Equal(title, chartSection.DetailBar.Name);
             }
 
@@ -79,7 +125,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             {
                 Assert.Equal(RoundingData(chartView_BeforeLastYearData), RoundingData(chartSection.DetailBar.BeforeLastYearAreaValue));
             }
-            
+
 
             string tempStr = "{0} From year prior {1}";
             string specifier = prefix == "$" ? "N" : "#,0";
@@ -96,44 +142,9 @@ namespace Gatekeeper.TestPortal.Dashboard
             Assert.Equal(dataFrom, chartSection.SummaryBar.CompareWithLast);
         }
 
-        public string RoundingData(decimal num)
-        {
-            return (num / 1000000).ToString("#.00");
-        }
-
-        
-        //Giving
-        [InlineData(0, "Giving", "$", ChartView.Quarter, null)]
-        [InlineData(0, "Giving", "$", ChartView.Month, null)]
-        [InlineData(0, "Giving", "$", ChartView.Week, DayOfWeek.Sunday)]
-        [InlineData(0, "Giving", "$", ChartView.Week, DayOfWeek.Monday)]
-        [InlineData(0, "Giving", "$", ChartView.Week, DayOfWeek.Tuesday)]
-        [InlineData(0, "Giving", "$", ChartView.Week, DayOfWeek.Wednesday)]
-        [InlineData(0, "Giving", "$", ChartView.Week, DayOfWeek.Thursday)]
-        [InlineData(0, "Giving", "$", ChartView.Week, DayOfWeek.Friday)]
-        [InlineData(0, "Giving", "$", ChartView.Week, DayOfWeek.Saturday)]
-        //Attendance
-        [InlineData(1, "Attendance", "", ChartView.Quarter, null)]
-        [InlineData(1, "Attendance", "", ChartView.Month, null)]
-        [InlineData(1, "Attendance", "", ChartView.Week, DayOfWeek.Sunday)]
-        [InlineData(1, "Attendance", "", ChartView.Week, DayOfWeek.Monday)]
-        [InlineData(1, "Attendance", "", ChartView.Week, DayOfWeek.Tuesday)]
-        [InlineData(1, "Attendance", "", ChartView.Week, DayOfWeek.Wednesday)]
-        [InlineData(1, "Attendance", "", ChartView.Week, DayOfWeek.Thursday)]
-        [InlineData(1, "Attendance", "", ChartView.Week, DayOfWeek.Friday)]
-        [InlineData(1, "Attendance", "", ChartView.Week, DayOfWeek.Saturday)]
-        //Attribute
-        [InlineData(2, "", "", ChartView.Quarter, null)]
-        [InlineData(2, "", "", ChartView.Month, null)]
-        [InlineData(2, "", "", ChartView.Week, DayOfWeek.Sunday)]
-        [InlineData(2, "", "", ChartView.Week, DayOfWeek.Monday)]
-        [InlineData(2, "", "", ChartView.Week, DayOfWeek.Tuesday)]
-        [InlineData(2, "", "", ChartView.Week, DayOfWeek.Wednesday)]
-        [InlineData(2, "", "", ChartView.Week, DayOfWeek.Thursday)]
-        [InlineData(2, "", "", ChartView.Week, DayOfWeek.Friday)]
-        [InlineData(2, "", "", ChartView.Week, DayOfWeek.Saturday)]
         [Theory(DisplayName = cst_DisplayName + ".TopBar")]
-        public void VerifiedTopBarData(int index, string title, string prefix, ChartView chartView, DayOfWeek? dayOfWeek)
+        [MemberData("VerifiedTopBar_Data")]
+        public void VerifiedTopBar(int index, string title, string prefix, ChartView chartView, DayOfWeek? dayOfWeek)
         {
             _driverManager.NavigateTo(PageAlias.Dashboard_Home);
             var homePage = GatekeeperFactory.CreatePageManager<HomePage>(_driverManager.Driver);
@@ -149,7 +160,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             var chartSection = homePage.ChartSections[index];
             chartSection.Expand = true;
 
-            
+
             if (!string.IsNullOrEmpty(title))
             {
                 Assert.Equal(title, chartSection.DetailBar.Name);
@@ -158,7 +169,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             //get data from chart.
             var cvCurrentModel = chartSection.ChartView.GetEndData();
             var cvLastModel = chartSection.ChartView.GetEndData(1);
-            
+
             //verify data.
             var currentYear = DateTime.Now.Year;
             var lastYear = DateTime.Now.Year - 1;
@@ -166,7 +177,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             //MainArea
             Assert.Equal("Today " + currentYear, chartSection.DetailBar.MainAreaTitle);
             Assert.Equal(cvCurrentModel.PointData.Value, chartSection.DetailBar.MainAreaValue);
-            
+
             //LastYearArea
             Assert.Equal(lastYear.ToString(), chartSection.DetailBar.LastYearAreaTitle);
             Assert.Equal(chartSection.ChartView[cvCurrentModel.X_Axis, lastYear.ToString()], chartSection.DetailBar.LastYearAreaValue);
@@ -194,6 +205,11 @@ namespace Gatekeeper.TestPortal.Dashboard
             Assert.Equal(dataFrom, chartSection.SummaryBar.CompareWithLast);
         }
 
+        private string RoundingData(decimal num)
+        {
+            return (num / 1000000).ToString("#.00");
+        }
+
         private string BuildCompareTextTemp(ChartView view)
         {
             string strView = string.Empty;
@@ -212,5 +228,6 @@ namespace Gatekeeper.TestPortal.Dashboard
             string tempStr = "{0} From " + strView + " prior {1}";
             return tempStr;
         }
+        #endregion Test-Case
     }
 }

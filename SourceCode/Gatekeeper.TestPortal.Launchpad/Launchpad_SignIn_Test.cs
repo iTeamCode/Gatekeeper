@@ -25,7 +25,7 @@ namespace Gatekeeper.TestPortal.Launchpad
             manager.Driver.Close();
         }
     }
-
+    
     public class Launchpad_SignIn_Error_Test : IClassFixture<SingleBrowserFixture>
     {
         private IDriverManager _driverManager { get; set; }
@@ -35,7 +35,6 @@ namespace Gatekeeper.TestPortal.Launchpad
             _driverManager = fixture.DriverManager;
             _output = output;
         }
-
         [Theory]
         [InlineData("", "", "Login attempt failed. Verify your information and try again.")]
         //[InlineData("ft.tester", "", "", "Password is required.")]
