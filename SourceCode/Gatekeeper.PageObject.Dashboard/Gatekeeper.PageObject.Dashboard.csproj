@@ -66,10 +66,9 @@
     <Compile Include="DashboardSignInPage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="00.Design\HomePage.cd" />
+    <None Include="00.Design\ConfigurationPage.cd" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gatekeeper.DomainModel.Dashboard\Gatekeeper.DomainModel.Dashboard.csproj">

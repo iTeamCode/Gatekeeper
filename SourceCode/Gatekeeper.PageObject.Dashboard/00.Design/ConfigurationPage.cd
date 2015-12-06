@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Gatekeeper.PageObject.Dashboard.ConfigurationPage">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <Members>
+      <Property Name="_title" Hidden="true" />
+      <Property Name="btnConfiguratorClose" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACIAAAABkAAAAgAQAQAQAAAAABAAAgAEAAAA=</HashCode>
+      <FileName>Configuration\ConfigurationPage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ActiveWidgets" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Gatekeeper.PageObject.Dashboard.ActiveWidgetControl">
+    <Position X="0.5" Y="4" Width="3" />
+    <Members>
+      <Property Name="_headBar" Hidden="true" />
+      <Property Name="_itemPanel" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Items" Type="Gatekeeper.PageObject.Dashboard.ActiveWidgetItemControl">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.577" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AQJAAAAAAIAACNAAAAAAAABAABAQAAAACAIAAAAAACA=</HashCode>
+      <FileName>Configuration\ActiveWidgetControl.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Gatekeeper.PageObject.Dashboard.ActiveWidgetItemControl">
+    <Position X="5.25" Y="4" Width="2.25" />
+    <Members>
+      <Property Name="_checkbox" Hidden="true" />
+      <Property Name="_text" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAgAAIAAAACAAAAAI=</HashCode>
+      <FileName>Configuration\ActiveWidgetItemControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
