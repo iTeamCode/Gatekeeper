@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Gatekeeper.PageObject.Dashboard
 {
-    public class SignInPage : PageObjectBase
+    public class DashboardSignInPage : PageObjectBase, ISignInPage
     {
 
-        public SignInPage(IWebDriver driver)
+        public DashboardSignInPage(IWebDriver driver)
             : base(driver)
         {
             WebElementKeeper.WaitingFor_ElementExists(this.Driver, By.Id("username"));

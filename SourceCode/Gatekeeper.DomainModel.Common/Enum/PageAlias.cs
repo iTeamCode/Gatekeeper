@@ -35,6 +35,9 @@ namespace Gatekeeper.DomainModel.Common
         /// </summary>
         [RouteInfomation(AppAlias.Teacher)]
         Teacher_SignIn = 20001,
+
+        [RouteInfomation(AppAlias.Teacher)]
+        Teacher_Roster = 20002,
         #endregion
 
         #region Coordinator

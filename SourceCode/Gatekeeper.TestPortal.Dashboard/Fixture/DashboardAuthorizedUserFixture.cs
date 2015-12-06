@@ -20,7 +20,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             var manager = this.DriverManager ?? GatekeeperFactory.CreateDriverManager();
             manager.NavigateTo(PageAlias.Dashboard_SignIn);
 
-            var signInPage = GatekeeperFactory.CreatePageManager<SignInPage>(manager.Driver);
+            var signInPage = GatekeeperFactory.CreatePageManager<DashboardSignInPage>(manager.Driver);
             signInPage.Action_SignIn("ft.tester", "FT4life!", "dc");
 
             //Waiting & Check page.

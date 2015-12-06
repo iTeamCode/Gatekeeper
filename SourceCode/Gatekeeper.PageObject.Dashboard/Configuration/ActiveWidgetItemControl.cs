@@ -28,7 +28,15 @@ namespace Gatekeeper.PageObject.Dashboard
         /// <summary>
         /// get 'ActiveWidgetItemControl' selected .
         /// </summary>
-        public bool Selected { get { return _checkbox.Selected; } }
+        public bool Selected { 
+            get { return _checkbox.Selected; }
+            set {
+                if (_checkbox.Selected != value)
+                {
+                    this._text.Click();
+                }
+            }
+        }
         /// <summary>
         /// get 'ActiveWidgetItemControl' Text .
         /// </summary>

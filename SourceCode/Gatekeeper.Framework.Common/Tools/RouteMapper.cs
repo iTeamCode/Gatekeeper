@@ -77,6 +77,12 @@ namespace Gatekeeper.Framework.Common
             _dicMap.Add(PageAlias.Launchpad_SignIn, string.Format("{0}/#/Login", baseUrl));
             _dicMap.Add(PageAlias.Launchpad_Home, string.Format("{0}/#/apps", baseUrl));
             #endregion Launchpad
+
+            #region Teacher
+            baseUrl = BuildBaseUrl(AppAlias.Teacher);
+            _dicMap.Add(PageAlias.Teacher_SignIn, string.Format("{0}/#/", baseUrl));
+            _dicMap.Add(PageAlias.Teacher_Roster, string.Format("{0}/#/roster/", baseUrl));
+            #endregion Teacher
         }
 
         private static string BuildBaseUrl(AppAlias app)

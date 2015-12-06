@@ -56,7 +56,18 @@ namespace Gatekeeper.PageObject.Dashboard
         #endregion Dom elements object
 
         #region Property for client
-        public string Text { get { return lblName.Text; } }
+        //public string Text { get { return lblName.Text; } }
+        public string Text
+        {
+            get
+            {
+                var element = this.lblName;
+                var jsScript = string.Format("return $(\"span > label[for='{0}']\").text()", element.GetAttribute("for"));
+                IJavaScriptExecutor jsExecutor = this._driver as IJavaScriptExecutor;
+                var eleText = jsExecutor.ExecuteScript(jsScript);
+                return (eleText != null) ? eleText.ToString() : string.Empty;
+            }
+        }
 
         public bool Selected
         {
