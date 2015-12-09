@@ -14,6 +14,7 @@ namespace Gatekeeper.Framework.DataAccess
             //string strConn = ConfigurationManager.AppSettings["ConnectionString"];
             var dbConfig = DataManager.DatabaseDictionary[commandConfig.DataSourceID];
             string strConn = dbConfig.ConnectionString;
+            strConn = string.Format(strConn, ConfigurationManager.AppSettings["Tests.Environment"].ToLower());
             SqlConnection dbConnection = new SqlConnection(strConn);
 
             //2.创建 Command 对象

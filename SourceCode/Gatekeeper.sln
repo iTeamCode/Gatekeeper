@@ -50,6 +50,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatekeeper.DomainModel.Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatekeeper.TestPortal.Common", "Gatekeeper.TestPortal.Common\Gatekeeper.TestPortal.Common.csproj", "{47B851C2-DA96-47B1-B813-BEBC397224F1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.Toolbox", "04.Toolbox", "{43ED347C-B618-403A-90ED-CA04283EB3C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatekeeper.Toolbox.DataAccess", "Gatekeeper.Toolbox.DataAccess\Gatekeeper.Toolbox.DataAccess.csproj", "{F73A9DBB-E73D-4937-A925-EFBC39760173}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatekeeper.Toolbox.ServiceBroker", "Gatekeeper.Toolbox.ServiceBroker\Gatekeeper.Toolbox.ServiceBroker.csproj", "{0BFBADAE-5227-494D-AB72-09DFEA14336A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.WorkFlow", "05.WorkFlow", "{2D4E6855-4381-4754-9288-E27F017B11F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -120,6 +128,14 @@ Global
 		{47B851C2-DA96-47B1-B813-BEBC397224F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47B851C2-DA96-47B1-B813-BEBC397224F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47B851C2-DA96-47B1-B813-BEBC397224F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F73A9DBB-E73D-4937-A925-EFBC39760173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F73A9DBB-E73D-4937-A925-EFBC39760173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F73A9DBB-E73D-4937-A925-EFBC39760173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F73A9DBB-E73D-4937-A925-EFBC39760173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BFBADAE-5227-494D-AB72-09DFEA14336A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BFBADAE-5227-494D-AB72-09DFEA14336A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BFBADAE-5227-494D-AB72-09DFEA14336A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BFBADAE-5227-494D-AB72-09DFEA14336A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,5 +157,7 @@ Global
 		{AB6FF865-E84A-41DB-B6E7-D6E7EC728BDE} = {FD5B5462-E6CE-468B-9F23-28A76BBAB482}
 		{103D850E-514A-4B92-A12F-7C4E75A44088} = {FD5B5462-E6CE-468B-9F23-28A76BBAB482}
 		{CC683DF7-F301-4E06-B857-01CCCDC8E1A0} = {FD5B5462-E6CE-468B-9F23-28A76BBAB482}
+		{F73A9DBB-E73D-4937-A925-EFBC39760173} = {43ED347C-B618-403A-90ED-CA04283EB3C0}
+		{0BFBADAE-5227-494D-AB72-09DFEA14336A} = {43ED347C-B618-403A-90ED-CA04283EB3C0}
 	EndGlobalSection
 EndGlobal

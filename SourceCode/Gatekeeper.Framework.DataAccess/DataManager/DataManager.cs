@@ -67,8 +67,8 @@ namespace Gatekeeper.Framework.DataAccess
         {
             #region 1.获取 XML 数据
             //1.获取 XML 数据【可修改问配置文件】
-            string commandFilePath = ConfigurationManager.AppSettings["CommandFilePath"];
-            string strNamespace = @"https:\\FellowshipOne\Framework\DataOperators";
+            string commandFilePath = ConfigurationManager.AppSettings["DataAccess.CommandFilePath"];
+            string strNamespace = @"https:\\Gatekeeper\Framework\DataOperators";
 
             DirectoryInfo dirCommand = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + commandFilePath);
             FileInfo[] fileCommand = dirCommand.GetFiles("DataCommand*.xml");
@@ -110,8 +110,9 @@ namespace Gatekeeper.Framework.DataAccess
         {
             #region 1.获取 XML 数据
             //1.获取 XML 数据【可修改问配置文件】
-            string commandFilePath = ConfigurationManager.AppSettings["CommandFilePath"];
-            string strNamespace = @"https:\\FellowshipOne\Framework\DBGroups";
+            string commandFilePath = ConfigurationManager.AppSettings["DataAccess.CommandFilePath"];
+            //string strNamespace = @"https:\\Gatekeeper\Framework\DBGroups";
+            string strNamespace = string.Empty;
             string dbXmlFile = DatabaseEnv == 2 ? "/Database_QA.xml" : "/Database.xml";
             FileStream fs = File.OpenRead(AppDomain.CurrentDomain.BaseDirectory + commandFilePath + dbXmlFile);
             XmlSerializer xmls = new XmlSerializer(typeof(DBGroupConfig), strNamespace);
