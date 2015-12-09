@@ -11,7 +11,7 @@ namespace Gatekeeper.TestPortal.Common
 {
     public class DataVisitorUnitTest
     {
-        [Fact]
+        [Fact(DisplayName = "DataVisitor.UnitTestDemo")]
         public void Demo()
         {
             var dv = DataVisitor.Create<ICommonDataVisitor>();
