@@ -21,8 +21,12 @@
   </Class>
   <Class Name="Gatekeeper.Framework.DataAccess.DataManager">
     <Position X="0.5" Y="0.5" Width="5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAAAAAAECAgBAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <HashCode>AAAIAAAAAFAAAAAAQAAFCAgAAAAAAAAAAAAIAEQAAAA=</HashCode>
       <FileName>DataManager\DataManager.cs</FileName>
     </TypeIdentifier>
   </Class>
