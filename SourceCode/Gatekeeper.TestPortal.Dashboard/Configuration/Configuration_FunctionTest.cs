@@ -2,6 +2,7 @@
 using Gatekeeper.DomainModel.Dashboard;
 using Gatekeeper.Framework.Common;
 using Gatekeeper.PageObject.Dashboard;
+using Gatekeeper.Toolbox.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,9 @@ namespace Gatekeeper.TestPortal.Dashboard
         {
             this._driverManager = fixture.DriverManager;
             //check data here;
+            var dv = DataVisitor.Create<ICommonDataVisitor>();
+            var m = dv.FetchChurchInfomation(15);
+
         }
         #endregion
 

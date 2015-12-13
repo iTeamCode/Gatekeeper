@@ -42,7 +42,14 @@
     <Compile Include="ChartPointModel.cs" />
     <Compile Include="Enums\ChartView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportDataModel.cs" />
     <Compile Include="WidgetItemModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gatekeeper.Framework.DataAccess\Gatekeeper.Framework.DataAccess.csproj">
+      <Project>{e5992c2a-fe50-4ee3-959c-25638dd9a3c9}</Project>
+      <Name>Gatekeeper.Framework.DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -92,6 +92,22 @@
       <Project>{cc683df7-f301-4e06-b857-01cccdc8e1a0}</Project>
       <Name>Gatekeeper.DomainModel.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.DomainModel.Coordinator\Gatekeeper.DomainModel.Coordinator.csproj">
+      <Project>{0992a856-73a2-4fb5-a4a7-30ac5fdc67b5}</Project>
+      <Name>Gatekeeper.DomainModel.Coordinator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.DomainModel.Dashboard\Gatekeeper.DomainModel.Dashboard.csproj">
+      <Project>{ab6ff865-e84a-41db-b6e7-d6e7ec728bde}</Project>
+      <Name>Gatekeeper.DomainModel.Dashboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.DomainModel.Launchpad\Gatekeeper.DomainModel.Launchpad.csproj">
+      <Project>{103d850e-514a-4b92-a12f-7c4e75a44088}</Project>
+      <Name>Gatekeeper.DomainModel.Launchpad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.DomainModel.Teacher\Gatekeeper.DomainModel.Teacher.csproj">
+      <Project>{b221de99-2013-49a3-af60-b98e561b793b}</Project>
+      <Name>Gatekeeper.DomainModel.Teacher</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gatekeeper.Framework.Common\Gatekeeper.Framework.Common.csproj">
       <Project>{8c57ed98-8e26-46c0-938e-e7e822138f98}</Project>
       <Name>Gatekeeper.Framework.Common</Name>

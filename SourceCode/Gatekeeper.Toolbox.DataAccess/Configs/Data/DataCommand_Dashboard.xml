@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataOperators xmlns="https:\\Gatekeeper\Framework\DataOperators">
+  <DataCommand Name="Dashboard.FetchGivingData" DataSourceID="DashboardDB" Type ="TextCommand">
+    <CommandText>
+      <![CDATA[
+        SELECT 
+	        [Church_Id] as ChurchId,
+	        [Fund_Id] as WidgetItemId,
+	        [SummaryNumber],
+	        [CountNumber],
+	        [Date]
+        FROM [ChmContribution].[dbo].[View_Contribution_GetGivingData] as Giving (NOEXPAND)
+        WHERE Giving.[Church_Id] = @ChurchId
+          AND Giving.[Date] > @StartDate 
+          AND Giving.[Date] < @EndDate
+        #WhereStr#
+      ]]>
+    </CommandText>
+    <Parameters>
+      <Param Name="@ChurchId" DBType="Int32" Size="4" />
+      <Param Name="@StartDate" DBType="DateTime" Size="20" />
+      <Param Name="@EndDate" DBType="DateTime" Size="20" />
+    </Parameters>
+  </DataCommand>
+</DataOperators>

@@ -94,7 +94,10 @@
     <Content Include="Configs\Data\Database.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configs\Data\DataCommand.xml">
+    <Content Include="Configs\Data\DataCommand_Common.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configs\Data\DataCommand_Dashboard.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
