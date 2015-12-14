@@ -12,13 +12,13 @@ using Xunit.Extensions;
 
 namespace Gatekeeper.TestPortal.Dashboard
 {
-    public class Chart_DataCheck : IClassFixture<InitialConfigurationFixture>
+    public partial class ChartDataCheck : IClassFixture<InitialConfigurationFixture>
     {
         #region Init & check data
-        private const string cst_DisplayName = "Chart.DataCheck";
+        private const string cst_DisplayName = "Chart.DataCheck.UI";
 
         private IDriverManager _driverManager;
-        public Chart_DataCheck(InitialConfigurationFixture fixture)
+        public ChartDataCheck(InitialConfigurationFixture fixture)
         {
             this._driverManager = fixture.DriverManager;
             //check data here;

@@ -4,16 +4,19 @@
     <CommandText>
       <![CDATA[
         SELECT 
-	        [Church_Id] as ChurchId,
-	        [Fund_Id] as WidgetItemId,
-	        [SummaryNumber],
-	        [CountNumber],
-	        [Date]
+	        Giving.[Church_Id] as ChurchId,
+	        widgetItem.[UserWidgetItemID] as WidgetItemId,
+	        Giving.[SummaryNumber],
+	        Giving.[CountNumber],
+	        Giving.[Date]
         FROM [ChmContribution].[dbo].[View_Contribution_GetGivingData] as Giving (NOEXPAND)
+		    LEFT JOIN [ChmDashboard].[dbo].[UserWidgetItem] as widgetItem WITH(NOLOCK)
+		      ON widgetItem.WidgetItemReferId = Giving.[Fund_Id]
         WHERE Giving.[Church_Id] = @ChurchId
           AND Giving.[Date] > @StartDate 
           AND Giving.[Date] < @EndDate
-        #WhereStr#
+          #WhereStr#
+        ORDER BY Giving.[Date] ASC
       ]]>
     </CommandText>
     <Parameters>

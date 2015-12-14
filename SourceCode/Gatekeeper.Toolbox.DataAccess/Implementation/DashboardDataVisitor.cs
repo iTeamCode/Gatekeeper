@@ -24,7 +24,7 @@ namespace Gatekeeper.Toolbox.DataAccess
             string whereStr = string.Empty;
             if (widgetItemIds != null && widgetItemIds.Count > 0)
             {
-                whereStr = string.Format("AND Giving.[Fund_Id] IN ({0})", string.Join<int>(",", widgetItemIds));
+                whereStr = string.Format("AND widgetItem.[UserWidgetItemID] IN ({0})", string.Join<int>(",", widgetItemIds));
             }
             command.CommandText = command.CommandText.Replace("#WhereStr#", whereStr);
 

@@ -10,6 +10,7 @@ namespace Gatekeeper.DomainModel.Dashboard
 {
     public class ReportDataModel
     {
+        public string Key { get; set; }
         /// <summary>
         /// get or set 'Date'
         /// </summary>

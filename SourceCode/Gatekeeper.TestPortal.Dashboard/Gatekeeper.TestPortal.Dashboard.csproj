@@ -78,7 +78,8 @@
   <ItemGroup>
     <Compile Include="BaseCheck\ConfigurationPage_BasicCheck.cs" />
     <Compile Include="BaseCheck\Dashboard_SignIn_Test.cs" />
-    <Compile Include="Chart\Chart_DataCheck.cs" />
+    <Compile Include="Chart\ChartDataCheck_UI.cs" />
+    <Compile Include="Chart\ChartDataCheck_DB.cs" />
     <Compile Include="Configuration\Configuration_FunctionTest.cs" />
     <Compile Include="Fixture\DashboardAuthorizedUserFixture.cs" />
     <Compile Include="BaseCheck\HomePage_BasicCheck.cs" />

@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChurchModel.cs" />
+    <Compile Include="CurrentUserModel.cs" />
     <Compile Include="Enum\AppAlias.cs" />
     <Compile Include="Enum\PageAlias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -90,6 +90,17 @@ namespace Gatekeeper.PageObject.Dashboard
                 WebElementKeeper.WaitingFor_WebElementAttributeChangedTo(this._driver, By.XPath(cst_ProgressBar), "class", "ng-hide");
             }
         }
+
+        public int Id
+        {
+            get
+            {
+                var element = this.lblName;
+                var text = element.GetAttribute("for");
+                var index = text.IndexOf('-') + 1;
+                return int.Parse(text.Substring(index, text.Length - index));
+            }
+        }
         #endregion Property for client
     }
 }
