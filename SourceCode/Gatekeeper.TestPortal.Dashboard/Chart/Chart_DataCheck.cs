@@ -96,45 +96,24 @@ namespace Gatekeeper.TestPortal.Dashboard
 
             var currentYear = DateTime.Now.Year;
             Assert.Equal("Today " + currentYear, chartSection.DetailBar.MainAreaTitle);
-
-            if (chartView_YearData < 1000000)
-            {
-                Assert.Equal(chartView_YearData, chartSection.DetailBar.MainAreaValue);
-            }
-            else
-            {
-                Assert.Equal(RoundingData(chartView_YearData), RoundingData(chartSection.DetailBar.MainAreaValue));
-            }
+            Assert.Equal(FormatData(chartView_YearData, prefix), FormatData(chartSection.DetailBar.MainAreaValue, prefix));
 
             Assert.Equal((currentYear - 1).ToString(), chartSection.DetailBar.LastYearAreaTitle);
-            if (chartView_LastYearData < 1000000)
-            {
-                Assert.Equal(chartView_LastYearData, chartSection.DetailBar.LastYearAreaValue);
-            }
-            else
-            {
-                Assert.Equal(RoundingData(chartView_LastYearData), RoundingData(chartSection.DetailBar.LastYearAreaValue));
-            }
+            Assert.Equal(FormatData(chartView_LastYearData, prefix), FormatData(chartSection.DetailBar.LastYearAreaValue, prefix));
 
             Assert.Equal((currentYear - 2).ToString(), chartSection.DetailBar.BeforeLastYearAreaTitle);
-            if (chartView_BeforeLastYearData < 1000000)
-            {
-                Assert.Equal(chartView_BeforeLastYearData, chartSection.DetailBar.BeforeLastYearAreaValue);
-            }
-            else
-            {
-                Assert.Equal(RoundingData(chartView_BeforeLastYearData), RoundingData(chartSection.DetailBar.BeforeLastYearAreaValue));
-            }
+            Assert.Equal(FormatData(chartView_BeforeLastYearData, prefix), FormatData(chartSection.DetailBar.BeforeLastYearAreaValue, prefix));
 
 
             string tempStr = "{0} From year prior {1}";
             string specifier = prefix == "$" ? "N" : "#,0";
             string dataFrom = (chartView_YearData == 0) ? (prefix + "0") : (prefix + chartView_YearData.ToString(specifier));
-            string dataTo = (chartView_LastYearData == 0) ? (prefix + "0") : (prefix + chartView_LastYearData.ToString("#,0.##"));
+            string dataTo = FormatData(chartView_LastYearData, prefix);
+
             if (chartView_YearData != 0 && chartView_LastYearData != 0)
             {
                 var data = (chartView_YearData - chartView_LastYearData) / chartView_LastYearData;
-                dataFrom = (data * 100).ToString("#,0.##") + "%";
+                dataFrom = FormatData(data * 100, string.Empty) + "%";
             }
             Assert.Equal(string.Format(tempStr, dataFrom, dataTo), chartSection.DetailBar.CompareText);
 
@@ -176,38 +155,47 @@ namespace Gatekeeper.TestPortal.Dashboard
 
             //MainArea
             Assert.Equal("Today " + currentYear, chartSection.DetailBar.MainAreaTitle);
-            Assert.Equal(cvCurrentModel.PointData.Value, chartSection.DetailBar.MainAreaValue);
+            Assert.Equal(FormatData(cvCurrentModel.PointData.Value, prefix), FormatData(chartSection.DetailBar.MainAreaValue, prefix));
 
             //LastYearArea
             Assert.Equal(lastYear.ToString(), chartSection.DetailBar.LastYearAreaTitle);
-            Assert.Equal(chartSection.ChartView[cvCurrentModel.X_Axis, lastYear.ToString()], chartSection.DetailBar.LastYearAreaValue);
+            Assert.Equal(FormatData(chartSection.ChartView[cvCurrentModel.X_Axis, lastYear.ToString()], prefix), FormatData(chartSection.DetailBar.LastYearAreaValue, prefix));
 
             var currentData = cvCurrentModel.PointData;
             var lastData = cvLastModel.PointData;
             string tempStr = BuildCompareTextTemp(chartView);
             string specifier = prefix == "$" ? "N" : "#,0";
             string dataFrom = (!currentData.HasValue) ? (prefix + "0") : (prefix + currentData.Value.ToString(specifier));
-            string dataTo = (!lastData.HasValue) ? (prefix + "0") : (prefix + lastData.Value.ToString("#,0.##"));
-
+            string dataTo = FormatData(lastData, prefix);
             if (currentData.Value != 0 && lastData.Value != 0)
             {
                 var data = (currentData.Value - lastData.Value) / lastData.Value;
-                dataFrom = (data * 100).ToString("#,0.##") + "%";
+                dataFrom = FormatData(data * 100, string.Empty) + "%";
             }
             else
             {
-                //dataFrom = prefix + (currentData.Value - lastData.Value).ToString(specifier);
                 dataFrom = prefix + (currentData.Value - lastData.Value).ToString("#,0.##");
             }
+
             Assert.Equal(string.Format(tempStr, dataFrom, dataTo), chartSection.DetailBar.CompareText);
 
             chartSection.Expand = false;
             Assert.Equal(dataFrom, chartSection.SummaryBar.CompareWithLast);
         }
 
-        private string RoundingData(decimal num)
+        private string FormatData(decimal? inputNum, string prefix)
         {
-            return (num / 1000000).ToString("#.00");
+            var displayStr = string.Empty;
+            var num = inputNum ?? 0;
+            if (num < 1000000)
+            {
+                displayStr = (num == 0) ? (prefix + "0") : (prefix + num.ToString("#,0.##"));
+            }
+            else
+            {
+                displayStr = prefix + (num / 1000000).ToString("#,0.00") + "M";
+            }
+            return displayStr;
         }
 
         private string BuildCompareTextTemp(ChartView view)
