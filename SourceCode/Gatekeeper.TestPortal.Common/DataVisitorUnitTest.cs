@@ -24,7 +24,7 @@ namespace Gatekeeper.TestPortal.Common
             var dv = DataVisitor.Create<IDashboardDataVisitor>();
             var data = dv.FetchGivingData(15, DateTime.Parse("2015-06-11"), DateTime.Now.Date, new List<int> { 45, 3926, 4284 });
         }
-        
+
     }
 
 }

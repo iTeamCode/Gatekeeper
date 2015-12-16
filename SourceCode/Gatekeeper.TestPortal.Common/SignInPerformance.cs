@@ -26,7 +26,7 @@ namespace Gatekeeper.TestPortal.Common
             _output = output;
         }
         public void Dispose()
-        {            
+        {
             //Close browser driver.
             if (this._driverManager != null && this._driverManager.Driver != null)
             {
@@ -39,7 +39,7 @@ namespace Gatekeeper.TestPortal.Common
         public void SimpleSignIn_Teacher()
         {
             Stopwatch stopwatch = new Stopwatch();
-            
+
             _driverManager.NavigateTo(PageAlias.Teacher_SignIn);
             var signInPage = GatekeeperFactory.CreatePageManager<TeacherSignInPage>(_driverManager.Driver);
             signInPage.Action_SignIn("winnie.wang@activenetwork.com", "111111", "dc");
