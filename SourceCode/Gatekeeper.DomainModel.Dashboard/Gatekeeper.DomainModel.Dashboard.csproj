@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ChartPointModel.cs" />
     <Compile Include="Enums\ChartView.cs" />
+    <Compile Include="Enums\WidgetType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportDataModel.cs" />
     <Compile Include="WidgetItemModel.cs" />

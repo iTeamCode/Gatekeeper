@@ -74,10 +74,10 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
 
         #region Test-Case
         [Theory(DisplayName = cst_DisplayName + ".ChartViewData_Year")]
-        [InlineData(0, "Giving")]
-        //[InlineData(1, "Attendance")]
-        //[InlineData(2, "")]
-        public void VerifiedChartViewData_Year(int index, string title)
+        [InlineData(0, WidgetType.Giving, "Giving")]
+        [InlineData(1, WidgetType.Attendance, "Attendance")]
+        [InlineData(2, WidgetType.Attribute, "")]
+        public void VerifiedChartViewData_Year(int index, WidgetType type, string title)
         {
             //#01. Get data from UI.
             _driverManager.NavigateTo(PageAlias.Dashboard_Home);
@@ -93,7 +93,7 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
                 Assert.Equal(title, chartSection.DetailBar.Name);
             }
             var widgetItems = chartSection.MetricItems.Where(x => x.Selected);
-            var widgetItemIds = new List<int>();
+            var widgetItemIds = new List<string>();
             foreach (var item in widgetItems)
             {
                 widgetItemIds.Add(item.Id);
@@ -101,7 +101,7 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
             var chartView = chartSection.ChartView;
 
             //#02. Get data from DB.
-            var dbDataList = GetDataFromDB(widgetItemIds);
+            var dbDataList = GetDataFromDB_Year(widgetItemIds, type);
             
             //#03. Compare data.
             foreach (var dbData in dbDataList)
@@ -110,15 +110,16 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
             }
         }
 
-        private List<ReportDataModel> GetDataFromDB(List<int> widgetItemIds)
+        private List<ReportDataModel> GetDataFromDB_Year(List<string> widgetItemIds, WidgetType type)
         {
-            var churchId = _currentUser.ChurchId;
+            
             var startYear = DateTime.Now.Year - 24;
             var endYear = DateTime.Now.Year;
+
+            var churchId = _currentUser.ChurchId;
             var startDate = DateTime.Parse(string.Format("{0}-01-01", startYear));
             var endDate = DateTime.Parse(string.Format("{0}-12-31", endYear));
-            var dvDashboard = DataVisitor.Create<IDashboardDataVisitor>();
-            var originalData = dvDashboard.FetchGivingData(churchId, startDate, endDate, widgetItemIds);
+            var originalData = GetDataList(widgetItemIds, type, churchId, startDate, endDate);
 
             var groupList = originalData.GroupBy(x => x.Date.Year).OrderBy(g => g.Key).Select(g => new ReportDataModel
             {
@@ -140,6 +141,73 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
                 dbDataList.Add(tempData);
             }
             return dbDataList;
+        }
+        //private List<ReportDataModel> GetDataFromDB_Month(List<string> widgetItemIds, WidgetType type)
+        //{
+
+        //    var startYear = DateTime.Now.Year - 1;
+        //    var endYear = DateTime.Now.Year;
+
+        //    var churchId = _currentUser.ChurchId;
+        //    var startDate = DateTime.Parse(string.Format("{0}-01-01", startYear));
+        //    var endDate = DateTime.Now.AddDays(1).AddMilliseconds(-1);
+        //    var originalData = GetDataList(widgetItemIds, type, churchId, startDate, endDate);
+
+        //    var groupList = originalData.GroupBy(x => string.Format("{0}-{1}", x.Date.ToString("MMM"), x.Date.Year))
+        //        .OrderBy(g => g.Key).Select(g => new ReportDataModel
+        //    {
+        //        Key = g.Key,
+        //        Value = g.Sum(i => i.Value),
+        //        Count = g.Sum(i => i.Count)
+        //    }).ToList();
+
+        //    var dbDataList = new List<ReportDataModel>(25);
+        //    for (var iYear = startYear; iYear <= endYear; iYear++)
+        //    {
+        //        var tempData = new ReportDataModel { Key = iYear.ToString(), Value = 0.00m, Count = 0 };
+        //        var data = groupList.FirstOrDefault(x => x.Key == iYear.ToString());
+        //        if (data != null)
+        //        {
+        //            tempData.Value = data.Value;
+        //            tempData.Count = data.Count;
+        //        }
+        //        dbDataList.Add(tempData);
+        //    }
+        //    return dbDataList;
+        //}
+        private List<ReportDataModel> GetDataList(List<string> widgetItemIds, WidgetType type, int churchId, DateTime startDate, DateTime endDate)
+        {
+            var dvDashboard = DataVisitor.Create<IDashboardDataVisitor>();
+            var dataList = new List<ReportDataModel>();
+            switch (type)
+            {
+                case WidgetType.Giving:
+                    var fdList = BuildWidgetItemIdList(widgetItemIds, "fd");
+                    dataList = dvDashboard.FetchGivingData(churchId, startDate, endDate, fdList);
+                    break;
+                case WidgetType.Attendance:
+                    var mnList = BuildWidgetItemIdList(widgetItemIds, "mn");
+                    var gtList = BuildWidgetItemIdList(widgetItemIds, "gt");
+                    dataList = dvDashboard.FetchAttendanceData(churchId, startDate, endDate, mnList, gtList);
+                    break;
+                case WidgetType.Attribute:
+                    var atList = BuildWidgetItemIdList(widgetItemIds, "at");
+                    dataList = dvDashboard.FetchAttributeData(churchId, startDate, endDate, atList);
+                    break;
+            }
+            return dataList;
+        }
+        private List<int> BuildWidgetItemIdList(List<string> widgetItemIds, string prefix)
+        {
+            var dataList = new List<int>();
+            foreach (var item in widgetItemIds)
+            {
+                var arry = item.Split('-');
+                if (arry == null || arry.Length != 2) throw new Exception("Id format error!");
+                if (arry[0] == prefix) dataList.Add(int.Parse(arry[1]));
+            }
+            //prefix
+            return dataList;
         }
         #endregion Test-Case
     }

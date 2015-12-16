@@ -154,7 +154,13 @@ namespace Gatekeeper.Framework.DataAccess
                     fileName = dr.GetName(i);
                     if (dicFields.Keys.Contains(fileName) && dr[i] != DBNull.Value)
                     {
-                        dicFields[dr.GetName(i)].SetValue(entity, dr[i]);
+                        object value = dr[i];
+                        Type propertyType = dicFields[fileName].PropertyType;
+                        if (dr[i].GetType() != propertyType)
+                        {
+                            value = Convert.ChangeType(dr[i], propertyType);
+                        }
+                        dicFields[fileName].SetValue(entity, value);
                     }
                 }
             }
@@ -201,7 +207,15 @@ namespace Gatekeeper.Framework.DataAccess
                     fileName = dr.GetName(i);
                     if (dicFields.Keys.Contains(fileName) && dr[i] != DBNull.Value)
                     {
-                        dicFields[dr.GetName(i)].SetValue(entity, dr[i]);
+                        object value = dr[i];
+                        Type propertyType = dicFields[fileName].PropertyType;
+                        if (dr[i].GetType() != propertyType)
+                        {
+                            value = Convert.ChangeType(dr[i], propertyType);
+                        }
+                        dicFields[fileName].SetValue(entity, value);
+                        
+                        
                     }  
                 }
                 entityList.Add(entity);
@@ -256,7 +270,13 @@ namespace Gatekeeper.Framework.DataAccess
                             fileName = dr.GetName(i);
                             if (dicFields.Keys.Contains(fileName) && dr[i] != DBNull.Value)
                             {
-                                dicFields[dr.GetName(i)].SetValue(entity, dr[i]);
+                                object value = dr[i];
+                                Type propertyType = dicFields[fileName].PropertyType;
+                                if (dr[i].GetType() != propertyType)
+                                {
+                                    value = Convert.ChangeType(dr[i], propertyType);
+                                }
+                                dicFields[fileName].SetValue(entity, value);
                             }
                         }
                         entityList.Add(entity);

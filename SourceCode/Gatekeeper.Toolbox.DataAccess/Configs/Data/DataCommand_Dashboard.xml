@@ -11,12 +11,126 @@
 	        Giving.[Date]
         FROM [ChmContribution].[dbo].[View_Contribution_GetGivingData] as Giving (NOEXPAND)
 		    LEFT JOIN [ChmDashboard].[dbo].[UserWidgetItem] as widgetItem WITH(NOLOCK)
-		      ON widgetItem.WidgetItemReferId = Giving.[Fund_Id]
+		      ON widgetItem.WidgetItemReferId = Giving.[Fund_Id] AND widgetItem.SourceTypeID = 1
         WHERE Giving.[Church_Id] = @ChurchId
           AND Giving.[Date] > @StartDate 
           AND Giving.[Date] < @EndDate
           #WhereStr#
         ORDER BY Giving.[Date] ASC
+      ]]>
+    </CommandText>
+    <Parameters>
+      <Param Name="@ChurchId" DBType="Int32" Size="4" />
+      <Param Name="@StartDate" DBType="DateTime" Size="20" />
+      <Param Name="@EndDate" DBType="DateTime" Size="20" />
+    </Parameters>
+  </DataCommand>
+  <DataCommand Name="Dashboard.FetchAttendanceData" DataSourceID="DashboardDB" Type ="TextCommand">
+    <CommandText>
+      <![CDATA[
+        ;WITH tData AS(
+	        SELECT 
+		        0 as WidgetReferId,
+		        WidgetItemReferId,
+		        SUM(SummaryNumber) as SummaryNumber,
+		        0 AS CountNumber,[Date]
+	        FROM (
+		        SELECT 
+			        0 as WidgetReferId,
+			        am.MINISTRY_ID as WidgetItemReferId,
+			        SUM(adi.attendance) AS SummaryNumber,
+			        0 AS CountNumber,
+			        CAST(ai.START_CHECKIN as date) AS [Date]
+		        FROM ChmActivity.DBO.ACTIVITY_DETAIL_INSTANCE AS adi WITH(NOLOCK) 
+		        INNER JOIN ChmActivity.DBO.ACTIVITY_INSTANCE AS ai WITH(NOLOCK) 
+		          ON adi.ACTIVITY_INSTANCE_ID = ai.ACTIVITY_INSTANCE_ID
+		        INNER JOIN ChmActivity.DBO.ACTIVITY_MINISTRY AS am WITH(NOLOCK) 
+		          ON ai.ACTIVITY_ID=am.ACTIVITY_ID
+		        LEFT JOIN [ChmDashboard].[dbo].[UserWidgetItem] AS widgetItem WITH(NOLOCK)
+		          ON widgetItem.WidgetItemReferId = am.MINISTRY_ID AND widgetItem.SourceTypeID = 2 
+		        WHERE adi.church_id =@ChurchId 
+		          AND ai.START_CHECKIN >= @StartDate AND ai.START_CHECKIN <= @EndDate
+		          #WhereStr_mn#
+		        GROUP BY am.MINISTRY_ID,CAST(ai.START_CHECKIN as date)
+		        UNION ALL
+		        SELECT 
+			        0 as WidgetReferId, 
+			        MINISTRY_ID AS WidgetItemReferId,
+			        SummaryNumber AS SummaryNumber,
+			        0 AS CountNumber,
+			        [Date]
+		        FROM ChmActivity.[dbo].[View_Activity_GetMinistryData] AS am WITH(NOLOCK)
+		        LEFT JOIN [ChmDashboard].[dbo].[UserWidgetItem] AS widgetItem WITH(NOLOCK)
+		          ON widgetItem.WidgetItemReferId = am.MINISTRY_ID AND widgetItem.SourceTypeID = 2 
+		        WHERE am.CHURCH_ID = @ChurchId 
+		          AND am.Date >= @StartDate AND am.Date <= @EndDate 
+              #WhereStr_mn#
+	        ) t
+	        GROUP BY WidgetItemReferId,[Date]
+
+	        UNION
+	        --
+
+	        SELECT 
+		        0 as WidgetReferId, 
+		        Group_Type_ID AS WidgetItemReferId, 
+		        SUM(PresentCount) AS SummaryNumber,
+		        COUNT(1) AS CountNumber, 
+		        StartDate AS [Date] 
+	        FROM (
+		        SELECT g.Group_Type_ID,ats.PresentCount,CAST(ats.StartDateTime AS DATE) AS StartDate 
+		        FROM ChmPeople.DBO.AttendanceSummary ats 
+		        JOIN ChmPeople.DBO.Groups g on ats.AttendanceContextValueID = g.Group_ID
+		        LEFT JOIN [ChmDashboard].[dbo].[UserWidgetItem] as widgetItem WITH(NOLOCK)
+			        ON widgetItem.WidgetItemReferId = g.Group_Type_ID AND widgetItem.SourceTypeID = 3 
+		        WHERE ats.ChurchID = @ChurchId AND ats.PresentCount > 0
+		        AND ats.StartDateTime >=@StartDate AND ats.StartDateTime <=@EndDate 
+		        #WhereStr_gt#
+	        ) t
+	        GROUP BY Group_Type_ID,StartDate
+        )
+        SELECT * FROM tData ORDER BY Date ASC
+      ]]>
+    </CommandText>
+    <Parameters>
+      <Param Name="@ChurchId" DBType="Int32" Size="4" />
+      <Param Name="@StartDate" DBType="DateTime" Size="20" />
+      <Param Name="@EndDate" DBType="DateTime" Size="20" />
+    </Parameters>
+  </DataCommand>
+  <DataCommand Name="Dashboard.FetchAttributeData" DataSourceID="DashboardDB" Type ="TextCommand">
+    <CommandText>
+      <![CDATA[
+        ;WITH tData 
+        as 
+        (
+	        SELECT 
+		        attr.ATTRIBUTE_ID,
+		        ia.INDIVIDUAL_ID,
+		        CAST(ia.START_DATE as date) AS [Date] 
+	        FROM ChmPeople.DBO.ATTRIBUTE_GROUP ag(NOLOCK) 
+	        INNER JOIN ChmPeople.DBO.ATTRIBUTE attr(NOLOCK) 
+	          ON ag.ATTRIBUTE_GROUP_ID = attr.ATTRIBUTE_GROUP_ID
+	        INNER JOIN ChmPeople.DBO.INDIVIDUAL_ATTRIBUTE ia(NOLOCK) 
+	          ON ia.ATTRIBUTE_ID = attr.ATTRIBUTE_ID AND ia.CHURCH_ID = @ChurchId
+	        LEFT JOIN [ChmDashboard].[dbo].[UserWidgetItem] as widgetItem WITH(NOLOCK)
+	          ON widgetItem.WidgetItemReferId = attr.ATTRIBUTE_ID AND widgetItem.SourceTypeID = 4
+	        WHERE ag.ENABLED =1 
+	          AND attr.ENABLED=1
+	          AND attr.HAS_START_DATE = 1 
+	          AND ia.START_DATE is not null
+	          AND ia.START_DATE >= @StartDate 
+	          AND ia.START_DATE <= @EndDate 
+            #WhereStr#
+        )
+        SELECT 
+	        0 as WidgetReferId, 
+	        ATTRIBUTE_ID as WidgetItemReferId,
+	        COUNT(INDIVIDUAL_ID) AS SummaryNumber,
+	        COUNT(1) AS CountNumber,
+	        [Date] 
+        FROM tData 
+        GROUP BY ATTRIBUTE_ID, [Date]
       ]]>
     </CommandText>
     <Parameters>

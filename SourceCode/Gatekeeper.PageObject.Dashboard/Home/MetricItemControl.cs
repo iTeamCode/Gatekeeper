@@ -91,14 +91,13 @@ namespace Gatekeeper.PageObject.Dashboard
             }
         }
 
-        public int Id
+        public string Id
         {
             get
             {
                 var element = this.lblName;
                 var text = element.GetAttribute("for");
-                var index = text.IndexOf('-') + 1;
-                return int.Parse(text.Substring(index, text.Length - index));
+                return text;
             }
         }
         #endregion Property for client

@@ -187,7 +187,7 @@ namespace Gatekeeper.TestPortal.Dashboard
         {
             var displayStr = string.Empty;
             var num = inputNum ?? 0;
-            if (num < 1000000)
+            if (Math.Abs(num) < 1000000)
             {
                 displayStr = (num == 0) ? (prefix + "0") : (prefix + num.ToString("#,0.##"));
             }
