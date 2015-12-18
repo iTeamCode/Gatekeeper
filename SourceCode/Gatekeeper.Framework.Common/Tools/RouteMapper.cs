@@ -74,8 +74,8 @@ namespace Gatekeeper.Framework.Common
 
             #region Launchpad
             baseUrl = BuildBaseUrl(AppAlias.Launchpad);
-            _dicMap.Add(PageAlias.Launchpad_SignIn, string.Format("{0}/#/Login", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_Home, string.Format("{0}/#/apps", baseUrl));
+            _dicMap.Add(PageAlias.Launchpad_SignIn, string.Format("{0}/#/Login/", baseUrl));
+            _dicMap.Add(PageAlias.Launchpad_Home, string.Format("{0}/#/home/apps", baseUrl));
             #endregion Launchpad
 
             #region Teacher
