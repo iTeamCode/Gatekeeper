@@ -74,16 +74,25 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
 
         #region Test-Case
         [Theory(DisplayName = cst_DisplayName + ".ChartViewData_Year")]
-        [InlineData(0, WidgetType.Giving, "Giving")]
-        [InlineData(1, WidgetType.Attendance, "Attendance")]
-        [InlineData(2, WidgetType.Attribute, "")]
-        public void VerifiedChartViewData_Year(int index, WidgetType type, string title)
+        [InlineData(0, WidgetType.Giving, ChartView.Year, "Giving")]
+        [InlineData(1, WidgetType.Attendance, ChartView.Year, "Attendance")]
+        [InlineData(2, WidgetType.Attribute, ChartView.Year, "")]
+
+        [InlineData(0, WidgetType.Giving, ChartView.Quarter, "Giving")]
+        [InlineData(1, WidgetType.Attendance, ChartView.Quarter, "Attendance")]
+        [InlineData(2, WidgetType.Attribute, ChartView.Quarter, "")]
+
+        [InlineData(0, WidgetType.Giving, ChartView.Month, "Giving")]
+        [InlineData(1, WidgetType.Attendance, ChartView.Month, "Attendance")]
+        [InlineData(2, WidgetType.Attribute, ChartView.Month, "")]
+        public void VerifiedChartViewData_Year(int index, WidgetType type, ChartView view, string title)
         {
             //#01. Get data from UI.
             _driverManager.NavigateTo(PageAlias.Dashboard_Home);
             var homePage = GatekeeperFactory.CreatePageManager<HomePage>(_driverManager.Driver);
             var toolBar = homePage.ToolBar;
-            toolBar.Action_SelectView(ChartView.Year);
+            //toolBar.Action_SelectView(ChartView.Year);
+            toolBar.Action_SelectView(view);
 
             homePage.ChartSections.ForEach(x => x.Expand = false);
             var chartSection = homePage.ChartSections[index];
@@ -101,16 +110,38 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
             var chartView = chartSection.ChartView;
 
             //#02. Get data from DB.
-            var dbDataList = GetDataFromDB_Year(widgetItemIds, type);
+            var dbDataDic = new Dictionary<string, List<ReportDataModel>>();
+            switch (view)
+            { 
+                case ChartView.Year:
+                    dbDataDic = GetDataFromDB_Year(widgetItemIds, type);
+                    break;
+                case ChartView.Quarter:
+                    dbDataDic = GetDataFromDB_Quarter(widgetItemIds, type);
+                    break;
+                case ChartView.Month:
+                    dbDataDic = GetDataFromDB_Month(widgetItemIds, type);
+                    break;
+                case ChartView.Week:
+                    break;
+            }
             
             //#03. Compare data.
-            foreach (var dbData in dbDataList)
+            foreach (var dbData in dbDataDic)
             {
-                Assert.Equal(dbData.Value, chartView[dbData.Key]);
+                var year = dbData.Key;
+                foreach(var item in dbData.Value)
+                {
+                    Assert.Equal(item.Value, chartView[item.X_Axis, item.Year]);
+                }
             }
+            //foreach (var dbData in dbDataList)
+            //{
+            //    Assert.Equal(dbData.Value, chartView[dbData.Key]);
+            //}
         }
 
-        private List<ReportDataModel> GetDataFromDB_Year(List<string> widgetItemIds, WidgetType type)
+        private Dictionary<string, List<ReportDataModel>> GetDataFromDB_Year(List<string> widgetItemIds, WidgetType type)
         {
             
             var startYear = DateTime.Now.Year - 24;
@@ -118,10 +149,11 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
 
             var churchId = _currentUser.ChurchId;
             var startDate = DateTime.Parse(string.Format("{0}-01-01", startYear));
-            var endDate = DateTime.Parse(string.Format("{0}-12-31", endYear));
+            var endDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
             var originalData = GetDataList(widgetItemIds, type, churchId, startDate, endDate);
 
-            var groupList = originalData.GroupBy(x => x.Date.Year).OrderBy(g => g.Key).Select(g => new ReportDataModel
+            var groupList = originalData.GroupBy(x => string.Format("{0}-Years", x.Date.Year))
+                .OrderBy(g => g.Key).Select(g => new ReportDataModel
             {
                 Key = g.Key.ToString(),
                 Value = g.Sum(i => i.Value),
@@ -131,8 +163,8 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
             var dbDataList = new List<ReportDataModel>(25);
             for (var iYear = startYear; iYear <= endYear; iYear++)
             {
-                var tempData = new ReportDataModel { Key = iYear.ToString(), Value = 0.00m, Count = 0 };
-                var data = groupList.FirstOrDefault(x => x.Key == iYear.ToString());
+                var tempData = new ReportDataModel { Key = string.Format("{0}-Years", iYear), Value = 0.00m, Count = 0 };
+                var data = groupList.FirstOrDefault(x => x.Key == string.Format("{0}-Years", iYear));
                 if (data != null)
                 {
                     tempData.Value = data.Value;
@@ -140,41 +172,92 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
                 }
                 dbDataList.Add(tempData);
             }
-            return dbDataList;
+
+            var dicData = new Dictionary<string, List<ReportDataModel>>();
+            dicData.Add("Years", dbDataList);
+            return dicData;
         }
-        //private List<ReportDataModel> GetDataFromDB_Month(List<string> widgetItemIds, WidgetType type)
-        //{
 
-        //    var startYear = DateTime.Now.Year - 1;
-        //    var endYear = DateTime.Now.Year;
+        private Dictionary<string, List<ReportDataModel>> GetDataFromDB_Month(List<string> widgetItemIds, WidgetType type)
+        {
+            var startYear = DateTime.Now.Year - 1;
+            var endYear = DateTime.Now.Year;
 
-        //    var churchId = _currentUser.ChurchId;
-        //    var startDate = DateTime.Parse(string.Format("{0}-01-01", startYear));
-        //    var endDate = DateTime.Now.AddDays(1).AddMilliseconds(-1);
-        //    var originalData = GetDataList(widgetItemIds, type, churchId, startDate, endDate);
+            var churchId = _currentUser.ChurchId;
+            var startDate = DateTime.Parse(string.Format("{0}-01-01", startYear));
+            var endDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
+            var originalData = GetDataList(widgetItemIds, type, churchId, startDate, endDate);
 
-        //    var groupList = originalData.GroupBy(x => string.Format("{0}-{1}", x.Date.ToString("MMM"), x.Date.Year))
-        //        .OrderBy(g => g.Key).Select(g => new ReportDataModel
-        //    {
-        //        Key = g.Key,
-        //        Value = g.Sum(i => i.Value),
-        //        Count = g.Sum(i => i.Count)
-        //    }).ToList();
+            var groupList = originalData.GroupBy(x => string.Format("{0}-{1}", x.Date.ToString("MMM"), x.Date.Year))
+                .OrderBy(g => g.Key).Select(g =>new ReportDataModel
+            {
+                Key = g.Key,
+                Value = g.Sum(i => i.Value),
+                Count = g.Sum(i => i.Count)
+            }).ToList();
 
-        //    var dbDataList = new List<ReportDataModel>(25);
-        //    for (var iYear = startYear; iYear <= endYear; iYear++)
-        //    {
-        //        var tempData = new ReportDataModel { Key = iYear.ToString(), Value = 0.00m, Count = 0 };
-        //        var data = groupList.FirstOrDefault(x => x.Key == iYear.ToString());
-        //        if (data != null)
-        //        {
-        //            tempData.Value = data.Value;
-        //            tempData.Count = data.Count;
-        //        }
-        //        dbDataList.Add(tempData);
-        //    }
-        //    return dbDataList;
-        //}
+            var dicData = new Dictionary<string, List<ReportDataModel>>();
+            var monthArray = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+            for (var iYear = startYear; iYear <= endYear; iYear++)
+            {
+                var yearDataList = groupList.FindAll(x => x.Year == iYear.ToString());
+                var dbDataList = new List<ReportDataModel>(12);
+                foreach (var strMonth in monthArray)
+                {
+                    var tempData = new ReportDataModel { Key = string.Format("{0}-{1}", strMonth, iYear), Value = 0.00m, Count = 0 };
+                    var data = yearDataList.FirstOrDefault(x => x.X_Axis == strMonth);
+                    if (data != null)
+                    {
+                        tempData.Value = data.Value;
+                        tempData.Count = data.Count;
+                    }
+                    dbDataList.Add(tempData);
+                }
+                dicData.Add(iYear.ToString(), dbDataList);
+            }
+            return dicData;
+        }
+
+        private Dictionary<string, List<ReportDataModel>> GetDataFromDB_Quarter(List<string> widgetItemIds, WidgetType type)
+        {
+            var startYear = DateTime.Now.Year - 1;
+            var endYear = DateTime.Now.Year;
+
+            var churchId = _currentUser.ChurchId;
+            var startDate = DateTime.Parse(string.Format("{0}-01-01", startYear));
+            var endDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
+            var originalData = GetDataList(widgetItemIds, type, churchId, startDate, endDate);
+
+            var groupList = originalData.GroupBy(x => string.Format("Q{0}-{1}", ((x.Date.Month - 1) / 3 + 1), x.Date.Year))
+                .OrderBy(g => g.Key).Select(g =>new ReportDataModel
+            {
+                Key = g.Key,
+                Value = g.Sum(i => i.Value),
+                Count = g.Sum(i => i.Count)
+            }).ToList();
+
+            var dicData = new Dictionary<string, List<ReportDataModel>>();
+            var quarterArray = new string[] { "Q1", "Q2", "Q3", "Q4" };
+            for (var iYear = startYear; iYear <= endYear; iYear++)
+            {
+                var yearDataList = groupList.FindAll(x => x.Year == iYear.ToString());
+                var dbDataList = new List<ReportDataModel>(4);
+                foreach (var strQuarter in quarterArray)
+                {
+                    var tempData = new ReportDataModel { Key = string.Format("{0}-{1}", strQuarter, iYear), Value = 0.00m, Count = 0 };
+                    var data = yearDataList.FirstOrDefault(x => x.X_Axis == strQuarter);
+                    if (data != null)
+                    {
+                        tempData.Value = data.Value;
+                        tempData.Count = data.Count;
+                    }
+                    dbDataList.Add(tempData);
+                }
+                dicData.Add(iYear.ToString(), dbDataList);
+            }
+            return dicData;
+        }
+
         private List<ReportDataModel> GetDataList(List<string> widgetItemIds, WidgetType type, int churchId, DateTime startDate, DateTime endDate)
         {
             var dvDashboard = DataVisitor.Create<IDashboardDataVisitor>();
