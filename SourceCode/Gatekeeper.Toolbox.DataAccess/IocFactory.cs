@@ -40,25 +40,37 @@ namespace Gatekeeper.Toolbox.DataAccess
                 .Instance(container));
 
             #region register data visitor.
-            Assembly asmDataAccess = Assembly.Load("Gatekeeper.Toolbox.DataAccess");
+            //Assembly asmDataAccess = Assembly.Load("Gatekeeper.Toolbox.DataAccess");
 
             //ActivityDataVisitor
             container.Register(Component
-                .For(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.IActivityDataVisitor"))
-                .ImplementedBy(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.ActivityDataVisitor"))
+                .For(typeof(IActivityDataVisitor))
+                .ImplementedBy(typeof(ActivityDataVisitor))
                 .Named("ActivityDataVisitor"));
+            //container.Register(Component
+            //    .For(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.IActivityDataVisitor"))
+            //    .ImplementedBy(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.ActivityDataVisitor"))
+            //    .Named("ActivityDataVisitor"));
 
             //CommonDataVisitor
             container.Register(Component
-                .For(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.ICommonDataVisitor"))
-                .ImplementedBy(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.CommonDataVisitor"))
+                .For(typeof(ICommonDataVisitor))
+                .ImplementedBy(typeof(CommonDataVisitor))
                 .Named("CommonDataVisitor"));
+            //container.Register(Component
+            //    .For(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.ICommonDataVisitor"))
+            //    .ImplementedBy(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.CommonDataVisitor"))
+            //    .Named("CommonDataVisitor"));
 
             //DashboardDataVisitor
             container.Register(Component
-                .For(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.IDashboardDataVisitor"))
-                .ImplementedBy(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.DashboardDataVisitor"))
+                .For(typeof(IDashboardDataVisitor))
+                .ImplementedBy(typeof(DashboardDataVisitor))
                 .Named("DashboardDataVisitor"));
+            //container.Register(Component
+            //    .For(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.IDashboardDataVisitor"))
+            //    .ImplementedBy(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.DashboardDataVisitor"))
+            //    .Named("DashboardDataVisitor"));
 
             #endregion register data access.
 

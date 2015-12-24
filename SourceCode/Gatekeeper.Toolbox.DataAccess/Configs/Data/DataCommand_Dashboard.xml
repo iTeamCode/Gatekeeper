@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DataOperators xmlns="https:\\Gatekeeper\Framework\DataOperators">
+  
   <DataCommand Name="Dashboard.FetchGivingData" DataSourceID="DashboardDB" Type ="TextCommand">
     <CommandText>
       <![CDATA[
@@ -13,8 +14,8 @@
 		    LEFT JOIN [ChmDashboard].[dbo].[UserWidgetItem] as widgetItem WITH(NOLOCK)
 		      ON widgetItem.WidgetItemReferId = Giving.[Fund_Id] AND widgetItem.SourceTypeID = 1
         WHERE Giving.[Church_Id] = @ChurchId
-          AND Giving.[Date] > @StartDate 
-          AND Giving.[Date] < @EndDate
+          AND Giving.[Date] >= @StartDate 
+          AND Giving.[Date] <= @EndDate
           #WhereStr#
         ORDER BY Giving.[Date] ASC
       ]]>
@@ -25,6 +26,7 @@
       <Param Name="@EndDate" DBType="DateTime" Size="20" />
     </Parameters>
   </DataCommand>
+  
   <DataCommand Name="Dashboard.FetchAttendanceData" DataSourceID="DashboardDB" Type ="TextCommand">
     <CommandText>
       <![CDATA[
@@ -98,6 +100,7 @@
       <Param Name="@EndDate" DBType="DateTime" Size="20" />
     </Parameters>
   </DataCommand>
+  
   <DataCommand Name="Dashboard.FetchAttributeData" DataSourceID="DashboardDB" Type ="TextCommand">
     <CommandText>
       <![CDATA[
@@ -139,4 +142,5 @@
       <Param Name="@EndDate" DBType="DateTime" Size="20" />
     </Parameters>
   </DataCommand>
+  
 </DataOperators>

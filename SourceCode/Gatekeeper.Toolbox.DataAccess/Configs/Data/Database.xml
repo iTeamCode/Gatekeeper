@@ -1,13 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DBGroups>
-  <Database DataSourceID="DashboardDB" DatabaseType="MS SQL Service">
+  <Database DataSourceID="DashboardDB" DatabaseType="MS SQL Server">
     <ConnectionString>
       <![CDATA[Data source=transdb.{0}.fellowshipone.com;Initial catalog=ChmDashboard;persist security info=True;integrated security=True;]]>
     </ConnectionString>
   </Database>
+  <Database DataSourceID="PortalDB" DatabaseType="MS SQL Server">
+    <ConnectionString>
+      <![CDATA[Data source=transdb.{0}.fellowshipone.com;Initial catalog=ChmPortal;persist security info=True;integrated security=True;]]>
+    </ConnectionString>
+  </Database>
   <Database DataSourceID="TestDB" DatabaseType="MS SQL Server">
     <ConnectionString>
-      <![CDATA[Server=124.127.48.34;Database=QYPO;User=root;Password=qianyu@123;Charset=utf8;]]>
+      <![CDATA[Server=127.0.0.1;Database=master;User=tester;Password=Active@123;Charset=utf8;]]>
     </ConnectionString>
   </Database>
   
