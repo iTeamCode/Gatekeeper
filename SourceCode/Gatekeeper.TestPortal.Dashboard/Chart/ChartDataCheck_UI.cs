@@ -45,26 +45,36 @@ namespace Gatekeeper.TestPortal.Dashboard
                     new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Thursday},
                     new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Friday},
                     new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Saturday},
+                    //Volunteer
+                    new object[]{1, "Volunteer", "", ChartView.Quarter, null},
+                    new object[]{1, "Volunteer", "", ChartView.Month, null},
+                    new object[]{1, "Volunteer", "", ChartView.Week, DayOfWeek.Sunday},
+                    new object[]{1, "Volunteer", "", ChartView.Week, DayOfWeek.Monday},
+                    new object[]{1, "Volunteer", "", ChartView.Week, DayOfWeek.Tuesday},
+                    new object[]{1, "Volunteer", "", ChartView.Week, DayOfWeek.Wednesday},
+                    new object[]{1, "Volunteer", "", ChartView.Week, DayOfWeek.Thursday},
+                    new object[]{1, "Volunteer", "", ChartView.Week, DayOfWeek.Friday},
+                    new object[]{1, "Volunteer", "", ChartView.Week, DayOfWeek.Saturday},
                     //Attendance
-                    new object[]{1, "Attendance", "", ChartView.Quarter, null},
-                    new object[]{1, "Attendance", "", ChartView.Month, null},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Sunday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Monday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Tuesday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Wednesday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Thursday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Friday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Saturday},
+                    new object[]{2, "Attendance", "", ChartView.Quarter, null},
+                    new object[]{2, "Attendance", "", ChartView.Month, null},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Sunday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Monday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Tuesday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Wednesday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Thursday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Friday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Saturday},
                     //Attribute
-                    new object[]{2, "", "", ChartView.Quarter, null},
-                    new object[]{2, "", "", ChartView.Month, null},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Sunday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Monday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Tuesday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Wednesday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Thursday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Friday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Saturday},
+                    new object[]{3, "", "", ChartView.Quarter, null},
+                    new object[]{3, "", "", ChartView.Month, null},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Sunday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Monday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Tuesday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Wednesday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Thursday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Friday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Saturday},
                 };
             }
         }
@@ -73,8 +83,9 @@ namespace Gatekeeper.TestPortal.Dashboard
         #region Test-Case
         [Theory(DisplayName = cst_DisplayName + ".TopBar_Year")]
         [InlineData(0, "Giving", "$")]
-        [InlineData(1, "Attendance", "")]
-        [InlineData(2, "", "")]
+        [InlineData(1, "Volunteer", "")]
+        [InlineData(2, "Attendance", "")]
+        [InlineData(3, "", "")]
         public void VerifiedTopBarData_Year(int index, string title, string prefix)
         {
             _driverManager.NavigateTo(PageAlias.Dashboard_Home);

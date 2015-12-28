@@ -23,9 +23,9 @@ namespace Gatekeeper.TestPortal.Dashboard
             var configPage = GatekeeperFactory.CreatePageManager<ConfigurationPage>(manager.Driver);
             configPage.Action_UnableAllActiveWidgets();
 
-            Assert.True(configPage.ActiveWidgets.Count >= 3, "ActiveWidgets is list than 3!");
+            Assert.True(configPage.ActiveWidgets.Count >= 4, "ActiveWidgets is list than 4!");
 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < 4; i++)
             {
                 var widget = configPage.ActiveWidgets[i];
                 widget.Enabled = true;

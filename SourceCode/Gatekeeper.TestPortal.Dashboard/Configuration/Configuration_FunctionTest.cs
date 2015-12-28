@@ -30,6 +30,7 @@ namespace Gatekeeper.TestPortal.Dashboard
 
         [Theory(DisplayName = cst_DisplayName + ".DisableWidget")]
         [InlineData("Giving")]
+        [InlineData("Volunteer")]
         [InlineData("Attendance")]
         [InlineData(null)]
         public void DisableWidget(string disableWidgetName)
@@ -38,7 +39,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             _driverManager.NavigateTo(PageAlias.Dashboard_Configuration);
             var configurationPage = GatekeeperFactory.CreatePageManager<ConfigurationPage>(_driverManager.Driver);
 
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < 4; i++)
             {
                 configurationPage.ActiveWidgets[i].Enabled = true;                
             }
@@ -46,7 +47,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             if (string.IsNullOrEmpty(disableWidgetName))
             {
                 //get attr here
-                disableWidgetName = configurationPage.ActiveWidgets[2].Title;
+                disableWidgetName = configurationPage.ActiveWidgets[3].Title;
                 disableWidgetName = disableWidgetName.Substring(0, disableWidgetName.LastIndexOf("("));
             }
 
@@ -63,6 +64,7 @@ namespace Gatekeeper.TestPortal.Dashboard
 
         [Theory(DisplayName = cst_DisplayName + ".DisableWidgetItems")]
         [InlineData("Giving")]
+        [InlineData("Volunteer")]
         [InlineData("Attendance")]
         //[InlineData(null)]
         public void DisableWidgetItems(string disableWidgetName)
@@ -74,7 +76,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             if (string.IsNullOrEmpty(disableWidgetName))
             {
                 //get attr here
-                disableWidgetName = configurationPage.ActiveWidgets[2].Title;
+                disableWidgetName = configurationPage.ActiveWidgets[3].Title;
                 disableWidgetName = disableWidgetName.Substring(0, disableWidgetName.LastIndexOf("("));
             }
 

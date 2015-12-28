@@ -48,25 +48,25 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
                     new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Friday},
                     new object[]{0, "Giving", "$", ChartView.Week, DayOfWeek.Saturday},
                     //Attendance
-                    new object[]{1, "Attendance", "", ChartView.Quarter, null},
-                    new object[]{1, "Attendance", "", ChartView.Month, null},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Sunday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Monday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Tuesday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Wednesday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Thursday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Friday},
-                    new object[]{1, "Attendance", "", ChartView.Week, DayOfWeek.Saturday},
+                    new object[]{2, "Attendance", "", ChartView.Quarter, null},
+                    new object[]{2, "Attendance", "", ChartView.Month, null},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Sunday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Monday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Tuesday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Wednesday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Thursday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Friday},
+                    new object[]{2, "Attendance", "", ChartView.Week, DayOfWeek.Saturday},
                     //Attribute
-                    new object[]{2, "", "", ChartView.Quarter, null},
-                    new object[]{2, "", "", ChartView.Month, null},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Sunday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Monday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Tuesday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Wednesday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Thursday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Friday},
-                    new object[]{2, "", "", ChartView.Week, DayOfWeek.Saturday},
+                    new object[]{3, "", "", ChartView.Quarter, null},
+                    new object[]{3, "", "", ChartView.Month, null},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Sunday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Monday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Tuesday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Wednesday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Thursday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Friday},
+                    new object[]{3, "", "", ChartView.Week, DayOfWeek.Saturday},
                 };
             }
         }
@@ -75,16 +75,16 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
         #region Test-Case
         [Theory(DisplayName = cst_DisplayName + ".ChartViewData_Year")]
         [InlineData(0, WidgetType.Giving, ChartView.Year, "Giving")]
-        [InlineData(1, WidgetType.Attendance, ChartView.Year, "Attendance")]
-        [InlineData(2, WidgetType.Attribute, ChartView.Year, "")]
+        [InlineData(2, WidgetType.Attendance, ChartView.Year, "Attendance")]
+        [InlineData(3, WidgetType.Attribute, ChartView.Year, "")]
 
         [InlineData(0, WidgetType.Giving, ChartView.Quarter, "Giving")]
-        [InlineData(1, WidgetType.Attendance, ChartView.Quarter, "Attendance")]
-        [InlineData(2, WidgetType.Attribute, ChartView.Quarter, "")]
+        [InlineData(2, WidgetType.Attendance, ChartView.Quarter, "Attendance")]
+        [InlineData(3, WidgetType.Attribute, ChartView.Quarter, "")]
 
         [InlineData(0, WidgetType.Giving, ChartView.Month, "Giving")]
-        [InlineData(1, WidgetType.Attendance, ChartView.Month, "Attendance")]
-        [InlineData(2, WidgetType.Attribute, ChartView.Month, "")]
+        [InlineData(2, WidgetType.Attendance, ChartView.Month, "Attendance")]
+        [InlineData(3, WidgetType.Attribute, ChartView.Month, "")]
         public void VerifiedChartViewData_Year(int index, WidgetType type, ChartView view, string title)
         {
             //#01. Get data from UI.
