@@ -244,7 +244,7 @@ namespace Gatekeeper.PageObject.Dashboard
                     return;
             }
             WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this._driver, By.XPath(cst_ProgressBar));
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(8));
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
         }
         /// <summary>
         /// Action for select start day of week.

@@ -17,7 +17,8 @@ namespace Gatekeeper.PageObject.Dashboard
         #region Dom elements xpath
         //DateRange
         protected const string cst_ToolBar = ".//div[@ng-controller='DashboardController']/div[contains(@class,'header')]";
-        protected const string cst_ChartSections = ".//div[@ng-controller='DashboardController']/div[contains(@class,'Metric')]";
+        //protected const string cst_ChartSections = ".//div[@ng-controller='DashboardController']/div[contains(@class,'Metric')]";
+        protected const string cst_ChartSections = ".//div[@id='metric-container']/div[contains(@class,'Metric')]";
         #endregion Dom elements xpath
 
         #region Dom elements object

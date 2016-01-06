@@ -197,6 +197,7 @@ namespace Gatekeeper.PageObject.Dashboard
                 {
                     dataList = dicChartData[lastYear];
                     index = (index - offset) + dataList.Count;
+                    index = dataList[index].HasValue ? index : index - 1;
                     //return dataList[index].Value;
                 }
                 else
@@ -207,7 +208,7 @@ namespace Gatekeeper.PageObject.Dashboard
             }
             return new ChartPointModel
             {
-                PointData = dataList[index].Value,
+                PointData = dataList[index],
                 X_Axis = xAxis[index],
                 Year = currentYear
             };

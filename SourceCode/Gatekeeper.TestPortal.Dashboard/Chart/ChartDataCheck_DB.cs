@@ -132,7 +132,7 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
                 var year = dbData.Key;
                 foreach(var item in dbData.Value)
                 {
-                    Assert.Equal(item.Value, chartView[item.X_Axis, item.Year]);
+                    Assert.Equal(item.Value, chartView[item.X_Axis, item.Year] ?? 0);
                 }
             }
             //foreach (var dbData in dbDataList)

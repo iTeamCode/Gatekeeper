@@ -178,14 +178,16 @@ namespace Gatekeeper.TestPortal.Dashboard
             string specifier = prefix == "$" ? "N" : "#,0";
             string dataFrom = (!currentData.HasValue) ? (prefix + "0") : (prefix + currentData.Value.ToString(specifier));
             string dataTo = FormatData(lastData, prefix);
-            if (currentData.Value != 0 && lastData.Value != 0)
+            if (currentData.HasValue && lastData.HasValue && currentData.Value != 0 && lastData.Value != 0)
             {
                 var data = (currentData.Value - lastData.Value) / lastData.Value;
                 dataFrom = FormatData(data * 100, string.Empty) + "%";
             }
             else
             {
-                dataFrom = prefix + (currentData.Value - lastData.Value).ToString("#,0.##");
+                var currentTempData = currentData ?? 0;
+                var lastTempData = lastData ?? 0;
+                dataFrom = prefix + (currentTempData - lastTempData).ToString("#,0.##");
             }
 
             Assert.Equal(string.Format(tempStr, dataFrom, dataTo), chartSection.DetailBar.CompareText);
