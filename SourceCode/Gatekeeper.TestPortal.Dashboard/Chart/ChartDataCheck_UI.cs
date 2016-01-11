@@ -126,6 +126,10 @@ namespace Gatekeeper.TestPortal.Dashboard
                 var data = (chartView_YearData - chartView_LastYearData) / chartView_LastYearData;
                 dataFrom = FormatData(data * 100, string.Empty) + "%";
             }
+            else
+            {
+                dataFrom = prefix + (chartView_YearData - chartView_LastYearData).ToString("#,0.##");
+            }
             Assert.Equal(string.Format(tempStr, dataFrom, dataTo), chartSection.DetailBar.CompareText);
 
             chartSection.Expand = false;
