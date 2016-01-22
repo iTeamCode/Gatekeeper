@@ -70,7 +70,7 @@ namespace Gatekeeper.TestPortal.Common
 
             _driverManager.NavigateTo(PageAlias.Dashboard_SignIn);
             var teacherSignInPage = GatekeeperFactory.CreatePageManager<DashboardSignInPage>(_driverManager.Driver);
-            teacherSignInPage.Action_SignIn("ft.tester", "FT4life!", "DC");
+            teacherSignInPage.Action_SignIn("Alfred", "Alfred1@", "DC");
             stopwatch.Start();
             _driverManager.IsCurrentPage(PageAlias.Dashboard_Home);
             stopwatch.Stop();
@@ -84,7 +84,7 @@ namespace Gatekeeper.TestPortal.Common
 
             _driverManager.NavigateTo(PageAlias.Coordinator_RegisterDevice);
             var teacherSignInPage = GatekeeperFactory.CreatePageManager<CoordinatorRegisterDevicePage>(_driverManager.Driver);
-            teacherSignInPage.Action_SignIn("ft.tester", "FT4life!", "DC");
+            teacherSignInPage.Action_SignIn("Alfred", "Alfred1@", "DC");
             stopwatch.Start();
             _driverManager.IsCurrentPage(PageAlias.Coordinator_ActivityCode);
             stopwatch.Stop();
