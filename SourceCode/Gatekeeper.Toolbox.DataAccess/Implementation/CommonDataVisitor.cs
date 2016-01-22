@@ -21,5 +21,6 @@ namespace Gatekeeper.Toolbox.DataAccess
             ChurchModel church = command.ExecuteCommandToEntity<ChurchModel>();
             return church;
         }
+
     }
 }

@@ -8,10 +8,10 @@ using Xunit;
 
 namespace Gatekeeper.TestPortal.Coordinator
 {
-    public class Coordinator_RegisterDevice_Test
+    public class Coordinator_RegisterDevice_Success_Test
     {
         [Fact]
-        public void RegisterDevice_Success()
+        public void RegisterDevice_Success_Test()
         {
             // Create driver manager and navigate to Register Device page
             var manager = GatekeeperFactory.CreateDriverManager();
@@ -32,7 +32,7 @@ namespace Gatekeeper.TestPortal.Coordinator
             manager.NavigateTo(PageAlias.Coordinator_RegisterDevice, false);
             Assert.True(manager.IsCurrentPage(PageAlias.Coordinator_ActivityCode));
 
-            // 
+            
             manager.Driver.Close();
         }
 

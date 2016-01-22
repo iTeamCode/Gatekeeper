@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DataOperators xmlns="https:\\Gatekeeper\Framework\DataOperators">
+  <DataCommand Name="" DataSourceID="" Type ="TextCommand">
+    <CommandText>
+      <![CDATA[
+
+      ]]>
+    </CommandText>
+    <Parameters>
+      
+    </Parameters>
+  </DataCommand>
+</DataOperators>

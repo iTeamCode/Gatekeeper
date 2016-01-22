@@ -81,7 +81,7 @@ namespace Gatekeeper.PageObject.Coordinator
 
                 for (var i = 1; i <= items.Count; i++)
                 {
-                    _participants.Add(new PeopleControl(this._driver, string.Format("({0})/[i]", cst_Participants, i)));
+                    _participants.Add(new PeopleControl(this._driver, string.Format("({0})/[1]", cst_Participants, i)));
                 }
                 return _participants;              
             }
@@ -97,7 +97,7 @@ namespace Gatekeeper.PageObject.Coordinator
 
                 for (var i=1; i<=items.Count; i++)
                 {
-                    _volunteers.Add(new PeopleControl(this._driver, string.Format("({0})/[i]", cst_Volunteers, i)));
+                    _volunteers.Add(new PeopleControl(this._driver, string.Format("({0})/[1]", cst_Volunteers, i)));
                 }
 
                 return _volunteers;

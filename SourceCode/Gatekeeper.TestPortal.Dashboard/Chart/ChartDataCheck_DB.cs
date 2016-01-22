@@ -280,6 +280,24 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
             }
             return dataList;
         }
+
+        public class TestAA : IDashboardDataVisitor
+        {
+            public List<ReportDataModel> FetchGivingData(int churchId, DateTime startDate, DateTime endDate, List<int> widgetItemIds)
+            {
+                return new List<ReportDataModel>();
+            }
+
+            public List<ReportDataModel> FetchAttributeData(int churchId, DateTime startDate, DateTime endDate, List<int> widgetItemIds)
+            {
+                throw new NotImplementedException();
+            }
+
+            public List<ReportDataModel> FetchAttendanceData(int churchId, DateTime startDate, DateTime endDate, List<int> mnList, List<int> gtList)
+            {
+                throw new NotImplementedException();
+            }
+        }
         private List<int> BuildWidgetItemIdList(List<string> widgetItemIds, string prefix)
         {
             var dataList = new List<int>();

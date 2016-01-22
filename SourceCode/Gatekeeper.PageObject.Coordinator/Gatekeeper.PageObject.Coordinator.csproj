@@ -60,6 +60,9 @@
     <Compile Include="MoveHomePage\RosterControl.cs" />
     <Compile Include="MoveHomePage\RosterDetailControl.cs" />
     <Compile Include="MoveHomePage\RosterPanelControl.cs" />
+    <Compile Include="MoveNextPage\ClassControl.cs" />
+    <Compile Include="MoveNextPage\MoveNextPage.cs" />
+    <Compile Include="MoveNextPage\MovingPeopleControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterDevicePage.cs" />
   </ItemGroup>

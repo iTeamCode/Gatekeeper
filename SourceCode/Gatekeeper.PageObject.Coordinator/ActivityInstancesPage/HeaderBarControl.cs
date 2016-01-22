@@ -37,7 +37,7 @@ namespace Gatekeeper.PageObject.Coordinator
                     var arry = element.Text.Split('|');
                     churchName = arry[0];
                 }
-                return churchName;
+                return churchName.TrimEnd();
             }
         }
 
@@ -53,7 +53,7 @@ namespace Gatekeeper.PageObject.Coordinator
                     activityName = arry[1];
                 }
 
-                return activityName;
+                return activityName.TrimStart();
             }
         }
 
