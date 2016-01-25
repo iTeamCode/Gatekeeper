@@ -62,9 +62,9 @@ namespace Gatekeeper.TestPortal.Launchpad
             Assert.True(isExpected, "Message is incorrect");
 
             //DB verify
-            var dbDataDic = new Dictionary<string, List<ReportDataModel>>();
+            //var dbDataDic = new Dictionary<string, List<ReportDataModel>>();
 
-            var dbdatadic=new Dictionary <>
+            //var dbdatadic=new Dictionary <>
         }
 
         [Theory(DisplayName = cst_DisplayName + ".ClosePage")]      
