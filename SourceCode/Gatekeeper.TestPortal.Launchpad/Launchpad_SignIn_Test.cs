@@ -50,7 +50,7 @@ namespace Gatekeeper.TestPortal.Launchpad
             //Waiting & Check page.
             var isPass = signInPage.Check_ErrorMessage(errorMsg);
             _output.WriteLine("[Info]:Error message '{0}'", signInPage.ErrorMsg);
-            Assert.True(isPass, string.Format("error message is not '{0}'", errorMsg));
+            Assert.True(isPass, string.Format("error message is not '{0}'", errorMsg));//
         }
     }
 }

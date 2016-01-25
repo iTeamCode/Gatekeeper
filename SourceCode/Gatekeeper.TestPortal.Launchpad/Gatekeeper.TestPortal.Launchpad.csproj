@@ -69,7 +69,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Fixture\LaunchpadHighestAuthorityUserFixture.cs" />
     <Compile Include="Launchpad_SignIn_Test.cs" />
+    <Compile Include="MyAccount\PasswordSettings.cs" />
+    <Compile Include="MyAccount\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +101,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

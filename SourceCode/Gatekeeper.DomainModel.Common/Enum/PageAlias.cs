@@ -73,11 +73,31 @@ namespace Gatekeeper.DomainModel.Common
         /// Launchpad_Home
         /// </summary>
         [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_Home = 40002,
-        #endregion
+        Launchpad_Home = 40002,       
+        /// <summary>
+        /// Launchpad_Profile
+        /// </summary>
+        [RouteInfomation(AppAlias.Launchpad)]
+        Launchpad_Profile= 40003,  
+        /// <summary>
+        /// Launchpad_Password
+        /// </summary>
+        [RouteInfomation(AppAlias.Launchpad)]
+        Launchpad_Password = 40004, 
+        /// <summary>
+        /// Launchpad_privacy
+        /// </summary>
+        [RouteInfomation(AppAlias.Launchpad)]
+        Launchpad_Privacy = 40005, 
+        /// <summary>
+        /// Launchpad_household
+        /// </summary>
+        [RouteInfomation(AppAlias.Launchpad)]
+        Launchpad_Household = 40006,
         /// <summary>
         /// Empty_Page
-        /// </summary>
-        Empty_Page = 0
+        /// </summary>        
+        Empty_Page = 0,           
+        #endregion
     }
 }

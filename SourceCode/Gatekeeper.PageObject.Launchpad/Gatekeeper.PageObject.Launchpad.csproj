@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LaunchpadSignInPage.cs" />
+    <Compile Include="MyAccount\PasswordPage.cs" />
+    <Compile Include="MyAccount\ProfilePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
