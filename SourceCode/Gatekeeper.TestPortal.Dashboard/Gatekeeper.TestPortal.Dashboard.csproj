@@ -78,13 +78,11 @@
   <ItemGroup>
     <Compile Include="BaseCheck\ConfigurationPage_BasicCheck.cs" />
     <Compile Include="BaseCheck\Dashboard_SignIn_Test.cs" />
+    <Compile Include="BaseCheck\HomePage_BasicCheck.cs" />
     <Compile Include="Chart\ChartDataCheck_UI.cs" />
     <Compile Include="Chart\ChartDataCheck_DB.cs" />
     <Compile Include="Configuration\Configuration_FunctionTest.cs" />
     <Compile Include="Fixture\DashboardAuthorizedUserFixture.cs" />
-    <Compile Include="..\..\..\FAITH\Automation\HomePage_BasicCheck.cs">
-      <Link>BaseCheck\HomePage_BasicCheck.cs</Link>
-    </Compile>
     <Compile Include="Fixture\InitialConfigurationFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
