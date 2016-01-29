@@ -29,12 +29,11 @@ namespace Gatekeeper.TestPortal.Launchpad
 
             this.CurrentUser = new CurrentUserModel
             {
-                UserName = "wwang",
-                Password = "@Ctive111",
-                //ChurchCode = "dc",
-                //ChurchId = 15
-            };
-        
+                UserName = "winnie.wang@activenetwork.com",
+                Password = "111111",
+                ChurchCode = "dc",
+                ChurchId = 15
+            };        
         }
 
     }

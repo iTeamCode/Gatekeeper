@@ -35,7 +35,7 @@ namespace Gatekeeper.TestPortal.Launchpad
         [InlineData("Winnie", "Wang", "YunGu Road", "Xian", "", "Zipcode is required.")]
         public void ProfileBasicInfoVerify(string firstName, string lastName, string street1, string city, string zipcode, string msg)
         {
-            //_driverManager.NavigateTo(PageAlias.Launchpad_Profile);         
+            //_driverManager.NavigateTo(PageAlias.Launchpad_Profile);           
             var profileSettingsPage = GatekeeperFactory.CreatePageManager<ProfilePage>(_driverManager.Driver);
             profileSettingsPage.SetBaseProfile(firstName, lastName, street1, city, zipcode);
 
@@ -60,11 +60,6 @@ namespace Gatekeeper.TestPortal.Launchpad
 
             var isExpected = profileSettingsPage.IsSuccessMsgExpected(msg);
             Assert.True(isExpected, "Message is incorrect");
-
-            //DB verify
-            //var dbDataDic = new Dictionary<string, List<ReportDataModel>>();
-
-            //var dbdatadic=new Dictionary <>
         }
 
         [Theory(DisplayName = cst_DisplayName + ".ClosePage")]      

@@ -261,6 +261,7 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
         private List<ReportDataModel> GetDataList(List<string> widgetItemIds, WidgetType type, int churchId, DateTime startDate, DateTime endDate)
         {
             var dvDashboard = DataVisitor.Create<IDashboardDataVisitor>();
+
             var dataList = new List<ReportDataModel>();
             switch (type)
             {

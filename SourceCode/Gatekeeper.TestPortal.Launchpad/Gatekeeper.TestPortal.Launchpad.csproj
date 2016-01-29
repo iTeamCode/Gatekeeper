@@ -69,8 +69,11 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Fixture\InitialAccountFixture.cs" />
     <Compile Include="Fixture\LaunchpadHighestAuthorityUserFixture.cs" />
     <Compile Include="Launchpad_SignIn_Test.cs" />
+    <Compile Include="Launchpad_SignOut_Test.cs" />
+    <Compile Include="MyAccount\MyAccountDataCheck_DB.cs" />
     <Compile Include="MyAccount\PasswordSettings.cs" />
     <Compile Include="MyAccount\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +94,10 @@
     <ProjectReference Include="..\Gatekeeper.PageObject.Launchpad\Gatekeeper.PageObject.Launchpad.csproj">
       <Project>{4b450302-929e-44cb-acb1-f7aa1be61076}</Project>
       <Name>Gatekeeper.PageObject.Launchpad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.Toolbox.DataAccess\Gatekeeper.Toolbox.DataAccess.csproj">
+      <Project>{f73a9dbb-e73d-4937-a925-efbc39760173}</Project>
+      <Name>Gatekeeper.Toolbox.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

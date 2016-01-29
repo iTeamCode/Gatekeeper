@@ -59,4 +59,5 @@ namespace Gatekeeper.DomainModel.Dashboard
         [DataMapping("CountNumber", DbType.Int64)]
         public long Count { get; set; }
     }
+
 }

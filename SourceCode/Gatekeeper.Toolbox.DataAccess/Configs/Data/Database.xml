@@ -15,5 +15,10 @@
       <![CDATA[Server=127.0.0.1;Database=master;User=tester;Password=Active@123;Charset=utf8;]]>
     </ConnectionString>
   </Database>
+  <Database DataSourceID="PeopleDB" DatabaseType="MS SQL Server">
+    <ConnectionString>
+      <![CDATA[Data source=transdb.{0}.fellowshipone.com;Initial catalog=ChmPeople;persist security info=True;integrated security=True;]]>
+    </ConnectionString>
+  </Database>
   
 </DBGroups>

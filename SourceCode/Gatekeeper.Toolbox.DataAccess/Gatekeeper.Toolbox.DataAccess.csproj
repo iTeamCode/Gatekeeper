@@ -53,10 +53,12 @@
     <Compile Include="Implementation\ActivityDataVisitor.cs" />
     <Compile Include="Implementation\CommonDataVisitor.cs" />
     <Compile Include="Implementation\DashboardDataVisitor.cs" />
+    <Compile Include="Implementation\LaunchpadDataVisitor.cs" />
     <Compile Include="Interface\IActivityDataVisitor.cs" />
     <Compile Include="Interface\ICommonDataVisitor.cs" />
     <Compile Include="Interface\IDashboardDataVisitor.cs" />
     <Compile Include="Interface\IDataVisitor.cs" />
+    <Compile Include="Interface\ILaunchpadDataVisitor.cs" />
     <Compile Include="IocFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,6 +100,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Configs\Data\DataCommand_Dashboard.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configs\Data\DataCommand_Launchpad.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

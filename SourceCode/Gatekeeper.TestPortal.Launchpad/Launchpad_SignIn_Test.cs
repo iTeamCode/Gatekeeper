@@ -37,7 +37,7 @@ namespace Gatekeeper.TestPortal.Launchpad
         }
         [Theory]
         [InlineData("", "", "Login attempt failed. Verify your information and try again.")]
-        [InlineData("ft.autotester@gmail.com", "", "Login attempt failed. Verify your information and try again.")]
+        [InlineData("winnie.wang@activenetwork.com", "", "Login attempt failed. Verify your information and try again.")]
         [InlineData("123@gmail.com", "123", "Your login attempt has failed.")]
         public void SignIn_Error(string userName, string pwd, string errorMsg)
         {
