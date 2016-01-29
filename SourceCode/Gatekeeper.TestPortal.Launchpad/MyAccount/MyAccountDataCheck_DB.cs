@@ -55,7 +55,7 @@ namespace Gatekeeper.TestPortal.Launchpad
 
             //#02. Get data from DB.
             var dbDataDic = new Dictionary<string, List<UserProfileModel>>();
-          
+            
             dbDataDic = GetDataFromDB_Profile(loginEmail, churchId, infoType);
           
             

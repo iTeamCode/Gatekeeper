@@ -19,7 +19,7 @@ namespace Gatekeeper.Toolbox.DataAccess
             CustomerCommand command = _dataManager.CreateCustomerCommand("Launchpad.FetchBasicProfileData");
             command.SetParameterValue("@ChurchId", churchId);
             command.SetParameterValue("@LoginEmail", loginEmail);
-
+            
             return command.ExecuteCommandToEntitys<UserProfileModel>();
         }
     }

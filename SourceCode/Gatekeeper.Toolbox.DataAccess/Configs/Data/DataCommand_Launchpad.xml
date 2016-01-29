@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DataOperators xmlns="https:\\Gatekeeper\Framework\DataOperators">
-
   <DataCommand Name="Launchpad.FetchBasicProfileData" DataSourceID="PeopleDB" Type ="TextCommand">
     <CommandText>
       <![CDATA[
         SELECT
           Individual.[First_Name] as FirstName,
-          Individual.[Last_Name] as LastName,
-        FROM [ChmPeople].[dbo].[Individual] as Individual (NOEXPAND)
+          Individual.[Last_Name] as LastName
+        FROM [ChmPeople].[dbo].[Individual] as Individual WITH(NOLOCK)
         JOIN [ChmPeople].[dbo].[UserLogin] as Userlogin WITH(NOLOCK)
           ON Userlogin.IndividualId = Individual.Individual_Id 
         WHERE Userlogin.[ChurchId] = @ChurchId
@@ -16,7 +15,7 @@
     </CommandText>
     <Parameters>
       <Param Name="@ChurchId" DBType="Int32" Size="4" />
-      <Param Name="@LoginEmail" DBType="string" Size="20" />
+      <Param Name="@LoginEmail" DBType="String" Size="200" />
     </Parameters>
   </DataCommand>
 </DataOperators>
