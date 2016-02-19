@@ -9,11 +9,11 @@ using Gatekeeper.Framework.Common;
 
 namespace Gatekeeper.TestPortal.Coordinator
 {
-    public class Coordinator_ActivityCode_Auth_Error_Test : IClassFixture<CoordinatorRegisterDeviceFixture>
+    public class ActivityCode_Auth_Fail_Test : IClassFixture<CoordinatorRegisterDeviceFixture>
     {
         private IDriverManager _driverManager;
 
-        public Coordinator_ActivityCode_Auth_Error_Test (CoordinatorRegisterDeviceFixture Fixture)
+        public ActivityCode_Auth_Fail_Test(CoordinatorRegisterDeviceFixture Fixture)
         {
             _driverManager = Fixture.DriverManager;
         }

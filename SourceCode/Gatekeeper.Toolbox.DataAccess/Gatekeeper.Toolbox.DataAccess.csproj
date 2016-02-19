@@ -98,7 +98,9 @@
     </Content>
     <Content Include="Configs\Data\DataCommand_Common.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
+    <Content Include="Configs\Data\DataCommand_Coordinator.xml" />
     <Content Include="Configs\Data\DataCommand_Dashboard.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -76,11 +76,11 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="ActivityInstanceCheck\Coordinator_ActivityInstances_Check.cs" />
-    <Compile Include="CoordinatorAuthentication\Coordinator_ActivityCode_Authenticate.cs" />
-    <Compile Include="CoordinatorAuthentication\Coordinator_ActivityCode_Auth_Error_Test.cs" />
-    <Compile Include="CoordinatorAuthentication\Coordinator_RegisterDevice_Error_Test.cs" />
-    <Compile Include="CoordinatorAuthentication\Coordinator_RegisterDevice_Test.cs" />
+    <Compile Include="ActivityInstanceCheck\ActivityInstances_Check.cs" />
+    <Compile Include="Authentication\ActivityCode_Auth_Success_Test.cs" />
+    <Compile Include="Authentication\ActivityCode_Auth_Fail_Test.cs" />
+    <Compile Include="Authentication\RegisterDevice_Error_Test.cs" />
+    <Compile Include="Authentication\RegisterDevice_Success_Test.cs" />
     <Compile Include="Fixture\CoordinatorActivityCodeAuthFixture.cs" />
     <Compile Include="Fixture\CoordinatorRegisterDeviceFixture.cs" />
     <Compile Include="Move\MovePageCheck.cs" />
@@ -109,9 +109,21 @@
       <Project>{8c57ed98-8e26-46c0-938e-e7e822138f98}</Project>
       <Name>Gatekeeper.Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.Framework.DataAccess\Gatekeeper.Framework.DataAccess.csproj">
+      <Project>{e5992c2a-fe50-4ee3-959c-25638dd9a3c9}</Project>
+      <Name>Gatekeeper.Framework.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gatekeeper.PageObject.Coordinator\Gatekeeper.PageObject.Coordinator.csproj">
       <Project>{9aa5c31b-f11e-4f78-95f3-d3ef01cbe5c1}</Project>
       <Name>Gatekeeper.PageObject.Coordinator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.TestPortal.Common\Gatekeeper.TestPortal.Common.csproj">
+      <Project>{c7eb90e0-2aa8-4e97-bb54-16db25d4f68d}</Project>
+      <Name>Gatekeeper.TestPortal.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.Toolbox.DataAccess\Gatekeeper.Toolbox.DataAccess.csproj">
+      <Project>{f73a9dbb-e73d-4937-a925-efbc39760173}</Project>
+      <Name>Gatekeeper.Toolbox.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
