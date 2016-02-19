@@ -11,6 +11,7 @@ using Xunit;
 
 namespace Gatekeeper.TestPortal.Dashboard
 {
+    [Trait("Dashboard", "ConfigurationBasicCheck")]
     public class ConfigurationPage_BasicCheck : IClassFixture<DashboardAuthorizedUserFixture>
     {
         private const string cst_DisplayName = "BaseCheck.Configuration";

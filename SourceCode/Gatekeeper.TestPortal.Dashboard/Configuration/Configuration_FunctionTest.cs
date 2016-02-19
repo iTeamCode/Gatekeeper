@@ -12,6 +12,7 @@ using Xunit;
 
 namespace Gatekeeper.TestPortal.Dashboard
 {
+    [Trait("Dashboard", "ConfigurationFunction")]
     public class Configuration_FunctionTest : IClassFixture<InitialConfigurationFixture>
     {
         #region Init & check data

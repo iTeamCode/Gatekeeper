@@ -12,6 +12,7 @@ using Xunit;
 
 namespace Gatekeeper.TestPortal.Dashboard.Chart
 {
+    [Trait("Dashboard", "ChartDataCheckForDB")]
     public partial class ChartDataCheck : IClassFixture<InitialConfigurationFixture>
     {
         #region Init & check data

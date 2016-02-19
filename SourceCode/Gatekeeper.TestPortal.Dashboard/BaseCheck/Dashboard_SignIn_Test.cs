@@ -8,6 +8,7 @@ using Xunit.Abstractions;
 
 namespace Gatekeeper.TestPortal.Dashboard
 {
+    [Trait("Dashboard", "SignInTest")]
     public class Dashboard_SignIn_Success_Test
     {
         private const string cst_DisplayName = "BaseCheck.SignIn";
@@ -26,7 +27,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             manager.Driver.Close();
         }
     }
-
+    [Trait("Dashboard", "SignInTest")]
     public class Dashboard_SignIn_Error_Test : IClassFixture<SingleBrowserFixture>
     {
         private const string cst_DisplayName = "BaseCheck.SignIn";

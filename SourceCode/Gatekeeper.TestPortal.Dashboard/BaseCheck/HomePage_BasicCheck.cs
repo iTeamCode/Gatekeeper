@@ -11,6 +11,7 @@ using Xunit;
 
 namespace Gatekeeper.TestPortal.Dashboard
 {
+    [Trait("Dashboard", "HomePageBasicCheck")]
     public class HomePage_BasicCheck : IClassFixture<DashboardAuthorizedUserFixture>
     {
         
