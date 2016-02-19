@@ -18,7 +18,7 @@ namespace Gatekeeper.PageObject.Coordinator
         }
 
         #region Dom Elements Xpath
-        protected const string cst_Header = ".//header/h1[contains(@class, 'church-name')]";
+        protected const string cst_Header = ".//header";
         protected const string cst_RosterPanel = ".//classroom-list/ul/li/ul";
         protected const string cst_RosterDetail = ".//classroom/section[contains(@class,'classroom')]";             
         protected const string cst_Next = ".//classroom/section[contains(@class,'classroom')]/button[text()='Next']";

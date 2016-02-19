@@ -12,16 +12,16 @@ namespace Gatekeeper.PageObject.Coordinator
     {
         public ClassControl(IWebDriver driver, string rootXpath): base(driver, rootXpath)
         {
-           // cst_checkBox = string.Format("{0}/span[contains(@class, 'checkbox-default radio-default-outer-ring')]", rootXpath);
-            cst_checkBoxInput = string.Format("{0}/input[contains(@class, 'default')]", rootXpath);
+            cst_radio = string.Format("{0}/span[contains(@class, 'checkbox-default radio-default-outer-ring')]", rootXpath);
+            cst_radioInput = string.Format("{0}/input[contains(@class, 'default')]", rootXpath);
             cst_className = string.Format("{0}/span[contains(@class, 'main-text ng-binding')]", rootXpath);
             cst_classCountsInfo = string.Format("{0}/span[contains(@class, 'sub-text ng-binding')]", rootXpath);
             cst_classColor = string.Format("{0}/div[contains(@class, 'child')]/ng-transclude/div[contains(@class, 'circle capacity ng-scope high')]", rootXpath);
         }
 
         # region Dom element Xpath
-        //protected readonly string cst_checkBox;
-        protected readonly string cst_checkBoxInput;
+        protected readonly string cst_radio;
+        protected readonly string cst_radioInput;
         protected readonly string cst_className;
         protected readonly string cst_classCountsInfo;
         protected readonly string cst_classColor;
@@ -29,13 +29,13 @@ namespace Gatekeeper.PageObject.Coordinator
         #endregion
 
         #region Dom element object
-        protected IWebElement _checkBoxInput;
-        public bool CheckBox
+        protected IWebElement _radioInput;
+        public bool Radio
         {
             get
             {
-                _checkBoxInput = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(cst_checkBoxInput));
-                return _checkBoxInput.Selected;
+                _radioInput = WebElementKeeper.WaitingFor_GetElementWhenExists(this._driver, By.XPath(cst_radioInput));
+                return _radioInput.Selected;
             
             }
         }
@@ -70,7 +70,15 @@ namespace Gatekeeper.PageObject.Coordinator
             }
         }
       
+        #endregion
 
+        #region Actions
+
+        public void SelectClass ()
+        {
+            var bntRadio = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_radio));
+            bntRadio.Click();
+        }
         #endregion
 
     }

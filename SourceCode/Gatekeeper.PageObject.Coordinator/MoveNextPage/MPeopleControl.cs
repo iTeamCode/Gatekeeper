@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Gatekeeper.PageObject.Coordinator
 {
-    public class MovingPeopleControl: PageControlBase
+    public class MPeopleControl: PageControlBase
     {
-        public MovingPeopleControl (IWebDriver driver, string rootXpath ): base (driver, rootXpath)
+        public MPeopleControl (IWebDriver driver, string rootXpath ): base (driver, rootXpath)
         {
             cst_checkBoxInput = string.Format("{0}/input", rootXpath);
             cst_peopleName = string.Format("{0}/span[contains(@class, 'main-text ng-binding centered')]", rootXpath);

@@ -32,7 +32,6 @@ namespace Gatekeeper.TestPortal.Coordinator
             manager.NavigateTo(PageAlias.Coordinator_RegisterDevice, false);
             Assert.True(manager.IsCurrentPage(PageAlias.Coordinator_ActivityCode));
 
-            
             manager.Driver.Close();
         }
 

@@ -13,11 +13,11 @@ namespace Gatekeeper.PageObject.Coordinator
     {
         public HeaderBarControl (IWebDriver driver, string rootXpath): base (driver, rootXpath)
         {
-            cst_Header = rootXpath;
+            cst_HeaderText = string.Format("{0}/h1[contains(@class, 'church-name')]", rootXpath);
         }
         # region Dom Elements XPath
 
-        protected readonly string cst_Header;
+        protected readonly string cst_HeaderText;
 
         #endregion Dom Elements XPath
 
@@ -31,7 +31,7 @@ namespace Gatekeeper.PageObject.Coordinator
             get
             {
                 var churchName = string.Empty;
-                var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_Header));
+                var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_HeaderText));
                 if (element != null)
                 {
                     var arry = element.Text.Split('|');
@@ -46,7 +46,7 @@ namespace Gatekeeper.PageObject.Coordinator
             get
             {
                 var activityName = string.Empty;
-                var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_Header));
+                var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_HeaderText));
                 if (element!=null)
                 {
                     var arry = element.Text.Split('|');
@@ -62,7 +62,7 @@ namespace Gatekeeper.PageObject.Coordinator
             get
             {
                 var headerText = string.Empty;
-                var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_Header));
+                var element = WebElementKeeper.WaitingFor_GetElementWhenIsVisible(this._driver, By.XPath(cst_HeaderText));
                     if (element != null)
                     {
                        headerText = element.Text;
