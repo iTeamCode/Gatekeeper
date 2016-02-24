@@ -73,11 +73,13 @@ namespace Gatekeeper.Framework.Common
             #endregion Coordinator
 
             #region Launchpad
-            baseUrl = BuildBaseUrl(AppAlias.Launchpad);
+            baseUrl = BuildBaseUrl(AppAlias.Launchpad);            
             _dicMap.Add(PageAlias.Launchpad_SignIn, string.Format("{0}/#/Login/DC", baseUrl));
             _dicMap.Add(PageAlias.Launchpad_Home, string.Format("{0}/#/home/apps", baseUrl));
             _dicMap.Add(PageAlias.Launchpad_Profile, string.Format("{0}/#/profile/update", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_Password, string.Format("{0}/#/profile/password", baseUrl));       
+            _dicMap.Add(PageAlias.Launchpad_Password, string.Format("{0}/#/profile/password", baseUrl));
+            _dicMap.Add(PageAlias.Launchpad_SignIn_ChurchUndefined, string.Format("{0}/#/Login", baseUrl));
+            _dicMap.Add(PageAlias.Launchpad_SignIn_WrongChurch, string.Format("{0}/#/Login/UnexistsChurchCode", baseUrl));
             #endregion Launchpad
 
             #region Teacher

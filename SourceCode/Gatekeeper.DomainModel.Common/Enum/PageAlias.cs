@@ -97,6 +97,16 @@ namespace Gatekeeper.DomainModel.Common
         /// <summary>
         /// Empty_Page
         /// </summary>        
+        [RouteInfomation(AppAlias.Launchpad)]
+        Launchpad_SignIn_ChurchUndefined = 40007,
+        /// <summary>
+        /// Empty_Page
+        /// </summary>    
+        [RouteInfomation(AppAlias.Launchpad)]
+        Launchpad_SignIn_WrongChurch = 40008,
+        /// <summary>
+        /// Empty_Page
+        /// </summary>    
         Empty_Page = 0,           
         #endregion
     }
