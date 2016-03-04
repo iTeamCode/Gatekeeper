@@ -37,6 +37,13 @@ namespace Gatekeeper.Framework.Common
         /// <param name="isCheckPage"></param>
         void NavigateTo(PageAlias pageAlias, bool isCheckPage);
 
+        /// <summary>
+        /// Navigate to an unstable page which will be redirected to another page automatically
+        /// </summary>
+        /// <param name="pageAlias"></param>
+        /// <param name="isCheckPage"></param>
+        void NavigateToUnstablePage(PageAlias pageAlias);
+
         bool IsCurrentPage(PageAlias pageAlias);
     }
 }

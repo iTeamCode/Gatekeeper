@@ -78,10 +78,13 @@ namespace Gatekeeper.Framework.Common
             _dicMap.Add(PageAlias.Launchpad_Home, string.Format("{0}/#/home/apps", baseUrl));
             _dicMap.Add(PageAlias.Launchpad_Profile, string.Format("{0}/#/profile/update", baseUrl));
             _dicMap.Add(PageAlias.Launchpad_Password, string.Format("{0}/#/profile/password", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_SignIn_ChurchUndefined, string.Format("{0}/#/Login", baseUrl));
+            _dicMap.Add(PageAlias.Launchpad_SignIn_ChurchUndefined, string.Format("{0}/#/login/", baseUrl));
             _dicMap.Add(PageAlias.Launchpad_SignIn_WrongChurch, string.Format("{0}/#/Login/UnexistsChurchCode", baseUrl));
+            _dicMap.Add(PageAlias.Launchpad_SignIn_WrongUrl1, string.Format("{0}", baseUrl));
+            _dicMap.Add(PageAlias.Launchpad_SignIn_WrongUrl2, string.Format("{0}/dc", baseUrl));
+            _dicMap.Add(PageAlias.Launchpad_SignIn_WrongUrl3, string.Format("{0}/#/dc", baseUrl));
             #endregion Launchpad
-
+            
             #region Teacher
             baseUrl = BuildBaseUrl(AppAlias.Teacher);
             _dicMap.Add(PageAlias.Teacher_SignIn, string.Format("{0}/#/", baseUrl));

@@ -59,6 +59,21 @@ namespace Gatekeeper.Framework.Common
             }
         }
 
+        public void NavigateToUnstablePage(PageAlias pageAlias)
+        {
+            NavigateToUnstablePage(pageAlias, true); 
+            
+            //This waitfor can be extracted to a public method in Object/Common folder
+            WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(_driver, By.XPath(".//div[@class='spinner']"));  
+        }
+        public void NavigateToUnstablePage(PageAlias pageAlias, bool isCheckPage)
+        {
+            if (this.CurrentPage == pageAlias) { return; }
+
+            var url = RouteMapper.ConvertAliasToUrl(pageAlias);
+            _driver.Url = url;         
+        }
+
         public bool IsCurrentPage(PageAlias pageAlias)
         {
             return WebElementKeeper.WaitingFor_UrlToBe(_driver, pageAlias);

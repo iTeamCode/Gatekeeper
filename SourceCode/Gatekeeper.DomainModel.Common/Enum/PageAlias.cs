@@ -95,15 +95,30 @@ namespace Gatekeeper.DomainModel.Common
         [RouteInfomation(AppAlias.Launchpad)]
         Launchpad_Household = 40006,
         /// <summary>
-        /// Empty_Page
+        /// Launchpad_SignIn_ChurchUndefined
         /// </summary>        
         [RouteInfomation(AppAlias.Launchpad)]
         Launchpad_SignIn_ChurchUndefined = 40007,
         /// <summary>
-        /// Empty_Page
+        /// Launchpad_SignIn_WrongChurch
         /// </summary>    
         [RouteInfomation(AppAlias.Launchpad)]
         Launchpad_SignIn_WrongChurch = 40008,
+        /// <summary>
+        /// Launchpad_SignIn_WrongUrl1
+        /// </summary>    
+        [RouteInfomation(AppAlias.Launchpad)]
+        Launchpad_SignIn_WrongUrl1 = 40009,
+        /// <summary>
+        /// Launchpad_SignIn_WrongUrl2
+        /// </summary>    
+        [RouteInfomation(AppAlias.Launchpad)]
+        Launchpad_SignIn_WrongUrl2 = 40010,
+        /// <summary>
+        /// Launchpad_SignIn_WrongUrl3
+        /// </summary>    
+        [RouteInfomation(AppAlias.Launchpad)]
+        Launchpad_SignIn_WrongUrl3 = 40011,
         /// <summary>
         /// Empty_Page
         /// </summary>    

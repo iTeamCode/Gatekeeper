@@ -45,12 +45,11 @@ namespace Gatekeeper.TestPortal.Launchpad
             manager.Driver.Close();
         }
 
-     //   [Fact(DisplayName = "Url.IncorrectChurchCode")]
+        [Fact(DisplayName = "Url.NonExistedChurchCode")]
         public void LoginUrl_NonExistsChurchCode()
         {
             string msgWrongChurchSignIn = "Your login attempt has failed. Church is not found.";
-            string msgWrongChurch = "Church Not Found, ChurchCode: unexistschurchcode";
-            //string msgWrongChurchGetPassword = "Church Not Found, ChurchCode: fdsafdfdasf";
+            string msgWrongChurch = "Church Not Found, ChurchCode: unexistschurchcode";   
 
             var manager = GatekeeperFactory.CreateDriverManager();
             manager.NavigateTo(PageAlias.Launchpad_SignIn_WrongChurch);
@@ -65,7 +64,7 @@ namespace Gatekeeper.TestPortal.Launchpad
 
             //Check Sign Up message
             signInPage.linkSignUp.Click();
-            signInPage.Action_SignUp("f1","l1","FL@test.com","111111","111111");
+            signInPage.Action_SignUp("f1", "l1", "FL@test.com", "111111", "111111");
 
             var isExpected2 = signInPage.IsErrorMsgExpectedSignUp(msgWrongChurch);
             Assert.True(isExpected2, "Message for sign up with non-exists church code is incorrect!");
@@ -74,11 +73,33 @@ namespace Gatekeeper.TestPortal.Launchpad
             //Check forgot password page message 
             signInPage.linkForgotPassword.Click();
             signInPage.Action_PwdSendEmail("FL@test.com");
-            
+
             var isExpected3 = signInPage.IsErrorMsgExpectedPassword(msgWrongChurch);
             Assert.True(isExpected3, "Message for Forgot Password with non-exists church code is incorrect!");
             signInPage.Action_Cancel();
 
+            manager.Driver.Close();
+        }
+
+        //Non-standard Url will be redirected to https://launchpad.fellowshipone.com/#/login/ or https://launchpad.fellowshipone.com/#/login/dc
+        [Fact(DisplayName = "Url.WrongUrl")]
+        public void LoginUrl_WrongUrlRedirect()
+        {
+            var manager = GatekeeperFactory.CreateDriverManager();
+
+            //Url1 is https://launchpad.fellowshipone.com
+            manager.NavigateToUnstablePage(PageAlias.Launchpad_SignIn_WrongUrl1);
+            Assert.True(manager.IsCurrentPage(PageAlias.Launchpad_SignIn_ChurchUndefined), "The redirected Url is wrong.");
+
+            //manager.Driver.Close();
+
+            //Url2 is https://launchpad.fellowshipone.com/dc
+            manager.NavigateToUnstablePage(PageAlias.Launchpad_SignIn_WrongUrl2);
+            Assert.True(manager.IsCurrentPage(PageAlias.Launchpad_SignIn), "The redirected Url is wrong.");
+
+            //Url3 is https://launchpad.fellowshipone.com/#/dc
+            manager.NavigateToUnstablePage(PageAlias.Launchpad_SignIn_WrongUrl3);
+            Assert.True(manager.IsCurrentPage(PageAlias.Launchpad_SignIn), "The redirected Url is wrong.");
             manager.Driver.Close();
         }
     }
