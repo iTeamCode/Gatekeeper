@@ -17,7 +17,7 @@ namespace Gatekeeper.Toolbox.DataAccess
         /// <param name="loginEmail">loginEmail</param>
         /// <param name="infoType">Info Type</param>
         /// <returns>Report data</returns>
-        List<UserProfileModel> FetchBasicProfileData(int churchId, string loginEmail, string infoType);        
+        UserProfileModel FetchBasicProfileData(int churchId, string loginEmail, string infoType);        
     }
 }
 

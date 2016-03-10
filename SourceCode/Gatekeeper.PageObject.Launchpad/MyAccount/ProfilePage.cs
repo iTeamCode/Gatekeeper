@@ -14,7 +14,7 @@ namespace Gatekeeper.PageObject.Launchpad
         public ProfilePage(IWebDriver driver)
             : base(driver)
         {
-            WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(".//input[@placeholder='Current password']"));
+            WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(".//input[@placeholder='First name']"));
         }
 
         #region Dom elements xpath
@@ -54,6 +54,13 @@ namespace Gatekeeper.PageObject.Launchpad
         [FindsBy(How = How.XPath, Using = ".//button[text()='Close']")]
         public IWebElement btnClose;
 
+        private string _msgSuccess = ".//span[text()='Updated Successfully!']";
+        [FindsBy(How = How.XPath, Using = ".//span[text()='Updated Successfully!']")]
+        protected IWebElement msgSuccess;
+
+        private string _spinnerXPath = ".//div[@class='spinner']";
+        [FindsBy(How = How.XPath, Using = ".//div[@class='spinner']")]
+        protected IWebElement spinnerRose;
         #endregion Page Elements
 
 
@@ -61,6 +68,8 @@ namespace Gatekeeper.PageObject.Launchpad
 
         public void SetBaseProfile(string firstName, string lastName, string street1, string city, string zipcode)
         {
+            WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this.Driver, By.XPath(_spinnerXPath));  
+
             this.txtFirstname.Clear();
             this.txtLastname.Clear();
             this.txtStreet1.Clear();
@@ -74,7 +83,16 @@ namespace Gatekeeper.PageObject.Launchpad
             this.txtZipcode.SendKeys(zipcode);
 
             this.btnSave.Click();
-        }        
+
+            //Wait for refreshing
+            WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this.Driver, By.XPath(_spinnerXPath));
+        }
+
+        public void SetBaseProfileSuccessfully(string firstName, string lastName, string street1, string city, string zipcode)
+        {
+            SetBaseProfile(firstName, lastName, street1, city, zipcode);            
+            WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_msgSuccess));
+        }
         # endregion Actions on Profile setting page
 
         #region Check Points

@@ -70,7 +70,11 @@ namespace Gatekeeper.PageObject.Launchpad
         [FindsBy(How = How.XPath, Using = ".//div[@class='ng-scope']/div[@ng-show='errorText']")]
         protected IWebElement txtErrorMsgPassword;
 
-        private string _spinnerRoseXPath = ".//div[@class='spinner']";
+        private string _infellowshipAppIcon = ".//div[contains(@class,'InfellowshipApp')]";
+        [FindsBy(How = How.XPath, Using = ".//div[contains(@class,'InfellowshipApp')]")]
+        protected IWebElement infellowshipAppIcon;
+
+        private string _spinnerXPath = ".//div[@class='spinner']";
         [FindsBy(How = How.XPath, Using = ".//div[@class='spinner']")]
         protected IWebElement spinnerRose;
         #endregion Page elements
@@ -87,8 +91,9 @@ namespace Gatekeeper.PageObject.Launchpad
             this.txtUserName.Clear();
             this.txtPassword.Clear();
             this.btnSignIn.Click();
+
             //Wait for refreshing
-            WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this.Driver, By.XPath(_spinnerRoseXPath));
+            WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this.Driver, By.XPath(_spinnerXPath));
         }
 
         public void Action_SignIn(string userName, string password, string churchCode)
@@ -113,8 +118,16 @@ namespace Gatekeeper.PageObject.Launchpad
             this.txtPassword.SendKeys(password);
             
             this.btnSignIn.Click();
+
+            //Wait for refreshing
+            WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this.Driver, By.XPath(_spinnerXPath));
         }
 
+        public void Action_SignInSuccess(string userName, string password)
+        {
+            Action_SignIn(userName, password);
+            WebElementKeeper.WaitingFor_ElementIsVisible(this.Driver, By.XPath(_infellowshipAppIcon));            
+        }
         public void Action_SignUp()
         {
             this.linkSignUp.Click();        
@@ -137,7 +150,7 @@ namespace Gatekeeper.PageObject.Launchpad
             this.btnSignUp.Click();
             
             //Wait for refreshing
-            WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this.Driver, By.XPath(_spinnerRoseXPath));
+            WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this.Driver, By.XPath(_spinnerXPath));
 
         }
 
@@ -155,7 +168,7 @@ namespace Gatekeeper.PageObject.Launchpad
             this.btnRestPwd.Click();
 
             //Wait for refreshing
-            WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this.Driver, By.XPath(_spinnerRoseXPath));        
+            WebElementKeeper.WaitingFor_InvisibilityOfElementLocated(this.Driver, By.XPath(_spinnerXPath));        
         }
 
         public void Action_Cancel()

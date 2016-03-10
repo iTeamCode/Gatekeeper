@@ -14,13 +14,13 @@ namespace Gatekeeper.Toolbox.DataAccess
     {
         private static DataManager _dataManager = DataManagerFactory.CreateDataManager(DataBaseType.SQLServer);
 
-        public List<UserProfileModel> FetchBasicProfileData(int churchId, string loginEmail, string infoType)
+        public UserProfileModel FetchBasicProfileData(int churchId, string loginEmail, string infoType)
         {
             CustomerCommand command = _dataManager.CreateCustomerCommand("Launchpad.FetchBasicProfileData");
             command.SetParameterValue("@ChurchId", churchId);
             command.SetParameterValue("@LoginEmail", loginEmail);
             
-            return command.ExecuteCommandToEntitys<UserProfileModel>();
+            return command.ExecuteCommandToEntity<UserProfileModel>();            
         }
     }
 }

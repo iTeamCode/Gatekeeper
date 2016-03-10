@@ -5,12 +5,20 @@
       <![CDATA[
         SELECT
           Individual.[First_Name] as FirstName,
-          Individual.[Last_Name] as LastName
-        FROM [ChmPeople].[dbo].[Individual] as Individual WITH(NOLOCK)
-        JOIN [ChmPeople].[dbo].[UserLogin] as Userlogin WITH(NOLOCK)
+          Individual.[Last_Name] as LastName,
+          addr.address_1 as Street1,
+          addr.city as City,
+          addr.postal_code as Zipcode
+        FROM [ChmPeople].[dbo].[UserLogin] as Userlogin WITH(NOLOCK)
+        JOIN [ChmPeople].[dbo].[Individual] as Individual WITH(NOLOCK)         
           ON Userlogin.IndividualId = Individual.Individual_Id 
+        JOIN [ChmPeople].[dbo].[INDIVIDUAL_HOUSEHOLD] as InHouse
+          ON Individual.individual_id = InHouse.individual_id
+        JOIN [ChmPeople].[dbo].[HOUSEHOLD_ADDRESS] as addr
+          ON InHouse.household_id = addr.household_id          
         WHERE Userlogin.[ChurchId] = @ChurchId
           AND Userlogin.[Email] = @LoginEmail
+          AND addr.address_type_id=1 
       ]]>
     </CommandText>
     <Parameters>
@@ -19,3 +27,6 @@
     </Parameters>
   </DataCommand>
 </DataOperators>
+
+
+
