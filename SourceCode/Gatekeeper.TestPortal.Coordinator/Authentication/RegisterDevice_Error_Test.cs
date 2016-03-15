@@ -10,11 +10,11 @@ using Xunit;
 
 namespace Gatekeeper.TestPortal.Coordinator
 {
-    public class Coordinator_RegisterDevice_Error_Test : IClassFixture<SingleBrowserFixture>
+    public class RegisterDevice_Fail_Test : IClassFixture<SingleBrowserFixture>
     {
         private IDriverManager _driverManager { get; set; }
 
-        public Coordinator_RegisterDevice_Error_Test(SingleBrowserFixture fixture)
+        public RegisterDevice_Fail_Test(SingleBrowserFixture fixture)
         {
             _driverManager = fixture.DriverManager;
         }
