@@ -92,7 +92,10 @@ namespace Gatekeeper.PageObject.Dashboard
                 var chkSwitch = btnSwitch.FindElement(By.XPath("./input[@type='checkbox']"));
                 if (chkSwitch.Selected != value) { 
                     btnSwitch.Click();
-                    WaitingForItemPanelStateChange();
+                    if (value)
+                    {
+                        WaitingForItemPanelStateChange();
+                    }
                 }
             }
         }
