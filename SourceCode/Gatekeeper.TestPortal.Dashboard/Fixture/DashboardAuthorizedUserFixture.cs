@@ -30,9 +30,7 @@ namespace Gatekeeper.TestPortal.Dashboard
             this.CurrentUser = new CurrentUserModel
             {
                 UserName = "Alfred",
-                Password = "Alfred1@",
-                ChurchCode = "dc",
-                ChurchId = 15
+                Password = "Alfred1@"
             };
             
         }

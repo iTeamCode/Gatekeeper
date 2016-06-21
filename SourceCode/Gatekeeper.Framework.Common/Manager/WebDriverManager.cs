@@ -76,7 +76,8 @@ namespace Gatekeeper.Framework.Common
 
         public bool IsCurrentPage(PageAlias pageAlias)
         {
-            return WebElementKeeper.WaitingFor_UrlToBe(_driver, pageAlias);
+            //return WebElementKeeper.WaitingFor_UrlToBe(_driver, pageAlias);
+            return WebElementKeeper.WaitingFor_UrlContains(_driver, pageAlias);
         }
     }
 }

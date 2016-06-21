@@ -30,14 +30,14 @@ namespace Gatekeeper.DomainModel.Common
         #endregion
 
         #region Teacher
-        /// <summary>
-        /// Teacher_SignIn
-        /// </summary>
-        [RouteInfomation(AppAlias.Teacher)]
-        Teacher_SignIn = 20001,
+        ///// <summary>
+        ///// Teacher_SignIn
+        ///// </summary>
+        //[RouteInfomation(AppAlias.Teacher)]
+        //Teacher_SignIn = 20001,
 
-        [RouteInfomation(AppAlias.Teacher)]
-        Teacher_Roster = 20002,
+        //[RouteInfomation(AppAlias.Teacher)]
+        //Teacher_Roster = 20002,
         #endregion
 
         #region Coordinator
@@ -65,60 +65,20 @@ namespace Gatekeeper.DomainModel.Common
 
         #region Launchpad
         /// <summary>
-        /// LaunchPad_SignIn
+        /// AUI_SignIn
         /// </summary>
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_SignIn = 40001,
+        [RouteInfomation(AppAlias.Membership_AUI)]
+        AUI_SignIn = 40000,
         /// <summary>
-        /// Launchpad_Home
+        /// AUI_Program_Home
         /// </summary>
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_Home = 40002,       
+        [RouteInfomation(AppAlias.Membership_AUI)]
+        AUI_Organization_Home = 40001,
         /// <summary>
-        /// Launchpad_Profile
+        /// AUI_Program_Home
         /// </summary>
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_Profile= 40003,  
-        /// <summary>
-        /// Launchpad_Password
-        /// </summary>
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_Password = 40004, 
-        /// <summary>
-        /// Launchpad_privacy
-        /// </summary>
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_Privacy = 40005, 
-        /// <summary>
-        /// Launchpad_household
-        /// </summary>
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_Household = 40006,
-        /// <summary>
-        /// Launchpad_SignIn_ChurchUndefined
-        /// </summary>        
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_SignIn_ChurchUndefined = 40007,
-        /// <summary>
-        /// Launchpad_SignIn_WrongChurch
-        /// </summary>    
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_SignIn_WrongChurch = 40008,
-        /// <summary>
-        /// Launchpad_SignIn_WrongUrl1
-        /// </summary>    
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_SignIn_WrongUrl1 = 40009,
-        /// <summary>
-        /// Launchpad_SignIn_WrongUrl2
-        /// </summary>    
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_SignIn_WrongUrl2 = 40010,
-        /// <summary>
-        /// Launchpad_SignIn_WrongUrl3
-        /// </summary>    
-        [RouteInfomation(AppAlias.Launchpad)]
-        Launchpad_SignIn_WrongUrl3 = 40011,
+        [RouteInfomation(AppAlias.Membership_AUI)]
+        AUI_Program_Home = 40002,
         /// <summary>
         /// Empty_Page
         /// </summary>    

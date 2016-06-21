@@ -148,7 +148,8 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
             var startYear = DateTime.Now.Year - 24;
             var endYear = DateTime.Now.Year;
 
-            var churchId = _currentUser.ChurchId;
+            //var churchId = _currentUser.ChurchId;
+            var churchId = 15;
             var startDate = DateTime.Parse(string.Format("{0}-01-01", startYear));
             var endDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
             var originalData = GetDataList(widgetItemIds, type, churchId, startDate, endDate);
@@ -184,7 +185,8 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
             var startYear = DateTime.Now.Year - 1;
             var endYear = DateTime.Now.Year;
 
-            var churchId = _currentUser.ChurchId;
+            //var churchId = _currentUser.ChurchId;
+            var churchId = 15;
             var startDate = DateTime.Parse(string.Format("{0}-01-01", startYear));
             var endDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
             var originalData = GetDataList(widgetItemIds, type, churchId, startDate, endDate);
@@ -224,7 +226,8 @@ namespace Gatekeeper.TestPortal.Dashboard.Chart
             var startYear = DateTime.Now.Year - 1;
             var endYear = DateTime.Now.Year;
 
-            var churchId = _currentUser.ChurchId;
+            //var churchId = _currentUser.ChurchId;
+            var churchId = 15;
             var startDate = DateTime.Parse(string.Format("{0}-01-01", startYear));
             var endDate = DateTime.Now.Date.AddDays(1).AddSeconds(-1);
             var originalData = GetDataList(widgetItemIds, type, churchId, startDate, endDate);

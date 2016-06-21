@@ -28,6 +28,17 @@ namespace Gatekeeper.Framework.Common
             }
             return _dicMap[alias].ToLower();
         }
+        public static string ConvertAliasToUri(PageAlias alias)
+        {
+            if (!_dicMap.Keys.Contains(alias))
+            {
+                throw new Exception(string.Format("Can not convert the alias [{0}]", alias));
+            }
+            string strTemp = _dicMap[alias].ToLower();
+            int index = strTemp.IndexOf("#");
+            strTemp = strTemp.Substring(index);
+            return strTemp;
+        }
         /// <summary>
         /// Convert url to page alias.
         /// </summary>
@@ -72,55 +83,46 @@ namespace Gatekeeper.Framework.Common
             _dicMap.Add(PageAlias.Coordinator_MovePage, string.Format("{0}/#/coordinator/", baseUrl));
             #endregion Coordinator
 
-            #region Launchpad
-            baseUrl = BuildBaseUrl(AppAlias.Launchpad);            
-            _dicMap.Add(PageAlias.Launchpad_SignIn, string.Format("{0}/#/Login/DC", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_Home, string.Format("{0}/#/home/apps", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_Profile, string.Format("{0}/#/profile/update", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_Password, string.Format("{0}/#/profile/password", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_SignIn_ChurchUndefined, string.Format("{0}/#/login/", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_SignIn_WrongChurch, string.Format("{0}/#/Login/UnexistsChurchCode", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_SignIn_WrongUrl1, string.Format("{0}", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_SignIn_WrongUrl2, string.Format("{0}/dc", baseUrl));
-            _dicMap.Add(PageAlias.Launchpad_SignIn_WrongUrl3, string.Format("{0}/#/dc", baseUrl));
-            #endregion Launchpad
+            #region Membership AUI
+            baseUrl = BuildBaseUrl(AppAlias.Membership_AUI);
+            _dicMap.Add(PageAlias.AUI_SignIn, string.Format("{0}", baseUrl));//"https://passportui-vip.{0}.aw.dev.activenetwork.com"
+            _dicMap.Add(PageAlias.AUI_Organization_Home, string.Format("{0}/#/active/fnd/membership/agencyChooser/agencyChooser", baseUrl));
+            _dicMap.Add(PageAlias.AUI_Program_Home, string.Format("{0}/#/active/fnd/membership/programs/managePrograms", baseUrl));
             
-            #region Teacher
-            baseUrl = BuildBaseUrl(AppAlias.Teacher);
-            _dicMap.Add(PageAlias.Teacher_SignIn, string.Format("{0}/#/", baseUrl));
-            _dicMap.Add(PageAlias.Teacher_Roster, string.Format("{0}/#/roster/", baseUrl));
-            #endregion Teacher
+            #endregion Membership AUI
+
+
         }
 
         private static string BuildBaseUrl(AppAlias app)
         {
             var appName = app.GetDescription();
             var environment = GatekeeperSettingManager.GetAppsetting(SettingName.ENVIRONMENT);
-            var churchCode = GatekeeperSettingManager.GetAppsetting(SettingName.CHURCHCODE);
+            //var churchCode = GatekeeperSettingManager.GetAppsetting(SettingName.CHURCHCODE);
 
             var baseUrl = string.Empty;
-            if (environment == "proc")
+            if (app == AppAlias.Membership_AUI)
             {
-                if (app == AppAlias.Infellowship)
-                {
-                    baseUrl = string.Format("https://{0}.{1}.com", churchCode, appName);
-                }
-                else if (app != AppAlias.Unkonw)
-                {
-                    baseUrl = string.Format("https://{0}.fellowshipone.com", appName);
-                }
+                baseUrl = string.Format("https://memberui-vip.{0}.aw.dev.activenetwork.com", environment);
             }
-            else
-            {
-                if (app == AppAlias.Infellowship)
-                {
-                    baseUrl = string.Format("https://{0}.{1}.{2}.com", churchCode, environment, appName);
-                }
-                else if (app != AppAlias.Unkonw)
-                {
-                    baseUrl = string.Format("https://{0}.{1}.fellowshipone.com", appName, environment);
-                }
-            }
+
+
+            //if (environment == "proc")
+            //{
+            //    if (app != AppAlias.Unkonw)
+            //    {
+            //        baseUrl = string.Format("https://{0}.fellowshipone.com", appName);
+            //    }
+            //}
+            //else
+            //{
+            //    if (app != AppAlias.Unkonw)
+            //    {
+            //        baseUrl = string.Format("https://{0}.{1}.fellowshipone.com", appName, environment);
+            //    }
+            //}
+
+            
             return baseUrl.ToLower();
         }
     }

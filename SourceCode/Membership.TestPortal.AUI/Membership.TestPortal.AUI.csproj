@@ -1,16 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\xunit.runner.visualstudio.2.0.0-rc3-build1046\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.0.0-rc3-build1046\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props" Condition="Exists('..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props')" />
-  <Import Project="packages\xunit.runner.visualstudio.2.0.0-rc3-build1046\build\net20\xunit.runner.visualstudio.props" Condition="Exists('packages\xunit.runner.visualstudio.2.0.0-rc3-build1046\build\net20\xunit.runner.visualstudio.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{27DCDCC3-E5B6-4555-B1B5-20CFA7952608}</ProjectGuid>
+    <ProjectGuid>{8AA420A6-8450-4BC6-85BE-E7A86DF4F4E4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gatekeeper.TestPortal.Teacher</RootNamespace>
-    <AssemblyName>Gatekeeper.TestPortal.Teacher</AssemblyName>
+    <RootNamespace>Membership.TestPortal.AUI</RootNamespace>
+    <AssemblyName>Membership.TestPortal.AUI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -19,9 +17,9 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <NuGetPackageImportStamp>5df53d5a</NuGetPackageImportStamp>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>5b66e3d0</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,7 +75,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Fixture\MembershipAuthorizedUserFixture.cs" />
+    <Compile Include="DemoTestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,9 +86,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gatekeeper.PageObject.Teacher\Gatekeeper.PageObject.Teacher.csproj">
-      <Project>{6418e8bd-f93e-481a-8e5d-d7534ba2c8c6}</Project>
-      <Name>Gatekeeper.PageObject.Teacher</Name>
+    <ProjectReference Include="..\Gatekeeper.DomainModel.Common\Gatekeeper.DomainModel.Common.csproj">
+      <Project>{cc683df7-f301-4e06-b857-01cccdc8e1a0}</Project>
+      <Name>Gatekeeper.DomainModel.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.Framework.Common\Gatekeeper.Framework.Common.csproj">
+      <Project>{8c57ed98-8e26-46c0-938e-e7e822138f98}</Project>
+      <Name>Gatekeeper.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gatekeeper.Framework.DataAccess\Gatekeeper.Framework.DataAccess.csproj">
+      <Project>{e5992c2a-fe50-4ee3-959c-25638dd9a3c9}</Project>
+      <Name>Gatekeeper.Framework.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Membership.PageObject.AUI\Membership.PageObject.AUI.csproj">
+      <Project>{37c5f785-28ac-42c2-9dd1-0d569ab1d8d0}</Project>
+      <Name>Membership.PageObject.AUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
@@ -119,9 +130,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
     <Error Condition="!Exists('..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.core.2.1.0\build\portable-net45+win8+wp8+wpa81\xunit.core.props'))" />
-    <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.0.0-rc3-build1046\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.0.0-rc3-build1046\build\net20\xunit.runner.visualstudio.props'))" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

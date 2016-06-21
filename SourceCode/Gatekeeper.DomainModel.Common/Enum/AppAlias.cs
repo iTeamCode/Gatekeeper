@@ -15,15 +15,13 @@ namespace Gatekeeper.DomainModel.Common
         Unkonw,
         [Description("Dashboard")]
         Dashboard,
-        [Description("Teacher")]
-        Teacher,
         [Description("Coordinator")]
         Coordinator,
-        [Description("Launchpad")]
-        Launchpad,
-        [Description("Infellowship")]
-        Infellowship,
-        [Description("Portal")]
-        Portal
+        [Description("Membership_AUI")]
+        Membership_AUI,
+        [Description("Membership_CUI")]
+        Membership_CUI,
+        [Description("Membership_Portal")]
+        Membership_Portal
     }
 }

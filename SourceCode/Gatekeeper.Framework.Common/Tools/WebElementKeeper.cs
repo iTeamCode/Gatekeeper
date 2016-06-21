@@ -123,6 +123,11 @@ namespace Gatekeeper.Framework.Common
         {
             return WaitingFor_UrlContains(driver, fraction, _timeoutInterval);
         }
+        public static bool WaitingFor_UrlContains(IWebDriver driver, PageAlias alias)
+        {
+            var uri = RouteMapper.ConvertAliasToUri(alias);
+            return WaitingFor_UrlContains(driver, uri);
+        }
 
         public static bool WaitingFor_UrlToBe(IWebDriver driver, PageAlias alias, TimeSpan timeOut)
         {
@@ -144,6 +149,7 @@ namespace Gatekeeper.Framework.Common
         {
             return WaitingFor_UrlMatches(driver, regex, _timeoutInterval);
         }
+       
         #endregion
 
         #region Waiting For Text

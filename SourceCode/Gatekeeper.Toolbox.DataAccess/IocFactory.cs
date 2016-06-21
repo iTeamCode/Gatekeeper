@@ -72,16 +72,6 @@ namespace Gatekeeper.Toolbox.DataAccess
             //    .ImplementedBy(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.DashboardDataVisitor"))
             //    .Named("DashboardDataVisitor"));
 
-            //LaunchpadDataVisitor
-            container.Register(Component
-                .For(typeof(ILaunchpadDataVisitor))
-                .ImplementedBy(typeof(LaunchpadDataVisitor))
-                .Named("LaunchpadDataVisitor"));
-            //container.Register(Component
-            //    .For(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.ILaunchpadDataVisitor"))
-            //    .ImplementedBy(asmDataAccess.GetType("Gatekeeper.Toolbox.DataAccess.LaunchpadDataVisitor"))
-            //    .Named("LaunchpadDataVisitor"));
-
             #endregion register data access.
             
             _container = container;

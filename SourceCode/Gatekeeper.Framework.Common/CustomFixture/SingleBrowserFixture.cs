@@ -19,6 +19,10 @@ namespace Gatekeeper.Framework.Common
         {
             //Create Browser driver.
             this.DriverManager = GatekeeperFactory.CreateDriverManager();
+            if (this.DriverManager != null)
+            {
+                this.DriverManager.Driver.Manage().Window.Maximize();
+            }
         }
 
         protected virtual void OnDispose() { }

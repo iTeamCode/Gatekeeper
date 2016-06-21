@@ -10,7 +10,5 @@ namespace Gatekeeper.DomainModel.Common
     {
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string ChurchCode { get; set; }
-        public int ChurchId { get; set; }
     }
 }
